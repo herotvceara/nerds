@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Sistema Nerds</title>
+    <!-- Adicione as bibliotecas do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+</head>
+<body>
+     <!-- 
+    <h1>Registrar</h1>
+    <div id="register-form">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="register()">Registrar</button>
+        <div id="error-message" style="color: red;"></div>
+    </div> -->
+
+    <h1>Login</h1>
+    <div id="login-form">
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Senha">
+        <button onclick="login()">Login</button>
+        <div id="login-error-message" style="color: red;"></div> <!-- Caixa de texto para exibir mensagem de erro de login -->
+    </div>
+            <script src="firebase.js"></script>
+            <script src="login.js"></script>
+    
+</body>
+</html>

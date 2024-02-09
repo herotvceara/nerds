@@ -1,0 +1,13 @@
+    <style>
+
+        #content {
+            display: none;
+        }
+        #logoff {
+            float: right;
+            margin-right: 20px;
+            cursor: pointer;
+            color: blue;
+        }
+        
+    </style>
