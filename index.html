@@ -8,6 +8,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+    
     <link rel="stylesheet" href="login.css">
 
 </head>
@@ -17,6 +18,9 @@
     <div class="login-wrap">
         
         <div class="login-html">
+
+          
+
             <h1>NERDS</h1>
             <!-- Botões de rádio para as abas de Sign In e Sign Up -->
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
@@ -49,6 +53,7 @@
                     </div>
                     <!-- Mensagem de erro para Sign In -->
                     <div id="login-error-message" style="color: red;"></div>
+                   
                     <div class="hr"></div>
                     <div class="foot-lnk">
                         <a href="#forgot">DATTEBAYO! NOSSO JEITO NINJA DE SER!</a>
@@ -76,10 +81,20 @@
             </div>
         </div>
     </div>
+
+    
+                        <!-- Áudio com controle personalizado (imagem de play/pause) -->
+                        <div class="custom-audio-control">
+                            <img src="play-or-pause-button.png" alt="Play" onclick="toggleAudio()">
+                        </div>
+                        <audio id="backgroundAudio" loop>
+                            <source src="login.m4a" type="audio/mp4">
+                        </audio>
     
     <!-- Scripts do Firebase e de Login -->
             <script src="firebase.js"></script>
             <script src="login.js"></script>
+            
     
 </body>
 </html>
