@@ -16,6 +16,13 @@
     
     <!-- Formulário de Login e Cadastro -->
     <div class="login-wrap">
+         <!-- Áudio com controle personalizado   (imagem de play/pause) -->
+         <div class="custom-audio-control">
+            <img src="play-or-pause-button.png" alt="Play" onclick="toggleAudio()">
+        </div>
+        <audio id="backgroundAudio" loop>
+            <source src="login.m4a" type="audio/mp4">
+        </audio>
         
         <div class="login-html">
 
@@ -80,16 +87,7 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    
-                        <!-- Áudio com controle personalizado   (imagem de play/pause) -->
-                        <div class="custom-audio-control">
-                            <img src="play-or-pause-button.png" alt="Play" onclick="toggleAudio()">
-                        </div>
-                        <audio id="backgroundAudio" loop>
-                            <source src="login.m4a" type="audio/mp4">
-                        </audio>
+    </div>                
     
     <!-- Scripts do Firebase e de Login -->
             <script src="firebase.js"></script>
