@@ -8,24 +8,76 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="login.css">
+
 </head>
 <body>
-     <!-- 
-    <h1>Registrar</h1>
-    <div id="register-form">
-        <input type="email" id="email" placeholder="Email">
-        <input type="password" id="password" placeholder="Senha">
-        <button onclick="register()">Registrar</button>
-        <div id="error-message" style="color: red;"></div>
-    </div> -->
-FUNCIONOU!
-    <h1>Login</h1>
-    <div id="login-form">
-        <input type="email" id="login-email" placeholder="Email">
-        <input type="password" id="login-password" placeholder="Senha">
-        <button onclick="login()">Login</button>
-        <div id="login-error-message" style="color: red;"></div> <!-- Caixa de texto para exibir mensagem de erro de login -->
+    
+    <!-- Formulário de Login e Cadastro -->
+    <div class="login-wrap">
+        
+        <div class="login-html">
+            <h1>NERDS</h1>
+            <!-- Botões de rádio para as abas de Sign In e Sign Up -->
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">About</label>
+            
+            <!-- Formulário principal de Login -->
+            <div class="login-form">
+                <!-- Aba de Sign In -->
+                <div class="sign-in-htm">
+                    <!-- Entrada para o endereço de e-mail -->
+                    <div class="group">
+                        <label for="login-email" class="label">Endereço de E-mail</label>
+                        <div class="sec-2">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <input type="email" id="login-email" name="email" class="input" placeholder="usuario@empresa.com">
+                        </div>
+                    </div>
+                    <!-- Entrada para a senha -->
+                    <div class="group">
+                        <label for="login-password" class="label">Senha</label>
+                        <div class="sec-2">
+                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <input type="password" id="login-password" name="password" class="input" placeholder="············">
+                            <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <!-- Botão de Sign In -->
+                    <div class="group">
+                        <button onclick="login()" class="button">Entrar</button>
+                    </div>
+                    <!-- Mensagem de erro para Sign In -->
+                    <div id="login-error-message" style="color: red;"></div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#forgot">DATTEBAYO! NOSSO JEITO NINJA DE SER!</a>
+                    </div>
+                </div>
+                <!-- Aba de Sign Up -->
+                <div class="sign-up-htm">
+                    <h3>Programação e desenvolvimento</h3>
+                    <h2>Leo Araujo</h2>
+                    <br>
+                    <h3>Empresa</h3>
+                    <h2>NERDS</h2>
+                    <!-- Inclua o conteúdo do seu formulário de cadastro aqui -->
+                     <!-- 
+                            <h1>Registrar</h1>
+                            <div id="register-form">
+                                <input type="email" id="email" placeholder="Email">
+                                <input type="password" id="password" placeholder="Senha">
+                                <button onclick="register()">Registrar</button>
+                                <div id="error-message" style="color: red;"></div>
+                            </div> -->
+                    <!-- Mensagem de erro para Sign Up -->
+                    <div id="signup-error-message" style="color: red;"></div>
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <!-- Scripts do Firebase e de Login -->
             <script src="firebase.js"></script>
             <script src="login.js"></script>
     
