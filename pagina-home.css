@@ -1,5 +1,4 @@
-    <style>
-
+    
         #content {
             display: none;
         }
@@ -10,4 +9,55 @@
             color: blue;
         }
         
-    </style>
+        #content {
+            background-color: #1161ee;
+            color: #fff;
+            padding: 10px;
+            position: relative;
+        }
+        
+        #user-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        #logoff {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        .menu-container {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            width: 250px;
+            background: #1c1c1c;
+            overflow-x: hidden;
+            transition: 0.5s;
+        }
+        
+        .menu-container:hover {
+            left: 0;
+        }
+        
+        .menu-item {
+            padding: 15px;
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+        }
+        
+        .menu-item:hover {
+            background-color: #1161ee;
+            color: #fff;
+        }
+        
+    
