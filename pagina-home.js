@@ -6,7 +6,7 @@
         if (userEmail) {
             userInfoElement.innerText = 'Bem-vindo, ' + userEmail;
             // Se houver um email, exibir o conteúdo
-            document.getElementById('wrapper').style.display = 'block';
+            document.getElementById('content').style.display = 'block';
         } else {
              // Se o usuário não estiver logado, exibir uma mensagem de alerta
             alert('Você não está logado!');
