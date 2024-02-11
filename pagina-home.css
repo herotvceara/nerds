@@ -197,9 +197,6 @@ a.article:hover {
 }
 
 #logoff {
-    position: absolute;
-    top: 10px;
-    left: 10px;
     color: #fff;
     cursor: pointer;
 }
