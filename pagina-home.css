@@ -1,18 +1,197 @@
-#contentuser {
-    background-color: #1a1a1a; /* Cor de fundo mais escura */
-    color: #fff;
-    padding: 10px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2; /* Coloca o conteúdo acima do menu lateral */
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
 }
 
-#user-info {
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    z-index: 999;
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#dismiss {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background: #7386D5;
     position: absolute;
     top: 10px;
     right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+#dismiss:hover {
+    background: #fff;
+    color: #7386D5;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #6d7fcc;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+
+a.article,
+a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+#user-info {
     color: #fff;
     font-weight: bold;
 }
@@ -23,194 +202,4 @@
     left: 10px;
     color: #fff;
     cursor: pointer;
-}
-@import "compass/css3";
-
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-@import url('https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-
-$color: #777;;
-$color-d: darken($color, 5%);
-$color-l: lighten($color, 7.5%);
-
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-*:before, *:after {
-    content: '';
-    display: block;
-    position: absolute;
-}
-
-html, body {
-    height: 100%;
-}
-
-body {
-    background-color: #333; /* Cor de fundo cinza escuro para a página */
-    font: 15px/1 'Open Sans', sans-serif;
-    color: #777;
-}
-
-a {
-    cursor: pointer;
-}
-
-ul {
-    list-style: none;
-}
-
-.wrapper {
-    display: flex;
-    min-height: 100%;
-}
-
-nav {
-    width: 200px;
-    background: #1a1a1a; /* Cor de fundo do menu lateral */
-}
-
-nav header {
-    position: relative;
-    height: 80px;
-    padding: 20px 0 0 15px;
-    font-size: 16px;
-    color: #fff;
-    background: #141414; /* Cor de fundo mais escura para o cabeçalho do menu */
-}
-
-nav header span {
-    position: relative;
-    display: inline-block;
-    width: 36px;
-    height: 36px;
-    margin: 0 10px 0 0;
-    vertical-align: middle;
-    border: 1px solid #fff;
-}
-
-nav header span:before {
-    content: '\f007';
-    font: normal 20px fontawesome;
-    top: 7px;
-    left: 9px;
-}
-
-nav header a:before {
-    content: '\f08b';
-    font: normal 20px fontawesome;
-    top: 28px;
-    right: 15px;
-}
-
-nav ul span {
-    display: block;
-    padding: 15px;
-    color: rgba(255,255,255,.5);
-    text-transform: uppercase;
-    border-bottom: 1px solid #141414; /* Cor mais escura para as bordas entre os itens do menu */
-}
-
-nav ul a {
-    position: relative;
-    display: block;
-    padding: 15px 15px 17px 50px;
-    color: #fff;
-    border-bottom: 1px solid #141414; /* Cor mais escura para as bordas entre os itens do menu */
-}
-
-nav ul a:hover,
-nav ul a.active {
-    background: #292929; /* Cor de fundo mais escura para os itens do menu */
-    color: #fff;
-}
-
-nav ul a:before {
-    font: normal 16px fontawesome;
-    top: 15px;
-    left: 18px;
-}
-
-nav ul li:nth-child(2) a:before { content: '\f00a'; }
-nav ul li:nth-child(3) a:before { content: '\f012'; }
-nav ul li:nth-child(4) a:before { content: '\f018'; }
-nav ul li:nth-child(5) a:before { content: '\f024'; }
-nav ul li:nth-child(6) a:before { content: '\f0c3'; }
-nav ul li:nth-child(7) a:before { content: '\f09b'; }
-nav ul li:nth-child(8) a:before { content: '\f0fa'; }
-nav ul li:nth-child(10) a:before { content: '\f002'; }
-nav ul li:nth-child(11) a:before { content: '\f085'; }
-nav ul li:nth-child(12) a:before { content: '\f08b'; }
-
-main {
-    flex: 1;
-    padding: 25px;
-    background: #333; /* Cor de fundo mais escura para o conteúdo principal */
-}
-
-main h1 {
-    height: 80px;
-    margin: -25px -25px 25px -25px;
-    padding: 0 25px;
-    line-height: 76px;
-    font-size: 24px;
-    font-weight: 400;
-    background: #2d2d2d; /* Cor de fundo mais escura para o cabeçalho principal */
-}
-
-.flex-grid {
-    display: flex;
-}
-
-.flex-grid > div {
-    flex: 1;
-    margin: 0 20px 20px 0;
-    padding: 15px;
-    border: 1px solid #2d2d2d; /* Cor de fundo mais escura para os contêineres da grade flexível */
-    background: #1a1a1a; /* Cor de fundo mais escura para os contêineres da grade flexível */
-}
-
-.flex-grid > div:last-child {
-    margin-right: 0;
-}
-
-.flex-grid h2 {
-    margin: -15px -15px 15px -15px;
-    padding: 12px 15px;
-    font-size: 14px;
-    font-weight: 400;
-    border-bottom: 1px solid #2d2d2d; /* Cor de fundo mais escura para os contêineres da grade flexível */
-}
-
-.flex-grid li {
-    position: relative;
-    margin: 0 0 10px;
-    padding: 0 0 0 25px;
-}
-
-.flex-grid li:before {
-    content: '\f00c';
-    font: normal 16px fontawesome;
-    top: 0;
-    left: 0;
-    color: #999;
-}
-
-/*
-** Media Queries
-***********************************************************/
-
-@media (max-width: 1000px) { 
-
-    .flex-grid {
-        flex-direction: column;
-    }
-
-    .flex-grid > div {
-        margin-right: 0;
-    }
-
 }
