@@ -4,7 +4,7 @@
 // Exibir o email do usuário no elemento 
         var userInfoElement = document.getElementById('user-info');
         if (userEmail) {
-            userInfoElement.innerText = 'Bem-vindo, ' + userEmail;
+            userInfoElement.innerText = '. Bem-vindo, ' + userEmail;
             // Se houver um email, exibir o conteúdo
             document.getElementById('content').style.display = 'block';
         } else {

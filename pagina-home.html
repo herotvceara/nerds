@@ -43,47 +43,75 @@
 
             <ul class="list-unstyled components">
                 <div id="user-info"></div>
-                
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+
+ <!-- <li class="active"> -->
+                <li>
+                    <a href="#">VENDER</a>
+                </li>
+                    <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">CADASTRAR</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Home 1</a>
+                            <a href="#">CLIENTE</a>
                         </li>
                         <li>
-                            <a href="#">Home 2</a>
+                            <a href="#">ITEM</a>
                         </li>
                         <li>
-                            <a href="#">Home 3</a>
+                            <a href="#">FORNECEDOR</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">About</a>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">PROCESSOS</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">Page 1</a>
+                            <a href="#">Listagem de pedidos</a>
                         </li>
                         <li>
-                            <a href="#">Page 2</a>
+                            <a href="#">Pedidos em produção</a>
                         </li>
                         <li>
-                            <a href="#">Page 3</a>
+                            <a href="#">Pedidos concluidos</a>
                         </li>
+                        <li>
+                            <a href="#">Pedidos entregue</a>
+                        </li>
+                        
                     </ul>
                 </li>
                 <li>
-                    <a href="#">Portfolio</a>
+                    <a href="#resumoSubmenu" data-toggle="collapse" aria-expanded="false">RESUMO</a>
+                    <ul class="collapse list-unstyled" id="resumoSubmenu">
+                        <li>
+                            <a href="#">Resumo diario</a>
+                        </li>
+                        <li>
+                            <a href="#">Relatorio Vendas</a>
+                        </li>
+                        <li>
+                            <a href="#">Relatorio processos</a>
+                        </li>
+                        <li>
+                            <a href="#">Relatorio de gastos</a>
+                        </li>
+                        <li>
+                            <a href="#">Metas e Ganhos</a>
+                        </li>
+                        
+                    </ul>
                 </li>
                 <li>
-                    <a href="#">Contact</a>
+                    <a href="#">CAIXA</a>
+                </li>
+                <li>
+                    <a href="#">Ponto Digital</a>
                 </li>
             </ul>
-
+            <!-- botão disponivel depois das 19h -->
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="" class="download">Download source</a>
+                    <a href="" class="download">Imprimir Resumo Caixa</a>
                 </li>
                 <li>
                     <div id="logoff" class="article">Logoff.</div>
@@ -99,8 +127,44 @@
 
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
+                        <span> MENU</span>
                     </button>
+                    <div class="atalhoButton mt-3 ml-auto" id="atalho1">
+                        <button class="btn btn-primary rounded-circle mx-1 btn-container">
+                            <i class="fas fa-icon"></i>
+                        </button>
+                        <!-- Repita esse botão conforme necessário -->
+                    </div>
+                    
+                    <div class="atalhoButton mt-3 ml-auto" id="atalho2">
+                        <button class="btn btn-primary rounded-circle mx-1 btn-container">
+                            <i class="fas fa-icon"></i>
+                        </button>
+                        <!-- Repita esse botão conforme necessário -->
+                    </div>
+                    
+                    <div class="atalhoButton mt-3 ml-auto" id="atalho3">
+                        <button class="btn btn-primary rounded-circle mx-1 btn-container">
+                            <i class="fas fa-icon"></i>
+                        </button>
+                        <!-- Repita esse botão conforme necessário -->
+                    </div>
+                    
+                    <div class="atalhoButton mt-3 ml-auto" id="atalho4">
+                        <button class="btn btn-primary rounded-circle mx-1 btn-container">
+                            <i class="fas fa-icon"></i>
+                        </button>
+                        <!-- Repita esse botão conforme necessário -->
+                    </div>
+                    
+                    <div class="atalhoButton mt-3 ml-auto" id="atalho5">
+                        <button class="btn btn-primary rounded-circle mx-1 btn-container">
+                            <i class="fas fa-icon"></i>
+                        </button>
+                        <!-- Repita esse botão conforme necessário -->
+                    </div>
+
+
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
                     </button>
@@ -108,25 +172,25 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">VENDER</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">CLIENTE</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">ITEM</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Page</a>
+                                <a class="nav-link" href="#">FORNECEDOR</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <h2>Collapsible Sidebar Using Bootstrap 4</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2>Resumo Diario</h2>
+            <p>Valor inicial: 0,00</p>
+            <p>Clientes atendidos: 0.</p>
 
             <div class="line"></div>
 

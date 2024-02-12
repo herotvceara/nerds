@@ -1,11 +1,9 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
     font-family: 'Poppins', sans-serif;
-    background: #fafafa;
+    background: #2a2a2a; /* Dark background color */
+    color: #fff; /* Light text color */
 }
 
 p {
@@ -19,18 +17,18 @@ p {
 a,
 a:hover,
 a:focus {
-    color: inherit;
+    color: #fff;
     text-decoration: none;
     transition: all 0.3s;
 }
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
+    background: #333; /* Darker navbar background color */
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 3px rgba(255, 255, 255, 0.1);
 }
 
 .navbar-btn {
@@ -45,11 +43,7 @@ a:focus {
     border-bottom: 1px dashed #ddd;
     margin: 40px 0;
 }
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
-
+/* menu lateral */
 #sidebar {
     width: 250px;
     position: fixed;
@@ -57,12 +51,40 @@ a:focus {
     left: -250px;
     height: 100vh;
     z-index: 999;
-    background: #7386D5;
+    background: #2c2c2c;
     color: #fff;
     transition: all 0.3s;
     overflow-y: scroll;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
+
+#sidebarCollapse {
+    background-color: #2c2c2c; /* Nova cor do botão de colapso */
+    color: #fff; /* Cor do texto do botão de colapso */
+    border: none;
+}
+
+#sidebarCollapse:hover {
+    background-color: #fff; /* Cor do botão ao passar o mouse */
+    color: #2c2c2c; /* Cor do texto ao passar o mouse */
+}
+
+#sidebarButtonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.atalhoButton button {
+    width: 50px; /* Ajuste conforme necessário para o tamanho desejado */
+    height: 50px; /* Ajuste conforme necessário para o tamanho desejado */
+    font-size: 20px;
+}
+
+#sidebarCollapse {
+    margin-right: 200px; /* Espaçamento entre o menu e os botões */
+}
+
 
 #sidebar.active {
     left: 0;
@@ -73,7 +95,7 @@ a:focus {
     height: 35px;
     line-height: 35px;
     text-align: center;
-    background: #7386D5;
+    background: #333333;
     position: absolute;
     top: 10px;
     right: 10px;
@@ -98,14 +120,16 @@ a:focus {
     opacity: 0;
     transition: all 0.5s ease-in-out;
 }
+
 .overlay.active {
     display: block;
     opacity: 1;
 }
 
+/* fundo do topo menu */
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #3b3b3b;
 }
 
 #sidebar ul.components {
@@ -132,7 +156,7 @@ a:focus {
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #414b79;
 }
 
 a[data-toggle="collapse"] {
@@ -176,10 +200,6 @@ a.article:hover {
     color: #fff !important;
 }
 
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
 #content {
     width: 100%;
     padding: 20px;
@@ -189,7 +209,6 @@ a.article:hover {
     top: 0;
     right: 0;
 }
-
 
 #user-info {
     color: #fff;
