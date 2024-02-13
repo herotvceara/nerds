@@ -219,3 +219,7 @@ a.article:hover {
     color: #fff;
     cursor: pointer;
 }
+
+#conteudohome {
+    margin-left: 50px; /* Você pode ajustar o valor conforme necessário */
+}
