@@ -84,7 +84,7 @@
                     <a href="#resumoSubmenu" data-toggle="collapse" aria-expanded="false">Gerenciamento</a>
                     <ul class="collapse list-unstyled" id="resumoSubmenu">
                         <li>
-                            <a href="#">Controle de Dispesas</a>
+                            <a href="javascript:void(0);" onclick="carregarConteudo('controle-de-dispesas.html')">Controle de Despesas</a>
                         </li>
                         <li>
                             <a href="#">Relatorio Vendas</a>
@@ -129,7 +129,33 @@
                         <i class="fas fa-align-left"></i>
                         <span></span>
                     </button>
-                   
+
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-align-justify"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Page</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>   
+
+
+    <div id="conteudo-dinamico"></div>
+
 
             <h2>Resumo Diario</h2>
             <p>Valor inicial: 0,00</p>
