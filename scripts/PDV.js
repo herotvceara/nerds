@@ -21,13 +21,16 @@ document.addEventListener('DOMContentLoaded', function () {
       popup.appendChild(header);
   
       // Adicionar conteúdo à janela pop-up
-      popup.innerHTML += `
-        <label for="idCliente">ID:</label>
-        <input type="text" id="idCliente" placeholder="Informe o ID do Cliente" oninput="ajustarTamanhoInput(this)">
-
-  
-        <label for="nomeCliente">Nome do Cliente:</label>
-        <input type="text" id="nomeCliente" placeholder="Informe o Nome do Cliente">
+      popup.innerHTML += `<br><label for="idV">ID Venda:</label>
+      <input class="IDclass" type="text" id="idVenda" value="000" onkeydown="return false;">
+      <br>
+      
+      <label for="idCliente">ID:</label>
+      <input class="IDclass" type="text" id="idCliente">
+      
+      <label for="nomeCliente">Nome do Cliente:</label>
+      <input type="text" id="nomeCliente" placeholder="Informe o Nome do Cliente">
+      
       `;
   
       // Adicionar a janela pop-up ao corpo do documento
@@ -54,7 +57,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
   
-  function ajustarTamanhoInput(input) {
-    // Ajustar a largura com base no comprimento do valor
-    input.style.width = ((input.value.length + 1) * 8) + 'px';
-  }
+  document.addEventListener('input', function(event) {
+    if (event.target.classList.contains('IDclass') && event.target.type === 'text') {
+        // Limitar o comprimento
+        if (event.target.value.length > 25) {
+            event.target.value = event.target.value.slice(0, 25);
+        }
+
+        // Garantir que apenas números sejam permitidos
+        event.target.value = event.target.value.replace(/[^0-9]/g, '');
+
+        // Definir o tamanho mínimo
+        const tamanhoMinimo = 5;
+
+        // Adicionar tamanho de acordo com o texto digitado
+        if (event.target.value.length <= tamanhoMinimo) {
+            event.target.style.width = tamanhoMinimo + "ch";
+        } else {
+            // Incrementar o tamanho além do tamanho mínimo
+            event.target.style.width = event.target.value.length + "ch";
+        }
+    }
+});
+
+  
+  
+  
