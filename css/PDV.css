@@ -3,24 +3,16 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-<<<<<<< HEAD
-  max-width: calc(100% - 50px);
-  width: auto;
-  padding: 10px;
-  margin: 50px;
-=======
   max-width: calc(100% - 40px); /* Alterado para 40px (20px em cada lado) */
   width: auto;
   padding: 10px;
   margin: 20px; /* Alterado para 20px */
->>>>>>> f961761ed59c25d8b50b9580ffef48811c417015
   background-color: #2c2c2c;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 999;
-<<<<<<< HEAD
   overflow: hidden; /* Impede a exibição de barras de rolagem */
-  max-height: calc(100% - 50px); /* Altura máxima como 100% da tela menos 50px */
+  max-height: calc(100% - 40px); /* Altura máxima como 100% da tela menos 40px */
 }
 
 /* Adicione uma media query para ajustar o tamanho em dispositivos móveis */
@@ -61,33 +53,4 @@
 
 .IDclass {
   width: 50px;
-  
 }
-=======
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.fechar {
-  cursor: pointer;
-  font-size: 18px;
-  color: #ffffff;
-}
-
-.fechar:hover {
-  color: #ff0000;
-}
-
-/* Adicionando regras de mídia para layout responsivo */
-@media (max-width: 600px) {
-  .popup {
-    max-width: calc(100% - 40px);
-    margin: 20px;
-  }
-}
->>>>>>> f961761ed59c25d8b50b9580ffef48811c417015
