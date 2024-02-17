@@ -89,4 +89,6 @@ document.addEventListener('input', function (event) {
 
 function retrairMenu() {
   // Retrair o menu lateral
+  var sidebar = document.getElementById("sidebar");
+  sidebar.classList.remove("active");
 }
