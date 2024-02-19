@@ -29,6 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
     header.innerHTML += '<span class="fechar" onclick="fecharPopup()">X</span>'; 
     popup.appendChild(header);
 
+    // Adicionar linha cinza no início do pop-up
+    var greyLine = document.createElement('div');
+    greyLine.classList.add('grey-line');
+    popup.appendChild(greyLine);
+
     // Adicionar conteúdo à janela pop-up
     popup.innerHTML += `<div class="popup-content">
     <label for="idV"><strong>ID Venda:</strong></label> <br>
@@ -68,7 +73,7 @@ function fecharPopup() {
 }
 
 document.addEventListener('input', function (event) {
-  if (event.target.classList.contains('IDclass') && event.target.type === 'text') {
+    if (event.target.classList.contains('IDclass') && event.target.type === 'text') {
     // Limitar o comprimento
     if (event.target.value.length > 25) {
       event.target.value = event.target.value.slice(0, 25);
@@ -91,12 +96,7 @@ document.addEventListener('input', function (event) {
 });
 
 function retrairMenu() {
-  // Retrair o menu
-  var sidebar = document.getElementById('sidebar');
-  var overlay = document.querySelector('.overlay');
-
-  if (sidebar.classList.contains('active')) {
-    sidebar.classList.remove('active');
-    overlay.classList.remove('active');
-  }
+  // Retrair o menu lateral
+  var sidebar = document.getElementById("sidebar");
+  sidebar.classList.remove("active");
 }

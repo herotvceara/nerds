@@ -15,7 +15,8 @@
   transform: translate(-60%, 0);
   max-width: calc(100% - 100px);
   width: 60%;
-  padding: 0; /* Removido o padding para que a imagem de fundo preencha completamente */
+  padding: 0;
+  /* Removido o padding para que a imagem de fundo preencha completamente */
   margin: 50px;
   background:  #ffffff;
   /*background: linear-gradient(to bottom, #ffffff 35%, #e9e7e7 35%);*/
@@ -26,34 +27,26 @@
   overflow: hidden;
 }
 
-.popup::before {
-  content: '';
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  width: 95%;
-  height: 2px; /* Ajuste a grossura do risco conforme necessário */
-  background-color: #ccc; /* Cor do risco cinza */
-  transform: translateY(-50%) translateX(-50%);
-}
-
 
 .popup-title {
   position: relative;
-  margin: 15px 25px -15px; /* Ajuste a margem superior para 12px e inferior para 0px */
+  margin: 15px 25px -15px;
   font-size: 20px;
   color: #333;
   font-weight: bold;
 }
 
+/* Estilo para a linha cinza no início */
+.grey-line {
+  border-top: 2px solid #ccc; /* Ajuste a grossura conforme necessário */
+  margin-bottom: 10px; /* Ajuste a posição da linha conforme necessário */
+}
 
 .popup-content {
-  margin-top: 40px; /* Ajuste a margem superior para -15px para mover o conteúdo para cima */
+  margin-top: -10px; /* Ajuste a margem superior para -15px para mover o conteúdo para cima */
   padding: 0px 30px 20px ;
 }
 
-
-/* Adicione uma media query para ajustar o tamanho em dispositivos móveis */
 @media (max-width: 767px) {
   .popup {
     max-width: calc(100% - 20px);
@@ -73,9 +66,9 @@
 }
 
 .popup-content label {
-  color: #555; /* Cor desejada para o texto dos labels no conteúdo */
+  color: #555;
+  /* Cor desejada para o texto dos labels no conteúdo */
 }
-
 
 .header {
   display: flex;
@@ -87,10 +80,13 @@
 .fechar {
   cursor: pointer;
   font-size: 18px;
-  color: #333; /* Cor do texto preta */
+  color: #333;
+  /* Cor do texto preta */
   position: absolute;
-  top: 10px; /* Escolha a posição do topo conforme necessário */
-  right: 20px; /* Escolha a posição da direita conforme necessário */
+  top: 10px;
+  /* Escolha a posição do topo conforme necessário */
+  right: 20px;
+  /* Escolha a posição da direita conforme necessário */
 }
 
 .fechar:hover {
