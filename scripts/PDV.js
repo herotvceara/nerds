@@ -26,14 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
     popupTitle.classList.add('popup-title');
     popupTitle.innerHTML = '<h2>PDV - Ponto de Vendas</h2>';
     header.appendChild(popupTitle);
-    header.innerHTML += '<span class="fechar" onclick="fecharPopup()">X</span>';
+    header.innerHTML += '<span class="fechar" onclick="fecharPopup()">X</span>'; 
     popup.appendChild(header);
 
     // Adicionar conteúdo à janela pop-up
     popup.innerHTML += `<div class="popup-content">
-    <!-- Linha cinza no início -->
-    <hr class="grey-line">
-    
     <label for="idV"><strong>ID Venda:</strong></label> <br>
     <input class="IDclass" type="text" id="idVenda" value="000" onkeydown="return false;">
     <br>
@@ -47,6 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(popup);
   });
 });
+
+ 
+
+  // Chama a função para adicionar a linha cinza após o popup
+  adicionarLinhaCinza();
+
+  // Chama a função para adicionar a linha cinza
+  adicionarLinhaCinza();
 
 function fecharPopup() {
   // Remover a janela pop-up do corpo do documento

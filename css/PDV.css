@@ -26,6 +26,17 @@
   overflow: hidden;
 }
 
+.popup::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: 95%;
+  height: 2px; /* Ajuste a grossura do risco conforme necessário */
+  background-color: #ccc; /* Cor do risco cinza */
+  transform: translateY(-50%) translateX(-50%);
+}
+
 
 .popup-title {
   position: relative;
@@ -35,14 +46,9 @@
   font-weight: bold;
 }
 
-/* Estilo para a linha cinza no início */
-.grey-line {
-  border-top: 2px solid #ccc; /* Ajuste a grossura conforme necessário */
-  margin-bottom: 10px; /* Ajuste a posição da linha conforme necessário */
-}
 
 .popup-content {
-  margin-top: -10px; /* Ajuste a margem superior para -15px para mover o conteúdo para cima */
+  margin-top: 40px; /* Ajuste a margem superior para -15px para mover o conteúdo para cima */
   padding: 0px 30px 20px ;
 }
 

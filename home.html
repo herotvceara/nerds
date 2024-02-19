@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Site</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    nav {
+      width: 80px; /* Largura inicial */
+      height: 100vh;
+      background-color: #6e7f80; /* Azul meio cinza */
+      color: #fff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      overflow-y: auto;
+      transition: width 0.3s ease, background-color 0.3s ease; /* Adicionada transição para a largura e cor de fundo */
+      border-right: 2px solid #ddd;
+      border-radius: 0 10px 10px 0;
+    }
+
+    /* Estilização quando o menu está expandido */
+    nav.expanded {
+      width: 180px;
+      flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
+      align-items: flex-start; /* Alinhar os botões à esquerda */
+    }
+/* Estilo dos botões no menu */
+nav button {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  flex-direction: column; /* Alteração para exibir ícone acima do texto */
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: padding 0.3s ease, width 0.3s ease, height 0.3s ease; /* Adicionada transição para a largura e altura */
+  text-align: center; /* Centralizar texto */
+  width: 80px;
+  height: 80px; /* Altura inicial */
+   margin-top: auto; /* Adicione esta linha para empurrar o botão para o final do menu */
+}
+
+/* Estilo dos ícones nos botões */
+nav button img {
+  width: 15px;
+  margin-bottom: 3px;
+}
+
+/* Estilo dos botões quando expandidos */
+nav.expanded button {
+  flex-direction: row; /* Alteração para exibir ícone à esquerda e texto à direita */
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  padding: 20px 30px 30px;
+  margin-bottom: 5px;
+  width: auto;
+  height: 20px; /* Altura quando expandido */
+}
+
+/* Estilo dos ícones nos botões quando expandidos */
+nav.expanded button img {
+  margin-right: 10px; /* Espaçamento à direita do ícone */
+  margin-bottom: 0; /* Remover espaço abaixo do ícone */
+  width: 15px;
+  height: 24px; /* Ajustar a altura conforme necessário */
+  margin-top: 0px; /* Espaçamento acima do ícone */
+  margin-left: 5px; /* Espaçamento à esquerda do ícone */
+}
+
+
+
+    /* Estilo do botão ativo */
+    nav button.active {
+      background-color: #3b4d4f; /* Azul escuro para o botão ativo */
+    }
+
+    main {
+      margin-left: 80px; /* Margem inicial */
+      padding: 20px;
+      transition: margin-left 0.3s ease;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      border: 2px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Estilo do conteúdo principal quando o menu está expandido */
+    main.menu-expanded {
+      margin-left: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <!-- Botão do menu -->
+    <button onclick="toggleMenu()" class="expanded">&#9776;</button>
+    <!-- Botões do menu -->
+    <button class="icon-vender active"><img src="img/check-circle.svg" alt="Vender"> Vender</button>
+    <button class="icon-processos"><img src="icone-processos.svg" alt="Processos"> Processos</button>
+    <button class="icon-cadastros"><img src="icone-cadastros.svg" alt="Cadastros"> Cadastros</button>
+    <button class="icon-historico"><img src="icone-historico.svg" alt="Histórico"> Histórico</button>
+    <button class="icon-financas"><img src="icone-financas.svg" alt="Finanças"> Finanças</button>
+    <button class="icon-estatisticas"><img src="icone-estatisticas.svg" alt="Estatísticas"> Estatísticas</button>
+    <button class="icon-usuarios"><img src="icone-usuarios.svg" alt="Usuários"> Usuários</button>
+    <button class="icon-configuracoes"><img src="icone-configuracoes.svg" alt="Configurações"> Configurações</button>
+    <!-- Adicione mais botões conforme necessário -->
+  </nav>
+
+  <main>
+    <h1>Conteúdo da Página</h1>
+    <p>Seu conteúdo vai aqui...</p>
+  </main>
+
+  <script>
+    // Função para alternar a expansão do menu
+    function toggleMenu() {
+      document.querySelector('nav').classList.toggle('expanded');
+      document.querySelector('main').classList.toggle('menu-expanded');
+    }
+
+    // Adicionado script para marcar o botão clicado como ativo
+    document.querySelectorAll('nav button').forEach(function(button) {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('nav button').forEach(function(btn) {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
