@@ -29,17 +29,29 @@
       border-radius: 0 10px 10px 0;
     }
 
+      /* Adicionando um box na cor do botão ativo */
+      nav::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Altura do botão */
+            background-color: #3b4d4f; /* Cor do botão ativo */
+            z-index: -1; /* Colocando atrás do menu */
+        }
     /* Estilização quando o menu está expandido */
     nav.expanded {
-      width: 180px;
+      width: 150px;
       flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
       align-items: flex-start; /* Alinhar os botões à esquerda */
     }
-
+   
     /* Alinhar o botão do menu à direita quando expandido */
     nav.expanded .menu-button {
       align-self: flex-end;
     }
+
 /* Estilo dos botões no menu */
 nav button {
   text-decoration: none;
@@ -52,33 +64,36 @@ nav button {
   border: none;
   background: none;
   cursor: pointer;
-  margin-bottom: 10px;
-  transition: padding 0.3s ease, width 0.3s ease, height 0.3s ease; /* Adicionada transição para a largura e altura */
+  margin-bottom: 20px;
   text-align: center; /* Centralizar texto */
   width: 80px;
   height: 80px; /* Altura inicial */
   margin-top: auto; /* Adicione esta linha para empurrar o botão para o final do menu */
   border-radius: 10px; /* Adicionado para arredondar os cantos */
+  margin-left: 0px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transição suavizada para a mudança de cor de fundo e cor do texto */
 }
+
 
 /* Estilo dos ícones nos botões */
 nav button img {
   width: 15px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  transition: margin-right 0.3s ease; /* Transição suavizada para o espaçamento à direita do ícone */
 }
-
-
 /* Estilo dos botões quando expandidos */
 nav.expanded button {
   flex-direction: row; /* Alteração para exibir ícone à esquerda e texto à direita */
   justify-content: flex-start;
   align-items: center;
   text-align: left;
-  padding: 20px 50px 30px 20px; /* Padding: cima, direita, baixo, esquerda */
-  margin-bottom: 50px; /* Margin-bottom */
+  padding: 10px 100px 10px 30px; /* Alterado o padding para afastar os botões um pouco para a esquerda */
+  margin-bottom: 10px; /* Margem inferior */
+  margin-top: 0%; /* Margem superior em percentagem */
   width: 50px;
   height: 50px; /* Altura aumentada quando expandido */
-  border-radius: 10px; /* Adicionado para arredondar os cantos */
+  border-radius: 15px; /* Adicionado para arredondar os cantos */
+  margin-left: 10px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
 }
 
 /* Estilo dos ícones nos botões quando expandidos */
@@ -88,9 +103,9 @@ nav.expanded button img {
   width: 15px;
   height: 24px; /* Ajustar a altura conforme necessário */
   margin-top: 0px; /* Espaçamento acima do ícone */
-  margin-left: 5px; /* Espaçamento à esquerda do ícone */
-}
+  margin-left: 0px; /* Espaçamento à esquerda do ícone */
 
+}
 
 
    /* Estilo do botão ativo */
@@ -99,6 +114,36 @@ nav button.active {
   line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
 
 }
+/* Estilo do botão ativo */
+nav.expanded button.active {
+  background-color: #3b4d4f; /* Azul escuro para o botão ativo */
+  line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
+  margin-right: 10px; /* Adiciona um espaçamento à direita do botão ativo quando o menu está expandido */
+}
+
+nav #toggleMenuButton {
+  width: 40px; /* Largura igual à altura atual */
+  height: 40px;
+  padding: 0; /* Remover preenchimento */
+  display: flex; /* Ativar flexbox */
+  justify-content: center; /* Centralizar horizontalmente */
+  align-items: center; /* Centralizar verticalmente */
+  margin-right: 0px;
+  border-radius: 0px;
+}
+
+/* Estilo do botão de toggle quando o menu está expandido */
+nav.expanded #toggleMenuButton {
+  width: 40px; /* Largura igual à altura atual */
+  height: 40px;
+  padding: 0; /* Remover preenchimento */
+  display: flex; /* Ativar flexbox */
+  justify-content: center; /* Centralizar horizontalmente */
+  align-items: center; /* Centralizar verticalmente */
+  margin-right: 0px;
+  border-radius: 0px;
+}
+
 
     main {
       margin-left: 80px; /* Margem inicial */
@@ -110,7 +155,6 @@ nav button.active {
       border: 2px solid #ddd;
       display: flex;
       flex-direction: column;
-      align-items: center;
     }
 
     /* Estilo do conteúdo principal quando o menu está expandido */
@@ -124,7 +168,7 @@ nav button.active {
   <nav>
    
     <!-- Botão do menu -->
-<button onclick="toggleMenu()" class="menu-button expanded">&#9776;</button>
+    <button onclick="toggleMenu()" id="toggleMenuButton" class="menu-button expanded toggle-menu">&#9776;</button>
 
     <!-- Botões do menu -->
     <button class="icon-vender active"><img src="img/check-circle.svg" alt="Vender"> Vender</button>
@@ -132,9 +176,9 @@ nav button.active {
     <button class="icon-cadastros"><img src="icone-cadastros.svg" alt="Cadastros"> Cadastros</button>
     <button class="icon-historico"><img src="icone-historico.svg" alt="Histórico"> Histórico</button>
     <button class="icon-financas"><img src="icone-financas.svg" alt="Finanças"> Finanças</button>
-    <button class="icon-estatisticas"><img src="icone-estatisticas.svg" alt="Estatísticas"> Estatísticas</button>
+    <button class="icon-estatisticas"><img src="icone-estatisticas.svg" alt="Estatísticas"> Estat.</button>
     <button class="icon-usuarios"><img src="icone-usuarios.svg" alt="Usuários"> Usuários</button>
-    <button class="icon-configuracoes"><img src="icone-configuracoes.svg" alt="Configurações"> Configurações</button>
+    <button class="icon-configuracoes"><img src="icone-configuracoes.svg" alt="Config"> Config.</button>
     <!-- Adicione mais botões conforme necessário -->
   </nav>
 
@@ -144,12 +188,27 @@ nav button.active {
   </main>
 
   <script>
-    // Função para alternar a expansão do menu
-    function toggleMenu() {
-      document.querySelector('nav').classList.toggle('expanded');
-      document.querySelector('main').classList.toggle('menu-expanded');
-    }
+  // Função para alternar a expansão do menu e mudar o texto dos botões
+  function toggleMenu() {
+            var nav = document.querySelector('nav');
+            var main = document.querySelector('main');
+            var estatisticasButton = document.querySelector('.icon-estatisticas');
+            var configuracoesButton = document.querySelector('.icon-configuracoes');
 
+            // Alternar a expansão do menu
+            nav.classList.toggle('expanded');
+            main.classList.toggle('menu-expanded');
+
+            if (nav.classList.contains('expanded')) {
+                // Menu está expandido
+                estatisticasButton.textContent = "Estatísticas";
+                configuracoesButton.textContent = "Configurações";
+            } else {
+                // Menu está contraído
+                estatisticasButton.textContent = "Estat.";
+                configuracoesButton.textContent = "Config.";
+            }
+        }
     // Adicionado script para marcar o botão clicado como ativo
     document.querySelectorAll('nav button').forEach(function(button) {
       button.addEventListener('click', function() {
