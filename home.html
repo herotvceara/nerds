@@ -35,6 +35,11 @@
       flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
       align-items: flex-start; /* Alinhar os botões à esquerda */
     }
+
+    /* Alinhar o botão do menu à direita quando expandido */
+    nav.expanded .menu-button {
+      align-self: flex-end;
+    }
 /* Estilo dos botões no menu */
 nav button {
   text-decoration: none;
@@ -52,14 +57,16 @@ nav button {
   text-align: center; /* Centralizar texto */
   width: 80px;
   height: 80px; /* Altura inicial */
-   margin-top: auto; /* Adicione esta linha para empurrar o botão para o final do menu */
+  margin-top: auto; /* Adicione esta linha para empurrar o botão para o final do menu */
+  border-radius: 10px; /* Adicionado para arredondar os cantos */
 }
 
 /* Estilo dos ícones nos botões */
 nav button img {
   width: 15px;
-  margin-bottom: 3px;
+  margin-bottom: 5px;
 }
+
 
 /* Estilo dos botões quando expandidos */
 nav.expanded button {
@@ -67,10 +74,11 @@ nav.expanded button {
   justify-content: flex-start;
   align-items: center;
   text-align: left;
-  padding: 20px 30px 30px;
-  margin-bottom: 5px;
-  width: auto;
-  height: 20px; /* Altura quando expandido */
+  padding: 20px 50px 30px 20px; /* Padding: cima, direita, baixo, esquerda */
+  margin-bottom: 50px; /* Margin-bottom */
+  width: 50px;
+  height: 50px; /* Altura aumentada quando expandido */
+  border-radius: 10px; /* Adicionado para arredondar os cantos */
 }
 
 /* Estilo dos ícones nos botões quando expandidos */
@@ -85,10 +93,12 @@ nav.expanded button img {
 
 
 
-    /* Estilo do botão ativo */
-    nav button.active {
-      background-color: #3b4d4f; /* Azul escuro para o botão ativo */
-    }
+   /* Estilo do botão ativo */
+nav button.active {
+  background-color: #3b4d4f; /* Azul escuro para o botão ativo */
+  line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
+
+}
 
     main {
       margin-left: 80px; /* Margem inicial */
@@ -112,8 +122,10 @@ nav.expanded button img {
 <body>
 
   <nav>
+   
     <!-- Botão do menu -->
-    <button onclick="toggleMenu()" class="expanded">&#9776;</button>
+<button onclick="toggleMenu()" class="menu-button expanded">&#9776;</button>
+
     <!-- Botões do menu -->
     <button class="icon-vender active"><img src="img/check-circle.svg" alt="Vender"> Vender</button>
     <button class="icon-processos"><img src="icone-processos.svg" alt="Processos"> Processos</button>
