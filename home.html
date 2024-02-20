@@ -12,6 +12,31 @@
   font-family: 'Arial', sans-serif;
 }
 
+/* Estilos para telas menores que 767px */
+@media (max-width: 767px) {
+  nav {
+    width: 80px; /* Largura inicial */
+    height: auto; /* Altura automática para expandir para baixo */
+    flex-direction: row; /* Altera a direção do layout para linha */
+    align-items: center;
+    padding-top: 0; /* Remove o espaço superior */
+    border-right: none; /* Remove a borda direita */
+    border-radius: 0; /* Remove o arredondamento na borda */
+    overflow-y: hidden; /* Esconde a barra de rolagem vertical */
+  }
+
+  /* Botão que expande/contrai o menu ao ser clicado */
+  .toggle-button {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Estilos adicionais quando o menu está expandido */
+  nav.expanded {
+    height: 200px; /* Defina a altura desejada para expansão vertical */
+  }
+}
+
 nav {
   width: 80px; /* Largura inicial */
   height: 100vh;

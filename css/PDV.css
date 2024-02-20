@@ -48,10 +48,7 @@
 }
 
 @media (max-width: 767px) {
-  .popup {
-    max-width: calc(100% - 20px);
-    margin: 20px;
-  }
+  
 }
 
 .popup * {
