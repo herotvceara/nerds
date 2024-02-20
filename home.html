@@ -56,14 +56,15 @@ nav {
 
 nav.expanded {
   width: 150px;
+  height: 100vh;
   flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
   align-items: flex-start; /* Alinhar os botões à esquerda */
+ 
 }
 
 nav button {
   text-decoration: none;
   color: #fff;
-  padding: 10px;
   display: flex;
   flex-direction: column; /* Alteração para exibir ícone acima do texto */
   align-items: center;
@@ -71,10 +72,11 @@ nav button {
   border: none;
   background: none;
   cursor: pointer;
+  padding: 15px;
   margin-top: 4px;
   text-align: center; /* Centralizar texto */
-  width: 80px;
-  height: 80px; /* Altura inicial */
+  width: 80px;/* Altura inicial */
+  height: 80px; 
   border-radius: 10px; /* Adicionado para arredondar os cantos */
   margin-left: 0px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
   
@@ -91,14 +93,14 @@ nav.expanded button {
   justify-content: flex-start;
   align-items: center;
   text-align: left;
-  padding: 10px 100px 10px 30px; /* Alterado o padding para afastar os botões um pouco para a esquerda */
+  padding: 10px ;
+  margin-top: 2px; /* Margem superior em percentagem */
   margin-bottom: 10px; /* Margem inferior */
-  margin-top: 0%; /* Margem superior em percentagem */
-  width: 50px;
+  margin-left: 10px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
+  width: 150px;
   height: 50px; /* Altura aumentada quando expandido */
   border-radius: 15px; /* Adicionado para arredondar os cantos */
-  margin-left: 10px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
-}
+  }
 
 nav.expanded button img {
   margin-right: 10px; /* Espaçamento à direita do ícone */
@@ -124,7 +126,6 @@ nav.expanded button.active {
 
 
 main {
-  margin-left: 80px; /* Margem inicial */
   padding: 20px;
   transition: margin-left 0.3s ease, padding 0.3s ease; /* Adicionada transição para a margem e padding */
   overflow-y: auto;
@@ -136,12 +137,13 @@ main {
 }
 
 main:not(.menu-expanded) {
-  margin-left: 80px; /* Margem inicial ao não estar expandido */
+  margin-left: 100px; /* Margem inicial ao não estar expandido */
   padding: 20px; /* Padding inicial ao não estar expandido */
 }
 
 main.menu-expanded {
   margin-left: 200px;
+  margin-left: 170px;
 }
 
   </style>
