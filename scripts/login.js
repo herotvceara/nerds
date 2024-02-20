@@ -35,7 +35,7 @@
                 localStorage.setItem('userEmail', email);
                 
                 // Redirecionar para a página home
-                window.location.href = "pagina-home.html";
+                window.location.href = "home.html";
             })
             .catch((error) => {
                 // Tratar erros de login
