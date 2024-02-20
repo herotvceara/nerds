@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seu Site</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Arial', sans-serif;
-    }
+   body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
 
-    nav {
-      width: 80px; /* Largura inicial */
-      height: 100vh;
-      background-color: #6e7f80; /* Azul meio cinza */
-      color: #fff;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 20px;
-      overflow-y: auto;
-      transition: width 0.3s ease, background-color 0.3s ease; /* Adicionada transição para a largura e cor de fundo */
-      border-right: 2px solid #ddd;
-      border-radius: 0 10px 10px 0;
-    }
+nav {
+  width: 80px; /* Largura inicial */
+  height: 100vh;
+  background-color: #6e7f80; /* Azul meio cinza */
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  border-right: 2px solid #ddd;
+  border-radius: 0 10px 10px 0;
+  overflow-y: auto;
+}
 
-      /* Adicionando um box na cor do botão ativo */
-      nav::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px; /* Altura do botão */
-            background-color: #3b4d4f; /* Cor do botão ativo */
-            z-index: -1; /* Colocando atrás do menu */
-        }
-    /* Estilização quando o menu está expandido */
-    nav.expanded {
-      width: 150px;
-      flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
-      align-items: flex-start; /* Alinhar os botões à esquerda */
-    }
-   
-    /* Alinhar o botão do menu à direita quando expandido */
-    nav.expanded .menu-button {
-      align-self: flex-end;
-    }
+nav.expanded {
+  width: 150px;
+  flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
+  align-items: flex-start; /* Alinhar os botões à esquerda */
+}
 
-/* Estilo dos botões no menu */
 nav button {
   text-decoration: none;
   color: #fff;
@@ -64,24 +46,21 @@ nav button {
   border: none;
   background: none;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin-top: 4px;
   text-align: center; /* Centralizar texto */
   width: 80px;
   height: 80px; /* Altura inicial */
-  margin-top: auto; /* Adicione esta linha para empurrar o botão para o final do menu */
   border-radius: 10px; /* Adicionado para arredondar os cantos */
   margin-left: 0px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Transição suavizada para a mudança de cor de fundo e cor do texto */
+  
 }
 
-
-/* Estilo dos ícones nos botões */
 nav button img {
   width: 15px;
   margin-bottom: 10px;
   transition: margin-right 0.3s ease; /* Transição suavizada para o espaçamento à direita do ícone */
 }
-/* Estilo dos botões quando expandidos */
+
 nav.expanded button {
   flex-direction: row; /* Alteração para exibir ícone à esquerda e texto à direita */
   justify-content: flex-start;
@@ -96,7 +75,6 @@ nav.expanded button {
   margin-left: 10px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
 }
 
-/* Estilo dos ícones nos botões quando expandidos */
 nav.expanded button img {
   margin-right: 10px; /* Espaçamento à direita do ícone */
   margin-bottom: 0; /* Remover espaço abaixo do ícone */
@@ -104,81 +82,61 @@ nav.expanded button img {
   height: 24px; /* Ajustar a altura conforme necessário */
   margin-top: 0px; /* Espaçamento acima do ícone */
   margin-left: 0px; /* Espaçamento à esquerda do ícone */
-
 }
 
-
-   /* Estilo do botão ativo */
 nav button.active {
   background-color: #3b4d4f; /* Azul escuro para o botão ativo */
   line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
-
 }
-/* Estilo do botão ativo */
+
 nav.expanded button.active {
   background-color: #3b4d4f; /* Azul escuro para o botão ativo */
   line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
   margin-right: 10px; /* Adiciona um espaçamento à direita do botão ativo quando o menu está expandido */
 }
 
-nav #toggleMenuButton {
-  width: 40px; /* Largura igual à altura atual */
-  height: 40px;
-  padding: 0; /* Remover preenchimento */
-  display: flex; /* Ativar flexbox */
-  justify-content: center; /* Centralizar horizontalmente */
-  align-items: center; /* Centralizar verticalmente */
-  margin-right: 0px;
-  border-radius: 0px;
+
+
+main {
+  margin-left: 80px; /* Margem inicial */
+  padding: 20px;
+  transition: margin-left 0.3s ease, padding 0.3s ease; /* Adicionada transição para a margem e padding */
+  overflow-y: auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Estilo do botão de toggle quando o menu está expandido */
-nav.expanded #toggleMenuButton {
-  width: 40px; /* Largura igual à altura atual */
-  height: 40px;
-  padding: 0; /* Remover preenchimento */
-  display: flex; /* Ativar flexbox */
-  justify-content: center; /* Centralizar horizontalmente */
-  align-items: center; /* Centralizar verticalmente */
-  margin-right: 0px;
-  border-radius: 0px;
+main:not(.menu-expanded) {
+  margin-left: 80px; /* Margem inicial ao não estar expandido */
+  padding: 20px; /* Padding inicial ao não estar expandido */
 }
 
+main.menu-expanded {
+  margin-left: 200px;
+}
 
-    main {
-      margin-left: 80px; /* Margem inicial */
-      padding: 20px;
-      transition: margin-left 0.3s ease;
-      overflow-y: auto;
-      background-color: #f9f9f9;
-      border-radius: 10px;
-      border: 2px solid #ddd;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Estilo do conteúdo principal quando o menu está expandido */
-    main.menu-expanded {
-      margin-left: 200px;
-    }
   </style>
 </head>
+
 <body>
 
   <nav>
-   
     <!-- Botão do menu -->
     <button onclick="toggleMenu()" id="toggleMenuButton" class="menu-button expanded toggle-menu">&#9776;</button>
 
     <!-- Botões do menu -->
-    <button class="icon-vender active"><img src="img/check-circle.svg" alt="Vender"> Vender</button>
-    <button class="icon-processos"><img src="icone-processos.svg" alt="Processos"> Processos</button>
-    <button class="icon-cadastros"><img src="icone-cadastros.svg" alt="Cadastros"> Cadastros</button>
-    <button class="icon-historico"><img src="icone-historico.svg" alt="Histórico"> Histórico</button>
-    <button class="icon-financas"><img src="icone-financas.svg" alt="Finanças"> Finanças</button>
-    <button class="icon-estatisticas"><img src="icone-estatisticas.svg" alt="Estatísticas"> Estat.</button>
-    <button class="icon-usuarios"><img src="icone-usuarios.svg" alt="Usuários"> Usuários</button>
-    <button class="icon-configuracoes"><img src="icone-configuracoes.svg" alt="Config"> Config.</button>
+    <button class="icon-vender" id="bntvender"><img src="img/check-circle.svg" alt="Vender"> Vender</button>
+<button class="icon-processos" id="bntprocessos"><img src="icone-processos.svg" alt="Processos"> Processos</button>
+<button class="icon-cadastros" id="bntcadastros"><img src="icone-cadastros.svg" alt="Cadastros"> Cadastros</button>
+<button class="icon-historico" id="bnthistorico"><img src="icone-historico.svg" alt="Histórico"> Histórico</button>
+<button class="icon-financas" id="bntfinancas"><img src="icone-financas.svg" alt="Finanças"> Finanças</button>
+<button class="icon-estatisticas" id="bntestatisticas"><img src="icone-estatisticas.svg" alt="Estatísticas">  <span id="estetic">Estat.</span></button>
+<button class="icon-usuarios" id="bntusuarios"><img src="icone-usuarios.svg" alt="Usuários"> Usuários</button>
+<button class="icon-configuracoes" id="bntconfiguracoes"><img src="icone-configuracoes.svg" alt="Config"> <span id="configuret">Config.</span></button>
+
     <!-- Adicione mais botões conforme necessário -->
   </nav>
 
@@ -192,23 +150,30 @@ nav.expanded #toggleMenuButton {
   function toggleMenu() {
             var nav = document.querySelector('nav');
             var main = document.querySelector('main');
-            var estatisticasButton = document.querySelector('.icon-estatisticas');
-            var configuracoesButton = document.querySelector('.icon-configuracoes');
-
+            
             // Alternar a expansão do menu
             nav.classList.toggle('expanded');
             main.classList.toggle('menu-expanded');
 
+
+            // Alterar o texto do botão com base na expansão do menu
             if (nav.classList.contains('expanded')) {
-                // Menu está expandido
-                estatisticasButton.textContent = "Estatísticas";
-                configuracoesButton.textContent = "Configurações";
+              configuret.innerText = 'Configuracao';
             } else {
-                // Menu está contraído
-                estatisticasButton.textContent = "Estat.";
-                configuracoesButton.textContent = "Config.";
+              configuret.innerText = 'Config.';
             }
-        }
+
+              // Alterar o texto do botão com base na expansão do menu
+              if (nav.classList.contains('expanded')) {
+                estetic.innerText = 'Estatistica';
+            } else {
+              estetic.innerText = 'Estat.';
+            }
+                  
+  }
+
+
+    
     // Adicionado script para marcar o botão clicado como ativo
     document.querySelectorAll('nav button').forEach(function(button) {
       button.addEventListener('click', function() {
@@ -222,3 +187,4 @@ nav.expanded #toggleMenuButton {
 
 </body>
 </html>
+
