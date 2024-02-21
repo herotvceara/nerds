@@ -79,20 +79,17 @@ nav::-webkit-scrollbar-thumb {
   border-radius: 3px; /* Raio do canto do polegar */
 }
 
-    /* Estilizando a barra de rolagem para o Opera */
-nav {
-  scrollbar-width: thin; /* Largura da barra de rolagem */
-}
+  /* Remover estilo da barra de rolagem no Opera */
+@supports (-webkit-scrollbar:none) {
+  nav::-webkit-scrollbar {
+    width: initial; /* Reseta a largura para o valor padrão */
+    background-color: initial; /* Reseta a cor de fundo para o valor padrão */
+  }
 
-/* Estilizando o polegar da barra de rolagem para o Opera */
-nav::-webkit-scrollbar {
-  width: 8px; /* Largura do polegar */
-  background-color: rgba(25, 28, 44, 0.9); /* Cor de fundo da barra de rolagem */
-}
-
-nav::-webkit-scrollbar-thumb {
-  background-color: rgba(68, 73, 105, 0.9); /* Cor do polegar */
-  border-radius: 5px; /* Raio do canto do polegar */
+  nav::-webkit-scrollbar-thumb {
+    background-color: initial; /* Reseta a cor do polegar para o valor padrão */
+    border-radius: initial; /* Reseta o raio do canto do polegar para o valor padrão */
+  }
 }
 
 
