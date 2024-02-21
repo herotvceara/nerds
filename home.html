@@ -151,14 +151,50 @@ main {
 }
 
 main:not(.menu-expanded) {
-  margin-left: 100px;
+  margin-left: 90px;
   padding: 20px;
 }
 
 main.menu-expanded {
-  margin-left: 200px;
   margin-left: 190px;
 }
+
+header.header-expanded{
+  margin-left: 190px;
+}
+
+header {
+  background-color: #1C1E2A;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-left: 90px;
+}
+
+.contauser {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+#user-info {
+  width: 36px;
+  height: 36px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: calc(100% - 20px);
+  font-size: 16px;
+}
+
 
 
 
@@ -167,19 +203,26 @@ main.menu-expanded {
 
 <body>
 
+  <header>
+    <h1>Vender</h1>
+    <button Class="contauser"><div id="user-info">user@empresa.com</div></button>
+  </header>
+
   <nav>
     <!-- Botão do menu -->
     <button onclick="toggleMenu()" id="toggleMenuButton" class="menu-button expanded toggle-menu">&#9776;</button>
 
     <!-- Botões do menu -->
     <button class="icon-vender" id="bntvender"><img src="img/check-circle.svg" alt="Vender"> Vender</button>
-<button class="icon-processos" id="bntprocessos"><img src="img/add-circle.svg" alt="Processos"> Processos</button>
-<button class="icon-cadastros" id="bntcadastros"><img src="img/add-circle.svg" alt="Cadastros"> Cadastros</button>
-<button class="icon-historico" id="bnthistorico"><img src="img/add-circle.svg" alt="Histórico"> Histórico</button>
-<button class="icon-financas" id="bntfinancas"><img src="img/check-circle.svg" alt="Finanças"> Finanças</button>
-<button class="icon-estatisticas" id="bntestatisticas"><img src="img/check-circle.svg" alt="Estatísticas">  <span id="estetic">Estat.</span></button>
-<button class="icon-usuarios" id="bntusuarios"><img src="img/add-circle.svg" alt="Usuários"> Usuários</button>
-<button class="icon-configuracoes" id="bntconfiguracoes"><img src="img/add-circle.svg" alt="Config"> <span id="configuret">Config.</span></button>
+    <button class="icon-processos" id="bntprocessos"><img src="img/add-circle.svg" alt="Processos"> Processos</button>
+    <button class="icon-cadastros" id="bntcadastros"><img src="img/add-circle.svg" alt="Cadastros"> Cadastros</button>
+    <button class="icon-historico" id="bnthistorico"><img src="img/add-circle.svg" alt="Histórico"> Histórico</button>
+    <button class="icon-financas" id="bntfinancas"><img src="img/check-circle.svg" alt="Finanças"> Finanças</button>
+    <button class="icon-estatisticas" id="bntestatisticas"><img src="img/check-circle.svg" alt="Estatísticas"> <span
+        id="estetic">Estat.</span></button>
+    <button class="icon-usuarios" id="bntusuarios"><img src="img/add-circle.svg" alt="Usuários"> Usuários</button>
+    <button class="icon-configuracoes" id="bntconfiguracoes"><img src="img/add-circle.svg" alt="Config"> <span
+        id="configuret">Config.</span></button>
 
     <!-- Adicione mais botões conforme necessário -->
   </nav>
@@ -189,44 +232,42 @@ main.menu-expanded {
     <p>Seu conteúdo vai aqui...</p>
   </main>
 
+
   <script>
-  // Função para alternar a expansão do menu e mudar o texto dos botões
-  function toggleMenu() {
-            var nav = document.querySelector('nav');
-            var main = document.querySelector('main');
-            var toggleButton = document.getElementById('toggleMenuButton');
-            
-            // Alternar a expansão do menu
-            nav.classList.toggle('expanded');
-            main.classList.toggle('menu-expanded');
-            toggleButton.classList.toggle('expanded');
-            
+    // Função para alternar a expansão do menu e mudar o texto dos botões
+    function toggleMenu() {
+      var nav = document.querySelector('nav');
+      var main = document.querySelector('main');
+      var header = document.querySelector('header');
+      var toggleButton = document.getElementById('toggleMenuButton');
 
+      // Alternar a expansão do menu
+      nav.classList.toggle('expanded');
+      main.classList.toggle('menu-expanded');
+      header.classList.toggle('header-expanded');
+      toggleButton.classList.toggle('expanded');
 
-            // Alterar o texto do botão com base na expansão do menu
-            if (nav.classList.contains('expanded')) {
-              configuret.innerText = 'Configuracao';
-              toggleButton.innerHTML = '&#xab;';
-            } else {
-              configuret.innerText = 'Config.';
-              toggleButton.innerHTML = '&#9776;';
-            }
+      // Alterar o texto e ícone do botão com base na expansão do menu
+      if (nav.classList.contains('expanded')) {
+        configuret.innerText = 'Sair'; // Ou outro texto apropriado
+        toggleButton.innerHTML = '&#xab;';
+      } else {
+        configuret.innerText = 'Config.';
+        toggleButton.innerHTML = '&#9776;';
+      }
 
-              // Alterar o texto do botão com base na expansão do menu
-              if (nav.classList.contains('expanded')) {
-                estetic.innerText = 'Estatistica';
-            } else {
-              estetic.innerText = 'Estat.';
-            }
-                  
-  }
+      // Alterar o texto do botão com base na expansão do menu
+      if (nav.classList.contains('expanded')) {
+        estetic.innerText = 'Estatistica';
+      } else {
+        estetic.innerText = 'Estat.';
+      }
+    }
 
-
-    
     // Adicionado script para marcar o botão clicado como ativo
-    document.querySelectorAll('nav button').forEach(function(button) {
-      button.addEventListener('click', function() {
-        document.querySelectorAll('nav button').forEach(function(btn) {
+    document.querySelectorAll('nav button').forEach(function (button) {
+      button.addEventListener('click', function () {
+        document.querySelectorAll('nav button').forEach(function (btn) {
           btn.classList.remove('active');
         });
         this.classList.add('active');
@@ -235,5 +276,6 @@ main.menu-expanded {
   </script>
 
 </body>
+
 </html>
 
