@@ -7,6 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>Sistema Nerds</title>
+
+
+     <!-- Adicione as bibliotecas do Firebase -->
+     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+   
   <style>
         body {
   margin: 0;
@@ -217,7 +224,7 @@ header {
 
 #user-button {
   position: relative;
-  width: 200px;
+  width: 180px;
   height: 60px;
   margin-left: 74%;
   border: none;
@@ -241,6 +248,7 @@ header {
   border: none;
   overflow: hidden; /* Para esconder os losangos que passam dos limites do círculo */
   margin-right: -25px;
+  margin-left: -25px;
 }
 
 #user-img::before {
@@ -264,28 +272,32 @@ header {
 #user-img:hover::before {
   transform: translateY(100%) rotateX(0);
   opacity: 1; /* Torna o reflexo visível ao passar o mouse */
-}
-
-#user-info {
-  color: rgba(68, 73, 105, 0.9);
-  margin-top: 10px;
-  margin-left: 0px; /* Espaçamento à esquerda do texto */
-  font-size: 12px;
-  border: none;
-  background-color: #f9f9f9;
-  cursor: pointer;
-}
-
-#user-info:hover {
-  color: rgba(0, 34, 255, 0.9);
-  margin-top: 10px;
-  margin-left: 0px; /* Espaçamento à esquerda do texto */
-  font-size: 12px;
-  border: none;
   
 }
 
-#user-logoff {
+#userEmail {
+  color: rgba(68, 73, 105, 0.9);
+  margin-top: 0px;
+  margin-left: 30px; /* Espaçamento à esquerda do texto */
+  margin-right: -40px;
+  font-size: 15px;
+  border: none;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  font-weight: bold; /* Adicionando texto em negrito */
+}
+
+#userEmail:hover {
+  color: rgba(0, 34, 255, 0.9);
+  margin-top: 0px;
+  margin-left: 30px; /* Espaçamento à esquerda do texto */
+  font-size: 12px;
+  border: none;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+#logoff {
   margin-top: 35px;
   margin-left: -20px;
   border: none;
@@ -293,12 +305,13 @@ header {
   cursor: pointer;
 }
 
-#user-logoff:hover {
-  color: rgba(0, 34, 255, 0.9);
+#logoff:hover {
   margin-top: 35px;
   margin-left: -20px;
   border: none;
- 
+  color: rgba(0, 34, 255, 0.9);
+  border: none;
+  cursor: pointer;
 }
 
 
@@ -313,8 +326,8 @@ header {
     <div id="user-button">
       <button id="user-img"></button>
       <input type="file" id="image-input" accept="image/*" style="display: none;">
-      <button id="user-info">user@empresa.com</button>
-      <button id="user-logoff">logoff</button>
+      <button id="userEmail">user@empresa.com</button>
+      <button id="logoff">Logoff</button>
     </div>
   </header>
 
@@ -341,6 +354,15 @@ header {
     <h1>Resumo Diário</h1>
     <p>Seu conteúdo vai aqui...</p>
   </main>
+
+ <!-- jQuery CDN - Slim version (=without AJAX) -->
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <!-- Popper.JS -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+ <!-- Bootstrap JS -->
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+ <!-- jQuery Custom Scroller CDN -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
 
   <script>
