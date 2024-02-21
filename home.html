@@ -67,17 +67,6 @@ nav::-webkit-scrollbar-thumb {
   border-radius: 5px; /* Raio do canto do polegar */
 }
 
-/* Estilizando a barra de rolagem para o Opera */
-nav {
-  scrollbar-width: thin; /* Largura da barra de rolagem */
-  scrollbar-color: rgba(68, 73, 105, 0.9) rgba(25, 28, 44, 0.9); /* Cor do polegar e cor de fundo */
-}
-
-/* Estilizando o polegar da barra de rolagem para o Opera */
-nav::-webkit-scrollbar-thumb {
-  background-color: rgba(68, 73, 105, 0.9); /* Cor do polegar */
-  border-radius: 5px; /* Raio do canto do polegar */
-}
 /* Estilizando a barra de rolagem para o Edge */
 nav {
   scrollbar-width: thin; /* Largura da barra de rolagem */
@@ -88,6 +77,22 @@ nav {
 nav::-webkit-scrollbar-thumb {
   background-color: rgba(68, 73, 105, 0.9); /* Cor do polegar */
   border-radius: 3px; /* Raio do canto do polegar */
+}
+
+    /* Estilizando a barra de rolagem para o Opera */
+nav {
+  scrollbar-width: thin; /* Largura da barra de rolagem */
+}
+
+/* Estilizando o polegar da barra de rolagem para o Opera */
+nav::-webkit-scrollbar {
+  width: 8px; /* Largura do polegar */
+  background-color: rgba(25, 28, 44, 0.9); /* Cor de fundo da barra de rolagem */
+}
+
+nav::-webkit-scrollbar-thumb {
+  background-color: rgba(68, 73, 105, 0.9); /* Cor do polegar */
+  border-radius: 5px; /* Raio do canto do polegar */
 }
 
 
