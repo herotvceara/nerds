@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seu Site</title>
   <style>
-   body {
+        body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
@@ -15,119 +15,133 @@
 /* Estilos para telas menores que 767px */
 @media (max-width: 767px) {
   nav {
-    width: 60px; /* Largura inicial */
-    height: auto; /* Altura automática para expandir para baixo */
-    flex-direction: row; /* Altera a direção do layout para linha */
+    width: 60px;
+    height: auto;
+    flex-direction: row;
     align-items: center;
-    padding-top: 0; /* Remove o espaço superior */
-    border-right: none; /* Remove a borda direita */
-    border-radius: 0; /* Remove o arredondamento na borda */
-    overflow-y: hidden; /* Esconde a barra de rolagem vertical */
+    padding-top: 0;
+    border-right: none;
+    border-radius: 0;
+    overflow-y: hidden;
   }
 
-  /* Botão que expande/contrai o menu ao ser clicado */
   .toggle-button {
     display: block;
     cursor: pointer;
   }
 
-  /* Estilos adicionais quando o menu está expandido */
   nav.expanded {
-    height: 200px; /* Defina a altura desejada para expansão vertical */
+    height: 200px;
   }
 }
 
 nav {
-  width: 80px; /* Largura inicial */
+  width: 70px;
   height: 100vh;
-  background-color: #6e7f80; /* Azul meio cinza */
-  color: #fff;
+  display: flex;
   position: fixed;
   top: 0;
   left: 0;
-  display: flex;
+  background-color: rgba(25, 28, 44, 0.9); /* Azul mais escuro e acinzentado */
+  color: rgba(68, 73, 105, 0.9);
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
-  border-right: 2px solid #ddd;
-  border-radius: 0 10px 10px 0;
   overflow-y: auto;
 }
 
+/* Adicione o estilo para o quadrado no topo */
+nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(38, 40, 54, 0.9); /* Azul mais escuro e acinzentado */
+  z-index: 2;
+}
+
 nav.expanded {
-  width: 150px;
+  width: 170px;
   height: 100vh;
-  flex-direction: column; /* Alterado para exibir botões em coluna ao expandir */
-  align-items: flex-start; /* Alinhar os botões à esquerda */
- 
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#toggleMenuButton {
+  font-size: 18px;
+  background-color: transparent;
+  z-index: 3;
+}
+
+nav.expanded #toggleMenuButton {
+  font-size: 28px;
+  padding: 15px 0px 0px 125px;
+  margin: 0px 0px 20px 0px;
 }
 
 nav button {
+  font-size: 11px;
   text-decoration: none;
-  color: #fff;
+  color: rgba(165, 170, 204, 0.9);
   display: flex;
-  flex-direction: column; /* Alteração para exibir ícone acima do texto */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: none;
   background: none;
   cursor: pointer;
-  padding: 15px;
-  margin-top: 4px;
-  text-align: center; /* Centralizar texto */
-  width: 80px;/* Altura inicial */
-  height: 80px; 
-  border-radius: 10px; /* Adicionado para arredondar os cantos */
-  margin-left: 0px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
-  
+  text-align: center;
+  padding: 20px 0px 20px 0px;
+  margin: 0px 0px 0px 0px;
+  border-radius: 10px;
 }
 
 nav button img {
-  width: 15px;
+  width: 18px;
   margin-bottom: 10px;
-  transition: margin-right 0.3s ease; /* Transição suavizada para o espaçamento à direita do ícone */
+  transition: margin-right 0.3s ease;
 }
 
 nav.expanded button {
-  flex-direction: row; /* Alteração para exibir ícone à esquerda e texto à direita */
+  font-size: 15px;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   text-align: left;
-  padding: 10px ;
-  margin-top: 2px; /* Margem superior em percentagem */
-  margin-bottom: 10px; /* Margem inferior */
-  margin-left: 10px; /* Margem à esquerda para desgrudar os botões da margem da esquerda */
-  width: 150px;
-  height: 50px; /* Altura aumentada quando expandido */
-  border-radius: 15px; /* Adicionado para arredondar os cantos */
-  }
-
-nav.expanded button img {
-  margin-right: 10px; /* Espaçamento à direita do ícone */
-  margin-bottom: 0; /* Remover espaço abaixo do ícone */
-  width: 15px;
-  height: 24px; /* Ajustar a altura conforme necessário */
-  margin-top: 0px; /* Espaçamento acima do ícone */
-  margin-left: 0px; /* Espaçamento à esquerda do ícone */
+  padding: 15px 0px 15px 20px;
+  margin: 10px 0px 10px 0px;
+  border-radius: 10px;
 }
 
+nav.expanded button img {
+  margin-right: 10px;
+  margin-bottom: 0;
+  width: 15px;
+  height: 24px;
+  margin-top: 0px;
+  margin-left: 0px;
+}
 
 nav button.active {
-  background-color: #3b4d4f; /* Azul escuro para o botão ativo */
-  line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
+  background-color: rgba(81, 85, 105, 0.9); /* Azul mais escuro e acinzentado para o botão ativo */
+  width: 55px;
+  height: 70%;
 }
 
 nav.expanded button.active {
-  background-color: #3b4d4f; /* Azul escuro para o botão ativo */
-  line-height: 15px; /* Ajuste conforme necessário para centralizar a seleção */
-  margin-right: 10px; /* Adiciona um espaçamento à direita do botão ativo quando o menu está expandido */
+  width: 100%;
 }
 
-
+nav button:not(.active):hover {
+  background-color: rgba(81, 85, 105, 0.9); /* Cor de fundo quando o mouse estiver sobre o botão não ativo */
+  width: 100%;
+  border-radius: 0px;
+}
 
 main {
   padding: 20px;
-  transition: margin-left 0.3s ease, padding 0.3s ease; /* Adicionada transição para a margem e padding */
+  transition: margin-left 0.3s ease, padding 0.3s ease;
   overflow-y: auto;
   background-color: #f9f9f9;
   border-radius: 10px;
@@ -137,14 +151,16 @@ main {
 }
 
 main:not(.menu-expanded) {
-  margin-left: 100px; /* Margem inicial ao não estar expandido */
-  padding: 20px; /* Padding inicial ao não estar expandido */
+  margin-left: 100px;
+  padding: 20px;
 }
 
 main.menu-expanded {
   margin-left: 200px;
-  margin-left: 170px;
+  margin-left: 190px;
 }
+
+
 
   </style>
 </head>
@@ -178,17 +194,22 @@ main.menu-expanded {
   function toggleMenu() {
             var nav = document.querySelector('nav');
             var main = document.querySelector('main');
+            var toggleButton = document.getElementById('toggleMenuButton');
             
             // Alternar a expansão do menu
             nav.classList.toggle('expanded');
             main.classList.toggle('menu-expanded');
+            toggleButton.classList.toggle('expanded');
+            
 
 
             // Alterar o texto do botão com base na expansão do menu
             if (nav.classList.contains('expanded')) {
               configuret.innerText = 'Configuracao';
+              toggleButton.innerHTML = '&#xab;';
             } else {
               configuret.innerText = 'Config.';
+              toggleButton.innerHTML = '&#9776;';
             }
 
               // Alterar o texto do botão com base na expansão do menu
