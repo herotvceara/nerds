@@ -1,27 +1,32 @@
-// Recuperar o email do usuário do armazenamento local
-var userEmail = localStorage.getItem('userEmail');
+// Verificar se o usuário está autenticado ao carregar a página
+firebase.auth().onAuthStateChanged(function (user) {
+  if (!user) {
+    // O usuário não está autenticado, ocultar a página
+    document.body.style.display = 'none';
+    window.location.href = "index.html";
+  } else {
+    // O usuário está autenticado
+    var usuario = {
+      id: user.uid,
+      nome: user.email.split('@')[0],
+      email: user.email,
+    };
 
-// Lógica para verificar o login e redirecionar se não estiver logado
-if (!userEmail) {
-  alert('Você não está logado!');
-  window.location.href = "index.html";
-}
+    // Atualizar o email do usuário no botão userEmail
+    var userEmailButton = document.getElementById('userEmail');
+    userEmailButton.innerText = usuario.email;
 
-// Atualizar o texto do botão userEmail com o email do usuário
-var userEmailButton = document.getElementById('userEmail');
-userEmailButton.innerText = userEmail;
-
-// Adicionar evento de clique ao logoff
-var logoffElement = document.getElementById('logoff');
-logoffElement.addEventListener('click', function() {
-  // Limpar o armazenamento local
-  localStorage.removeItem('userEmail');
-  // Redirecionar para a página de login
-  window.location.href = "index.html";
-});
-
-// Adiciona um ouvinte de eventos ao botão de logoff
-logoffElement.addEventListener('click', function() {
-    // Adicione aqui a lógica para efetuar o logoff, se necessário
-    alert('Logoff realizado!');
+    // Adicionar evento de clique ao logoff
+    var logoffElement = document.getElementById('logoff');
+    logoffElement.addEventListener('click', async function () {
+      // Efetuar o logoff no Firebase Authentication
+      try {
+        await firebase.auth().signOut();
+        alert('Logoff realizado!');
+        window.location.href = "index.html";
+      } catch (error) {
+        console.error("Erro ao efetuar logoff", error);
+      }
+    });
+  }
 });

@@ -1,3 +1,6 @@
+
+
+
 var firebaseConfig = {
             apiKey: "AIzaSyBMGepkgdGXrP9Z9UePIsh09tAwhrdG_Uk",
             authDomain: "sistema-nerds.firebaseapp.com",

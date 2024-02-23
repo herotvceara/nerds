@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
@@ -9,10 +9,16 @@
   <title>Sistema Nerds</title>
 
 
-     <!-- Adicione as bibliotecas do Firebase -->
-     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+ <!-- Troque para a versão do Firebase que suporta o CommonJS -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
+
+<script src="scripts/firebase.js"></script>
+<link rel="icon" href="img/play-or-pause-button.png" type="image/x-icon">
+
+
    
   <style>
         body {
@@ -409,9 +415,10 @@ header {
       }
     }
 
-    //button imagem usuario
 
-    document.getElementById('user-img').addEventListener('click', function() {
+    //button imagem usuario
+//button imagem usuario
+document.getElementById('user-img').addEventListener('click', function() {
   document.getElementById('image-input').click();
 });
 
@@ -423,10 +430,25 @@ document.getElementById('image-input').addEventListener('change', function() {
       const image = e.target.result;
       const userImg = document.getElementById('user-img');
       userImg.style.backgroundImage = `url(${image})`;
+
+      // Adiciona a imagem à propriedade 'img-perfil' do objeto usuario no localStorage
+      var usuarioJSON = localStorage.getItem('usuario');
+      var usuario = JSON.parse(usuarioJSON);
+
+      // Adiciona a propriedade 'img-perfil' ao objeto usuario
+      usuario['img-perfil'] = image;
+
+      // Converte o objeto usuario para uma string JSON
+      var usuarioAtualizadoJSON = JSON.stringify(usuario);
+
+      // Atualiza o objeto usuario no localStorage
+      localStorage.setItem('usuario', usuarioAtualizadoJSON);
     }
     reader.readAsDataURL(file);
   }
 });
+
+
 
 
     // Adicionado script para marcar o botão clicado como ativo
@@ -440,7 +462,7 @@ document.getElementById('image-input').addEventListener('change', function() {
     });
   </script>
 
-<script src="scripts/firebase.js"></script>
+
 <script src="scripts/home.js"></script>
 
 </body>
