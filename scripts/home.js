@@ -1,4 +1,3 @@
-// Verificar se o usuário está autenticado ao carregar a página
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
     // O usuário não está autenticado, ocultar a página
@@ -9,31 +8,44 @@ firebase.auth().onAuthStateChanged(function (user) {
     
     var usuario = {
       id: user.uid,
-      nome: user.email.split('@')[0],
+      nome: user.displayName,
       email: user.email,
-      
+      img_user: user.photoURL || null, // Alterado para tentar obter a imagem do usuário do Firebase Authentication
     };
 
-    // Atualizar o email do usuário no botão userEmail
-    var userEmailButton = document.getElementById('userEmail');
-    userEmailButton.innerText = usuario.email;
-
-  
-
-    // Adicionar evento de clique ao logoff
-    var logoffElement = document.getElementById('logoff');
-    logoffElement.addEventListener('click', async function () {
-      // Efetuar o logoff no Firebase Authentication
-      try {
-        await firebase.auth().signOut();
-        alert('Logoff realizado!');
-        window.location.href = "index.html";
-      } catch (error) {
-        console.error("Erro ao efetuar logoff", error);
+    // Verificar se o usuário tem uma URL de imagem de perfil armazenada no banco de dados
+    var usuarioRef = firebase.database().ref('usuarios/' + user.uid);
+    usuarioRef.once('value').then(function (snapshot) {
+      var userData = snapshot.val();
+      if (userData && userData['user-img']) {
+        usuario.img_user = userData['user-img'];
       }
+
+      // Atualizar o email do usuário no botão userEmail
+      var userEmailButton = document.getElementById('userEmail');
+      userEmailButton.innerText = usuario.email;
+
+      // Adicionar a imagem de usuário ao fundo do botão user-img
+      var userImgButton = document.getElementById('user-img');
+      if (usuario.img_user) {
+        userImgButton.style.backgroundImage = "url('" + usuario.img_user + "')";
+        userImgButton.style.backgroundSize = 'cover'; // Ajustar o tamanho da imagem de fundo
+      }
+
+      // Adicionar evento de clique ao logoff
+      var logoffElement = document.getElementById('logoff');
+      logoffElement.addEventListener('click', async function () {
+        // Efetuar o logoff no Firebase Authentication
+        try {
+          await firebase.auth().signOut();
+          alert('Logoff realizado!');
+          window.location.href = "index.html";
+        } catch (error) {
+          console.error("Erro ao efetuar logoff", error);
+        }
+      });
     });
   }
-  
 });
 
 // Função para alternar a expansão do menu e mudar o texto dos botões
@@ -77,7 +89,6 @@ document.querySelectorAll('nav button').forEach(function (button) {
 });
 
 
-// button imagem usuario
 document.addEventListener('DOMContentLoaded', function () {
   // Adiciona o modal ao corpo do documento
   var modalHtml = `
@@ -86,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <span class="close">&times;</span>
         <div id="popup-content"></div>
       </div>
+      <button id="uploadButton">Upload de Imagem</button>
     </div>
   `;
   document.body.insertAdjacentHTML('beforeend', modalHtml);
@@ -96,66 +108,84 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Verifica se o elemento clicado é o botão de imagem do usuário
     if (target.id === 'user-img') {
-      // Abre o modal
+      // Obtém o modal
       var modal = document.getElementById('myModal');
-      modal.style.display = 'block';
 
-      // Carrega as imagens da pasta no Firebase Storage e exibe no popup
-      var storageRef = firebase.storage().ref('img perfil');
-      storageRef.listAll().then(function (result) {
-        var popupContent = document.getElementById('popup-content');
+      // Verifica se o modal está aberto ou fechado
+      if (modal.style.display === 'block') {
+        modal.style.display = 'none'; // Fecha o modal se estiver aberto
+          // Limpa o conteúdo da popup
+      var popupContent = document.getElementById('popup-content');
+      popupContent.innerHTML = '';
+      } else {
+        modal.style.display = 'block'; // Abre o modal se estiver fechado
 
-        result.items.forEach(function (itemRef, index) {
-          itemRef.getDownloadURL().then(function (url) {
-            var img = document.createElement('img');
-            img.src = url;
-            img.alt = 'Imagem do Popup';
-            img.style.width = '100px';
-            img.style.height = '100px';
-            img.style.margin = '5px';
-            img.style.borderRadius = '50%'; // Adiciona borda redonda
-            img.style.cursor = 'pointer';
+        // Carrega as imagens da pasta no Firebase Storage e exibe no popup
+        var storageRef = firebase.storage().ref('img perfil');
+        storageRef.listAll().then(function (result) {
+          var popupContent = document.getElementById('popup-content');
 
-            // Adiciona a imagem ao conteúdo da popup
-            popupContent.appendChild(img);
+          result.items.forEach(function (itemRef, index) {
+            itemRef.getDownloadURL().then(function (url) {
+              var img = document.createElement('img');
+              img.src = url;
+              img.alt = 'Imagem do Popup';
+              img.style.width = '100px';
+              img.style.height = '100px';
+              img.style.margin = '20px';
+              img.style.borderRadius = '50%'; // Adiciona borda redonda
+              img.style.cursor = 'pointer';
 
-            // Adiciona evento de clique à imagem
-            img.addEventListener('click', function () {
-              // Ao clicar em uma imagem, atribui a nova imagem ao botão
-              var userImg = document.getElementById('user-img');
-              if (userImg) {
-                // Adiciona a URL da imagem diretamente ao Firebase
-                var user = firebase.auth().currentUser;
-                if (user) {
-                  var usuarioRef = firebase.database().ref('usuarios/' + user.uid);
-                  usuarioRef.update({
-                    'user-img': url
-                  }).then(function () {
-                    console.log('URL da imagem adicionada ao Firebase com sucesso.');
+              // Adiciona a imagem ao conteúdo da popup
+              popupContent.appendChild(img);
 
-                    // Atualiza a imagem do botão imediatamente
-                    userImg.style.backgroundImage = `url(${url})`;
+              // Adiciona evento de clique à imagem
+              img.addEventListener('click', function () {
+                // Ao clicar em uma imagem, atribui a nova imagem ao botão
+                var userImg = document.getElementById('user-img');
+                if (userImg) {
+                  // Adiciona a URL da imagem diretamente ao Firebase
+                  var user = firebase.auth().currentUser;
+                  if (user) {
+                    var usuarioRef = firebase.database().ref('usuarios/' + user.uid);
+                    usuarioRef.update({
+                      'user-img': url
+                    }).then(function () {
+                      console.log('URL da imagem adicionada ao Firebase com sucesso.');
 
-                    // Fecha a modal
-                    modal.style.display = 'none';
+                      // Atualiza a imagem do botão imediatamente
+                      userImg.style.backgroundImage = `url(${url})`;
 
-                    // Limpa o conteúdo da popup ao fechar
-                    popupContent.innerHTML = '';
-                  }).catch(function (error) {
-                    console.error('Erro ao adicionar a URL da imagem ao Firebase:', error);
-                  });
+                      // Fecha a modal
+                      modal.style.display = 'none';
+
+                      // Limpa o conteúdo da popup ao fechar
+                      popupContent.innerHTML = '';
+                    }).catch(function (error) {
+                      console.error('Erro ao adicionar a URL da imagem ao Firebase:', error);
+                    });
+                  } else {
+                    console.error('Usuário não autenticado.');
+                  }
                 } else {
-                  console.error('Usuário não autenticado.');
+                  console.error('Elemento user-img não encontrado.');
                 }
-              } else {
-                console.error('Elemento user-img não encontrado.');
-              }
+              });
             });
           });
         });
-      });
+      }
     }
   });
 
-  // ... (restante do seu script)
+      // Fechar popup ao clicar no botão "x"
+      var closeButton = document.querySelector('.close');
+      closeButton.addEventListener('click', function () {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'none';
+
+          // Limpa o conteúdo da popup
+        var popupContent = document.getElementById('popup-content');
+        popupContent.innerHTML = '';
+          });
 });
