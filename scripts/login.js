@@ -54,35 +54,45 @@ function login() {
                         window.location.href = "home.html";
                     } else {
                         // Usuário não existe, adiciona um novo usuário
-                        var novoLink = "https://firebasestorage.googleapis.com/v0/b/sistema-nerds.appspot.com/o/img%20perfil%2Fperfil%20naruto.jpg?alt=media&token=00397033-43dd-4590-a257-fceee789f1ec";
-                        // Consulta para obter a quantidade atual de usuários
-                        usuariosRef.get()
-                            .then((querySnapshot) => {
-                                var quantidadeUsuarios = querySnapshot.size;
+                        var storageRef = firebase.storage().ref();
+                        var imagemRef = storageRef.child('img perfil/perfil jiraya.jpg');
+                        var urlImagem;
 
-                                // Cria um novo usuário com o ID baseado na quantidade atual de usuários
-                                var usuario = {
-                                    id: quantidadeUsuarios + 1,
-                                    nome: nomeUsuario,
-                                    email: email,
-                                    user_img: novoLink
-                                };
+                        imagemRef.getDownloadURL()
+                            .then((url) => {
+                                // Consulta para obter a quantidade atual de usuários
+                                usuariosRef.get()
+                                    .then((querySnapshot) => {
+                                        var quantidadeUsuarios = querySnapshot.size;
 
-                                // Adiciona o documento com o novo ID
-                                usuariosRef.doc(user.uid).set(usuario)
-                                    .then(() => {
-                                        console.log("Usuário adicionado com sucesso");
+                                        // Cria um novo usuário com o ID baseado na quantidade atual de usuários
+                                        var usuario = {
+                                            id: quantidadeUsuarios + 1,
+                                            nome: nomeUsuario,
+                                            email: email,
+                                            user_img: url
+                                        };
 
-                                        // Redirecionar para a página home após a adição do usuário
-                                        window.location.href = "home.html";
+                                        // Adiciona o documento com o novo ID
+                                        usuariosRef.doc(user.uid).set(usuario)
+                                            .then(() => {
+                                                console.log("Usuário adicionado com sucesso");
+
+                                                // Redirecionar para a página home após a adição do usuário
+                                                window.location.href = "home.html";
+                                            })
+                                            .catch((error) => {
+                                                console.error("Erro ao adicionar usuário:", error);
+                                            });
                                     })
                                     .catch((error) => {
-                                        console.error("Erro ao adicionar usuário:", error);
+                                        console.error("Erro ao obter quantidade de usuários", error);
+                                        errorMessageContainer.innerText = "Erro ao obter quantidade de usuários";
                                     });
                             })
                             .catch((error) => {
-                                console.error("Erro ao obter quantidade de usuários", error);
-                                errorMessageContainer.innerText = "Erro ao obter quantidade de usuários";
+                                console.error("Erro ao obter URL da imagem:", error);
+                                errorMessageContainer.innerText = "Erro ao obter URL da imagem";
                             });
                     }
                 })
