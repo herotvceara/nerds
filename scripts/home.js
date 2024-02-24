@@ -92,13 +92,14 @@ document.querySelectorAll('nav button').forEach(function (button) {
 document.addEventListener('DOMContentLoaded', function () {
   // Adiciona o modal ao corpo do documento
   var modalHtml = `
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <div id="popup-content"></div>
-      </div>
-      <button id="uploadButton">Upload de Imagem</button>
-    </div>
+  <div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Escolha sua imagem de Perfil</h2> <!-- Título adicionado aqui -->
+    <div id="popup-content"></div>
+  </div>
+  <button id="uploadButton">Upload de Imagem</button>
+</div>
   `;
   document.body.insertAdjacentHTML('beforeend', modalHtml);
 
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
               img.alt = 'Imagem do Popup';
               img.style.width = '100px';
               img.style.height = '100px';
-              img.style.margin = '20px';
+              img.style.margin = '8px';
               img.style.borderRadius = '50%'; // Adiciona borda redonda
               img.style.cursor = 'pointer';
 
@@ -188,4 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var popupContent = document.getElementById('popup-content');
         popupContent.innerHTML = '';
           });
+
+          
+          
 });
