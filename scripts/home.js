@@ -40,7 +40,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         try {
           await firebase.auth().signOut();
           alert('Logoff realizado!');
-          window.location.href = "index.html";
+          window.location.href = "../index.html";
         } catch (error) {
           console.error("Erro ao efetuar logoff", error);
         }

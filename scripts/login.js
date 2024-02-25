@@ -51,7 +51,7 @@ function login() {
                     if (querySnapshot.size > 0) {
                         // Usuário já existe, redireciona para a página home
                         console.log("Usuário já existe");
-                        window.location.href = "home.html";
+                        window.location.href = "../pages/home.html";
                     } else {
                         // Usuário não existe, adiciona um novo usuário
                         var storageRef = firebase.storage().ref();
@@ -79,7 +79,7 @@ function login() {
                                                 console.log("Usuário adicionado com sucesso");
 
                                                 // Redirecionar para a página home após a adição do usuário
-                                                window.location.href = "home.html";
+                                                window.location.href = "../pages/home.html";
                                             })
                                             .catch((error) => {
                                                 console.error("Erro ao adicionar usuário:", error);
