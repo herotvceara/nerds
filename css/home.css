@@ -31,7 +31,15 @@ body {
     nav.expanded {
       height: 200px;
     }
-  }
+
+
+  header {
+    padding: 10px;
+    display: flex;
+    margin-right: 0px;
+    margin-left: 90px;
+
+  }  }
   
   /* Estilizando a barra de rolagem para o Chrome, Safari e Edge */
   nav::-webkit-scrollbar {
