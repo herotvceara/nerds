@@ -211,84 +211,83 @@ body {
     background-color: #ffffff;
     color: rgba(68, 73, 105, 0.9);
     padding: 10px;
-    text-align: center;
     display: flex;
-    align-items: center;
     margin-left: 90px;
    
   }
   
   #user-button {
-    position: relative;
-    width: 180px;
-    height: 60px;
-    margin-left: 74%;
+    position: fixed;
+    margin-top: 0.4%;
+    height: 30px;
+    left: 84.5%; /* Alterado de right para left */
+    padding: 20px; /* Adicione o preenchimento desejado para espaçamento interno */
     border: none;
     box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.2);
     background-color: #f9f9f9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    padding-left: 10px;
-  }
-  
-  #user-img {
-    position: relative;
-    width: 80px; /* Tamanho do círculo */
+    align-items: center; /* Centraliza o conteúdo verticalmente */
+    border-radius: 20px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+#user-img {
+    position: fixed;
+    left: 82.8%; /* Ajuste a posição horizontal conforme necessário */
+    width: 80px;
     height: 80px;
-    border-radius: 50%; /* Torna o círculo */
-    background-color: rgba(68, 73, 105, 0.9); /* Cor de fundo do círculo */
-    background-size: cover; /* Garante que a imagem cubra todo o círculo */
-    background-position: center; /* Centraliza a imagem dentro do círculo */
+    border-radius: 50%;
+    background-color: rgba(68, 73, 105, 0.9);
     box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.7);
     border: none;
-    overflow: hidden; /* Para esconder os losangos que passam dos limites do círculo */
-    margin-right: -25px;
-    margin-left: -40px;
-  }
-  
-  #user-img::before {
+    overflow: hidden;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+
+
+
+#user-img::before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
     background: linear-gradient(
-      135deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.5) 20%, /* Cor do reflexo */
-      rgba(255, 255, 255, 0) 100%
+        135deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.5) 20%, /* Cor do reflexo */
+        rgba(255, 255, 255, 0) 100%
     );
     top: 0;
     left: 0;
     transform: translateY(-100%) rotateX(180deg);
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0; /* Inicialmente invisível */
-  }
-  
-  #user-img:hover::before {
+}
+
+#user-img:hover::before {
     transform: translateY(100%) rotateX(0);
     opacity: 1; /* Torna o reflexo visível ao passar o mouse */
-    
-  }
+}
+
   
   #userEmail {
     color: rgba(68, 73, 105, 0.9);
-    margin-top: 0px;
-    margin-left: 30px; /* Espaçamento à esquerda do texto */
-    margin-right: -10px;
+    padding-left: 8%;
     font-size: 15px;
     border: none;
     background-color: #f9f9f9;
     cursor: pointer;
-    font-weight: bold; /* Adicionando texto em negrito */
-  }
+    font-weight: bold;
+    white-space: nowrap; /* Impede que o texto quebre em várias linhas */
+    overflow: hidden; /* Oculta qualquer texto que ultrapasse o contêiner */
+    text-overflow: ellipsis; /* Adiciona reticências (...) quando o texto ultrapassa o contêiner */
+    flex-grow: 1; /* Permite que o elemento cresça para ocupar o espaço disponível */
+}
   
   #userEmail:hover {
     color: rgba(0, 34, 255, 0.9);
-    margin-top: 0px;
-    margin-left: 30px; /* Espaçamento à esquerda do texto */
-    margin-right: -10px;
     font-size: 15px;
     border: none;
     background-color: #f9f9f9;
@@ -297,20 +296,16 @@ body {
   }
   
   #logoff {
-    margin-top: 35px;
-    margin-left: -20px;
+    padding-top: 5%;
+    margin-left: 80%;
     border: none;
-    background-color: #f9f9f9;
+    background-color: transparent; /* ou background-color: none; */
     cursor: pointer;
-  }
+}
+
   
   #logoff:hover {
-    margin-top: 35px;
-    margin-left: -20px;
-    border: none;
     color: rgba(0, 34, 255, 0.9);
-    border: none;
-    cursor: pointer;
   }
 
   .modal {

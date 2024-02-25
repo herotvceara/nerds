@@ -1,3 +1,4 @@
+
 firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
     // O usuário não está autenticado, ocultar a página
@@ -47,6 +48,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     });
   }
 });
+
 
 // Função para alternar a expansão do menu e mudar o texto dos botões
 function toggleMenu() {
@@ -190,6 +192,66 @@ document.addEventListener('DOMContentLoaded', function () {
         popupContent.innerHTML = '';
           });
 
+          // upload perfil
+          document.getElementById('uploadButton').addEventListener('click', function() {
+            // Verifique se há um usuário autenticado
+            var user = auth.currentUser;
+            if (user) {
+              // Crie um input do tipo file para permitir a seleção de arquivos
+              var fileInput = document.createElement('input');
+              fileInput.type = 'file';
           
+              // Adicione um ouvinte de mudança para o input de arquivo
+              fileInput.addEventListener('change', function(event) {
+                // Obtenha o arquivo selecionado
+                var file = event.target.files[0];
+          
+                // Extraia o nome do usuário do e-mail
+                var userEmail = user.email || ''; // Certifique-se de que o e-mail está disponível
+                var userName = userEmail.split('@')[0]; // Obtém a parte antes do '@'
+          
+                // Referência ao storage do Firebase e à pasta 'img perfil'
+                var storageRef = firebase.storage().ref('img perfil/' + userName);
+          
+                // Faça o upload do arquivo
+                storageRef.put(file).then(function(snapshot) {
+                  // Quando o upload é bem-sucedido
+                  console.log('Upload concluído com sucesso!');
+          
+                  // Obtenha a URL do arquivo no storage
+                  return storageRef.getDownloadURL();
+                }).then(function(url) {
+                  // Atualiza o background do botão user-img
+                  document.getElementById('user-img').style.backgroundImage = `url(${url})`;
+          
+                  closeModal();
+                }).catch(function(error) {
+                  // Em caso de erro no upload
+                  console.error('Erro no upload:', error);
+                });
+              });
+          
+              // Clique no input de arquivo ao ser criado
+              fileInput.click();
+            } else {
+              console.log('Nenhum usuário autenticado.');
+            }
+          });
+          
+          // Função para fechar o modal
+      function closeModal() {
+        var modal = document.getElementById('myModal');
+        var popupContent = document.getElementById('popup-content');
+        
+        // Fecha o modal
+        if (modal) {
+          modal.style.display = 'none';
+        }
+
+        // Limpa o conteúdo da popup
+        if (popupContent) {
+          popupContent.innerHTML = '';
+        }
+      }
           
 });
