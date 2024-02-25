@@ -48,7 +48,7 @@ body {
    
   }
     nav button.active {
-    width: 100%;
+    width: 50%;
     height: 5px;
     }
   
@@ -58,11 +58,14 @@ body {
     }
 
 
-  header {
+  nav button:not(.active):hover {
+    width: 100%;
+    border-radius: 0px;
+  }  header {
     padding: 10px;
     display: flex;
     margin-right: 0px;
-    margin-left: 90px;
+    margin-left: 10px;
 
   }  }
   
