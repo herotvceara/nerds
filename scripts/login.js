@@ -142,3 +142,36 @@ function toggleAudio() {
         audio.pause();
     }
 }
+
+ // Adiciona um ouvinte de eventos ao campo de e-mail para login
+ document.getElementById('login-email').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        validateLogin();
+    }
+});
+
+// Adiciona um ouvinte de eventos ao campo de senha para login
+document.getElementById('login-password').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        validateLogin();
+    }
+});
+
+function validateLogin() {
+    var emailValue = document.getElementById('login-email').value.trim();
+    var passwordValue = document.getElementById('login-password').value.trim();
+    var errorMessageContainer = document.getElementById('login-error-message');
+
+    if (emailValue === '' && passwordValue === '') {
+        errorMessageContainer.innerText = 'Digite seu login e senha para acessar.';
+    } else if (emailValue === '' && passwordValue !== '') {
+        errorMessageContainer.innerText = 'Você precisa digitar um usuário.';
+    } else if (emailValue !== '' && passwordValue === '') {
+        errorMessageContainer.innerText = 'Digite uma senha para acessar.';
+    } else {
+        errorMessageContainer.innerText = ''; // Limpa a mensagem de erro
+
+        // Chame a função de login se ambos os campos estiverem preenchidos
+        login();
+    }
+}
