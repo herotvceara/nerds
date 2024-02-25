@@ -40,6 +40,11 @@ body {
   
   }
 
+
+  nav button {
+    heigth: 40px;
+  }
+
     nav button.active {
     width: 100%;
     height: 5px;
