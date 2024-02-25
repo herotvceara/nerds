@@ -36,18 +36,18 @@ body {
   nav::before {
     
     width: 100%;
-    height: 100px;
+    height: 80px;
   
   }
 
     nav button.active {
     width: 55px;
-    height: 20px;
+    height: 5px;
     }
   
     nav.expanded button.active {
     width: 100%;
-    height:20px;
+    height:40px;
     }
 
 
