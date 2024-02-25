@@ -3,7 +3,7 @@ firebase.auth().onAuthStateChanged(function (user) {
   if (!user) {
     // O usuário não está autenticado, ocultar a página
     document.body.style.display = 'none';
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
   } else {
     // O usuário está autenticado
     
@@ -156,8 +156,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     }).then(function () {
                       console.log('URL da imagem adicionada ao Firebase com sucesso.');
 
+                   
                       // Atualiza a imagem do botão imediatamente
                       userImg.style.backgroundImage = `url(${url})`;
+                       
 
                       // Fecha a modal
                       modal.style.display = 'none';

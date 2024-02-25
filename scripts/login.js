@@ -46,59 +46,40 @@ function login() {
             // Verifica se o nome de usuário já existe (case-insensitive)
             var nomeUsuario = email.split('@')[0].toLowerCase();
 
-            usuariosRef.where('nome', '==', nomeUsuario).get()
+            // Consulta para obter a quantidade atual de usuários
+            usuariosRef.get()
                 .then((querySnapshot) => {
-                    if (querySnapshot.size > 0) {
-                        // Usuário já existe, redireciona para a página home
-                        console.log("Usuário já existe");
-                        window.location.href = "../pages/home.html";
-                    } else {
-                        // Usuário não existe, adiciona um novo usuário
-                        var storageRef = firebase.storage().ref();
-                        var imagemRef = storageRef.child('img perfil/perfil jiraya.jpg');
-                        var urlImagem;
+                    var quantidadeUsuarios = querySnapshot.size;
 
-                        imagemRef.getDownloadURL()
-                            .then((url) => {
-                                // Consulta para obter a quantidade atual de usuários
-                                usuariosRef.get()
-                                    .then((querySnapshot) => {
-                                        var quantidadeUsuarios = querySnapshot.size;
+                    // Cria um novo usuário com o ID baseado na quantidade atual de usuários
+                    var novoUsuario = {
+                        id: quantidadeUsuarios + 1,
+                        nome: nomeUsuario,
+                        email: email,
+                    };
 
-                                        // Cria um novo usuário com o ID baseado na quantidade atual de usuários
-                                        var usuario = {
-                                            id: quantidadeUsuarios + 1,
-                                            nome: nomeUsuario,
-                                            email: email,
-                                            user_img: url
-                                        };
+                    // Verifica se o usuário já existe
+                    return usuariosRef.where('nome', '==', nomeUsuario).get()
+                        .then((querySnapshot) => {
+                            if (querySnapshot.size > 0) {
+                                // Usuário já existe, redireciona para a página home
+                                console.log("Usuário já existe");
+                                window.location.href = "../pages/home.html";
+                            } else {
+                                // Usuário não existe, adiciona um novo usuário
+                                return usuariosRef.doc(user.uid).set(novoUsuario);
+                            }
+                        });
+                })
+                .then(() => {
+                    console.log("Usuário adicionado com sucesso");
 
-                                        // Adiciona o documento com o novo ID
-                                        usuariosRef.doc(user.uid).set(usuario)
-                                            .then(() => {
-                                                console.log("Usuário adicionado com sucesso");
-
-                                                // Redirecionar para a página home após a adição do usuário
-                                                window.location.href = "../pages/home.html";
-                                            })
-                                            .catch((error) => {
-                                                console.error("Erro ao adicionar usuário:", error);
-                                            });
-                                    })
-                                    .catch((error) => {
-                                        console.error("Erro ao obter quantidade de usuários", error);
-                                        errorMessageContainer.innerText = "Erro ao obter quantidade de usuários";
-                                    });
-                            })
-                            .catch((error) => {
-                                console.error("Erro ao obter URL da imagem:", error);
-                                errorMessageContainer.innerText = "Erro ao obter URL da imagem";
-                            });
-                    }
+                    // Redirecionar para a página home após a adição do usuário
+                    window.location.href = "../pages/home.html";
                 })
                 .catch((error) => {
-                    console.error("Erro ao verificar existência do usuário", error);
-                    errorMessageContainer.innerText = "Erro ao verificar existência do usuário";
+                    console.error("Erro ao adicionar ou verificar usuário:", error);
+                    errorMessageContainer.innerText = "Erro ao adicionar ou verificar usuário";
                 });
         })
         .catch((error) => {
