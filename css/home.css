@@ -6,6 +6,12 @@ body {
   
   /* Estilos para telas menores que 767px */
   @media (max-width: 767px) {
+    #user-button {
+      margin-left: -13.5%;
+    }
+    #user-img {
+      margin-left: -15%;
+    }
     nav {
       width: 60px;
       height: auto;
@@ -106,7 +112,7 @@ body {
   
   nav.expanded {
     width: 170px;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
     align-items: flex-start;
   }
