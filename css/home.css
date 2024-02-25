@@ -245,7 +245,7 @@ body {
     border: none;
     overflow: hidden; /* Para esconder os losangos que passam dos limites do círculo */
     margin-right: -25px;
-    margin-left: -25px;
+    margin-left: -40px;
   }
   
   #user-img::before {
@@ -276,7 +276,7 @@ body {
     color: rgba(68, 73, 105, 0.9);
     margin-top: 0px;
     margin-left: 30px; /* Espaçamento à esquerda do texto */
-    margin-right: -40px;
+    margin-right: -10px;
     font-size: 15px;
     border: none;
     background-color: #f9f9f9;
@@ -288,7 +288,7 @@ body {
     color: rgba(0, 34, 255, 0.9);
     margin-top: 0px;
     margin-left: 30px; /* Espaçamento à esquerda do texto */
-    margin-right: -40px;
+    margin-right: -10px;
     font-size: 15px;
     border: none;
     background-color: #f9f9f9;
