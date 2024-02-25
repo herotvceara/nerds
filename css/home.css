@@ -235,12 +235,13 @@ body {
   
   #user-img {
     position: relative;
-    width: 45px; /* Tamanho do círculo */
-    height: 45px;
+    width: 80px; /* Tamanho do círculo */
+    height: 80px;
     border-radius: 50%; /* Torna o círculo */
     background-color: rgba(68, 73, 105, 0.9); /* Cor de fundo do círculo */
     background-size: cover; /* Garante que a imagem cubra todo o círculo */
     background-position: center; /* Centraliza a imagem dentro do círculo */
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.7);
     border: none;
     overflow: hidden; /* Para esconder os losangos que passam dos limites do círculo */
     margin-right: -25px;
