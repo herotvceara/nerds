@@ -7,10 +7,10 @@ body {
   /* Estilos para telas menores que 767px */
   @media (max-width: 767px) {
     #user-button {
-      margin-left: -11.5%;
+      margin-left: -16.5%;
     }
     #user-img {
-      margin-left: -13%;
+      margin-left: -17%;
     }
     nav {
       width: 60px;
