@@ -427,45 +427,75 @@ body {
   
   /*submenus*/
   .submenu {
+    
     position: absolute;
     top: 31.3%;
    left: 5.3%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
     background-color: rgba(25, 28, 44, 0.9); /* Cor de fundo do submenu */
-    width: 110px; /* Ajuste conforme necessário para a largura do submenu */
+    width: 180px; /* Ajuste conforme necessário para a largura do submenu */
     display: none; /* Inicia oculto */
     z-index: 2; /* Valor maior para ficar acima do menu */
-    border-radius: 0% 10% 10% 0%;
+   
   }
   
   
   /*submenus*/
-  .submenu.expanded  {
-  
-   left: 10%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
-   
+  .submenu.expanded {
+    left: 10%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
   }
-
+  
   nav.expanded .submenu {
     right: 0; /* Mantenha à direita quando o menu estiver expandido */
-
   }
   
   .submenu button {
-    width: 80%; /* Ocupa a largura total do submenu */
-    padding: 10px;
-    margin: 5px 0px 10px 10px;
-    background-color: #3498db; /* Cor de fundo */
-    color: #fff; /* Cor do texto */
-    border: none;
-    border-radius: 5px;
+    width: 180px;
+    height: 60px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background: transparent;
+   
+    overflow: hidden;
     position: relative;
-    z-index: 3; /* Valor maior para ficar acima de tudo */
+    color: rgba(199, 203, 223, 0.9); /* Cor do texto do menu */
+  }
+  
+  .submenu button span {
+    z-index: 20;
+  }
+  
+  .submenu button:after {
+    background: #fff;
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: .2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: -10;
+  }
+  
+  .submenu button:hover:after {
+    left: 120%;
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
   }
   
   .submenu button:hover {
-    background-color: #2980b9; /* Cor de fundo ao passar o mouse */
+    
   }
+  
+  .submenu button span {
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+    transition: 1s ease-in-out;
+  }
+  
+  .submenu.expanded button span {
+    transform: translateX(100%); /* Move o texto para a direita */
+  }
+  
   
   
