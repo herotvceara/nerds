@@ -43,7 +43,7 @@
     <!-- Botões do menu -->
     <button class="icon-vender" id="bntvender"><img src="../img/check-circle.svg" alt="Vender"> Vender</button>
     <button class="icon-processos" id="bntprocessos"><img src="../img/add-circle.svg" alt="Processos"> Processos</button>
-    <button class="icon-cadastros" id="bntcadastros"><img src="../img/add-circle.svg" alt="Cadastros"> Cadastros</button>
+    <button class="icon-cadastros" id="bntcadastros" onmouseover="showSubMenu()" onmouseout="hideSubMenu()"><img src="../img/add-circle.svg" alt="Cadastros"> Cadastros</button>   
     <button class="icon-historico" id="bnthistorico"><img src="../img/add-circle.svg" alt="Histórico"> Histórico</button>
     <button class="icon-financas" id="bntfinancas"><img src="../img/check-circle.svg" alt="Finanças"> Finanças</button>
     <button class="icon-estatisticas" id="bntestatisticas"><img src="../img/check-circle.svg" alt="Estatísticas"> <span
@@ -54,6 +54,12 @@
 
     <!-- Adicione mais botões conforme necessário -->
   </nav>
+
+  <div id="submenu-cadastros" class="submenu">
+    <!-- Adicione botões aqui dinamicamente usando JavaScript -->
+    <button class="menu-button" data-action="cadastrar-cliente">Cadastrar Cliente</button>
+    <button class="menu-button" data-action="cadastrar-produto">Cadastrar Produto</button>
+  </div>
 
   <main>
     <h1>Resumo Diário</h1>

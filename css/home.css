@@ -425,4 +425,36 @@ body {
     background-color: rgba(38, 40, 54, 0.9); /* Cor de fundo do menu ao passar o mouse */
   }
   
+  #submenu-cadastros {
+    display: none;
+    position: fixed;
+    top: 285px; /* Ajuste a altura conforme necessário */
+    left: 60px; /* Posicione ao lado direito do menu principal */
+    width: 150px; /* Ajuste conforme necessário */
+    background-color: rgba(25, 28, 44, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    z-index: 3; /* Deve ser maior do que o z-index do menu principal */
+    transform: translateY(-50%); /* Centraliza verticalmente */
+  }
+  
+  
+  
+  #submenu-cadastros button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    background: none;
+    color: rgba(165, 170, 204, 0.9);
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  #submenu-cadastros button:hover {
+    background-color: rgba(81, 85, 105, 0.9);
+    color: white;
+  }
   
