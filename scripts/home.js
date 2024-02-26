@@ -56,12 +56,15 @@ function toggleMenu() {
   var main = document.querySelector('main');
   var header = document.querySelector('header');
   var toggleButton = document.getElementById('toggleMenuButton');
+  var toggleSubMenu = document.getElementById('toggleSubMenu');
 
   // Alternar a expansão do menu
   nav.classList.toggle('expanded');
   main.classList.toggle('menu-expanded');
   header.classList.toggle('header-expanded');
   toggleButton.classList.toggle('expanded');
+  toggleSubMenu.classList.toggle('expanded');
+  
 
   // Alterar o texto e ícone do botão com base na expansão do menu
   if (nav.classList.contains('expanded')) {

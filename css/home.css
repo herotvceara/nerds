@@ -439,6 +439,7 @@ body {
     overflow: hidden;
     animation: expandSubMenu 0.5s ease-in-out forwards;
   }
+
   
   @keyframes expandSubMenu {
     0% {
