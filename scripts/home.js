@@ -258,37 +258,13 @@ document.addEventListener('DOMContentLoaded', function () {
           
 });
 
-// Função para exibir o submenu ao passar o mouse sobre o botão "Cadastros"
-function showSubMenu() {
-  const submenu = document.getElementById('submenu-cadastros');
-  submenu.style.display = 'block';
+// Função para exibir o submenu
+function toggleSubMenu() {
+  var submenu = document.getElementById("cadastrosSubmenu");
+  if (submenu.style.display === "block") {
+      submenu.style.display = "none";
+  } else {
+      submenu.style.display = "block";
+  }
 }
-
-// Função para ocultar o submenu ao tirar o mouse do botão "Cadastros"
-function hideSubMenu() {
-  const submenu = document.getElementById('submenu-cadastros');
-  submenu.style.display = 'none';
-}
-
-// Função para manipular o clique no submenu
-function handleSubMenuClick(action) {
-  // Adicione a lógica do clique do submenu aqui
-  alert(`Clicou em: ${action}`);
-}
-
-// Função para adicionar os eventos de clique e passar o mouse aos botões
-function addEventListeners() {
-  const buttons = document.querySelectorAll('.menu-button');
-  buttons.forEach(button => {
-    button.addEventListener('mouseover', showSubMenu);
-    button.addEventListener('mouseout', hideSubMenu);
-    button.addEventListener('click', () => {
-      const action = button.getAttribute('data-action');
-      handleSubMenuClick(action);
-    });
-  });
-}
-
-// Adicione os eventos de clique e passar o mouse aos botões
-addEventListeners();
 

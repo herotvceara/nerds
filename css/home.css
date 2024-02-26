@@ -425,36 +425,47 @@ body {
     background-color: rgba(38, 40, 54, 0.9); /* Cor de fundo do menu ao passar o mouse */
   }
   
-  #submenu-cadastros {
-    display: none;
-    position: fixed;
-    top: 285px; /* Ajuste a altura conforme necessário */
-    left: 60px; /* Posicione ao lado direito do menu principal */
-    width: 150px; /* Ajuste conforme necessário */
-    background-color: rgba(25, 28, 44, 0.9);
-    border-radius: 10px;
-    box-shadow: 0px 5px 4px rgba(0, 0, 0, 0.2);
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    z-index: 3; /* Deve ser maior do que o z-index do menu principal */
-    transform: translateY(-50%); /* Centraliza verticalmente */
+  /*submenus*/
+  .submenu {
+    position: absolute;
+    top: 31.3%;
+   left: 5.3%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
+    background-color: rgba(25, 28, 44, 0.9); /* Cor de fundo do submenu */
+    width: 110px; /* Ajuste conforme necessário para a largura do submenu */
+    display: none; /* Inicia oculto */
+    z-index: 2; /* Valor maior para ficar acima do menu */
+    border-radius: 0% 10% 10% 0%;
   }
   
   
+  /*submenus*/
+  .submenu.expanded  {
   
-  #submenu-cadastros button {
-    margin-bottom: 10px;
+   left: 10%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
+   
+  }
+
+  nav.expanded .submenu {
+    right: 0; /* Mantenha à direita quando o menu estiver expandido */
+
+  }
+  
+  .submenu button {
+    width: 80%; /* Ocupa a largura total do submenu */
     padding: 10px;
+    margin: 5px 0px 10px 10px;
+    background-color: #3498db; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
     border: none;
-    background: none;
-    color: rgba(165, 170, 204, 0.9);
-    cursor: pointer;
     border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 3; /* Valor maior para ficar acima de tudo */
   }
   
-  #submenu-cadastros button:hover {
-    background-color: rgba(81, 85, 105, 0.9);
-    color: white;
+  .submenu button:hover {
+    background-color: #2980b9; /* Cor de fundo ao passar o mouse */
   }
+  
   
