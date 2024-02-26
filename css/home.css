@@ -134,7 +134,7 @@ body {
     width: 100%;
     height: 60px;
     background-color: rgba(38, 40, 54, 0.9); /* Azul mais escuro e acinzentado */
-    z-index: 2;
+    z-index: 3;
   }
   
   nav.expanded {
@@ -147,7 +147,7 @@ body {
   #toggleMenuButton {
     font-size: 18px;
     background-color: transparent;
-    z-index: 3;
+    z-index: 4;
   }
   
   nav.expanded #toggleMenuButton {
@@ -225,6 +225,8 @@ body {
     border: 2px solid #ddd;
     display: flex;
     flex-direction: column;
+    z-index: 1;
+    
   }
   
   main:not(.menu-expanded) {
@@ -246,6 +248,7 @@ body {
     padding: 10px;
     display: flex;
     margin-left: 80px;
+    
    
   }
   
@@ -424,28 +427,43 @@ body {
   #uploadButton:hover {
     background-color: rgba(38, 40, 54, 0.9); /* Cor de fundo do menu ao passar o mouse */
   }
-  
-  /*submenus*/
+  /*submenu*/
   .submenu {
-    
     position: absolute;
-    top: 31.3%;
-   left: 5.3%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
-    background-color: rgba(25, 28, 44, 0.9); /* Cor de fundo do submenu */
-    width: 180px; /* Ajuste conforme necessário para a largura do submenu */
-    display: none; /* Inicia oculto */
-    z-index: 2; /* Valor maior para ficar acima do menu */
-   
+    top: 28.3%;
+    left: 5.3%;
+    background-color: rgba(25, 28, 44, 0.9);
+    width: 0;
+    display: none;
+    z-index: 1;
+    overflow: hidden;
+    animation: expandSubMenu 0.5s ease-in-out forwards;
   }
   
+  @keyframes expandSubMenu {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 180px;
+    }
+  }
   
-  /*submenus*/
+  .submenu.collapse {
+    animation: collapseSubMenu 0.5s ease-in-out forwards;
+  }
+  
+  @keyframes collapseSubMenu {
+    0% {
+      width: 180px;
+    }
+    100% {
+      width: 0;
+    }
+  }
+  
   .submenu.expanded {
-    left: 10%; /* Ajuste conforme necessário para posicionar à direita do menu normal */
-  }
-  
-  nav.expanded .submenu {
-    right: 0; /* Mantenha à direita quando o menu estiver expandido */
+    left: 10%;
   }
   
   .submenu button {
@@ -453,10 +471,9 @@ body {
     height: 60px;
     cursor: pointer;
     background: transparent;
-   
     overflow: hidden;
     position: relative;
-    color: rgba(199, 203, 223, 0.9); /* Cor do texto do menu */
+    color: rgba(199, 203, 223, 0.9);
   }
   
   .submenu button span {
@@ -472,30 +489,27 @@ body {
     position: absolute;
     top: -50px;
     transform: rotate(35deg);
-    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
     width: 50px;
     z-index: -10;
   }
   
   .submenu button:hover:after {
-    left: 120%;
-    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    left: 50%;
   }
   
   .submenu button:hover {
-    
+    /* Adicione estilos adicionais quando hover se desejar */
   }
   
   .submenu button span {
     color: white;
     font-size: 18px;
     font-weight: 100;
-    transition: 1s ease-in-out;
+    transition: 5s ease-in-out;
   }
   
   .submenu.expanded button span {
-    transform: translateX(100%); /* Move o texto para a direita */
+    transform: translateX(100%);
   }
-  
-  
   

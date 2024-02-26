@@ -258,13 +258,21 @@ document.addEventListener('DOMContentLoaded', function () {
           
 });
 
+
+
 // Função para exibir o submenu
 function toggleSubMenu() {
   var submenu = document.getElementById("cadastrosSubmenu");
+
   if (submenu.style.display === "block") {
+    submenu.style.animation = "collapseSubMenu 0.5s ease-in-out forwards";
+    submenu.addEventListener("animationend", function() {
       submenu.style.display = "none";
+    }, { once: true });
   } else {
-      submenu.style.display = "block";
+    submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
+    submenu.style.display = "block";
   }
 }
+
 
