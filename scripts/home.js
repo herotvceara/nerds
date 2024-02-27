@@ -260,8 +260,10 @@ document.addEventListener('DOMContentLoaded', function () {
           
 });
 
+
+
 // Função para exibir o submenu
-function toggleSubMenu() {
+function toggleSubMenucadastros() {
   var submenu = document.getElementById("cadastrosSubmenu");
 
   if (submenu.style.display === "block") {
@@ -272,7 +274,38 @@ function toggleSubMenu() {
   } else {
     submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
     submenu.style.display = "block";
+    
   }
 }
+//posicao submenu
+function updateSubmenuPosition() {
+  // Obtém o elemento do botão Cadastros
+  var cadastrosButton = document.getElementById('bntcadastros');
+
+  // Obtém o elemento do submenu
+  var submenuElement = document.getElementById('cadastrosSubmenu');
+
+  // Verifica se ambos os elementos foram encontrados antes de continuar
+  if (cadastrosButton && submenuElement) {
+      // Obtém as dimensões e a posição do botão Cadastros em relação à janela do navegador
+      var buttonRect = cadastrosButton.getBoundingClientRect();
+
+      // Calcula a posição do submenu em relação ao canto superior esquerdo do botão Cadastros
+      var cadastrotop = buttonRect.top + window.scrollY;
+      
+
+      // Adiciona as propriedades de estilo ao submenu
+      submenuElement.style.top = cadastrotop + 'px';
+      
+  }
+}
+
+// Chama a função inicialmente para configurar o submenu
+updateSubmenuPosition();
+
+// Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
+setInterval(updateSubmenuPosition, 1000);
+
+
 
 
