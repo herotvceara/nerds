@@ -282,6 +282,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Função para exibir o submenu
 function toggleSubMenu() {
+  
   var submenu = document.getElementById("cadastrosSubmenu");
 
   if (submenu.style.display === "block") {
@@ -292,7 +293,7 @@ function toggleSubMenu() {
   } else {
     submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
     submenu.style.display = "block";
+    
   }
-}
-//x
 
+}
