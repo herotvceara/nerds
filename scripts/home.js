@@ -82,24 +82,6 @@ function toggleMenu() {
     estetic.innerText = 'Estatist.';
   }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-  const cadastrosButton = document.getElementById('cadastros-button');
-  const submenu = document.querySelector('.submenu');
-
-  cadastrosButton.addEventListener('mouseover', function () {
-    const buttonRect = cadastrosButton.getBoundingClientRect();
-    const centerVertical = buttonRect.top + buttonRect.height / 2;
-
-    submenu.style.display = 'block';
-    submenu.style.top = centerVertical + 'px';
-  });
-
-  cadastrosButton.addEventListener('mouseout', function () {
-    submenu.style.display = 'none';
-  });
-});
-
 // Adicionado script para marcar o botão clicado como ativo
 document.querySelectorAll('nav button').forEach(function (button) {
   button.addEventListener('click', function () {
@@ -278,11 +260,8 @@ document.addEventListener('DOMContentLoaded', function () {
           
 });
 
-
-
 // Função para exibir o submenu
 function toggleSubMenu() {
-  
   var submenu = document.getElementById("cadastrosSubmenu");
 
   if (submenu.style.display === "block") {
@@ -293,7 +272,7 @@ function toggleSubMenu() {
   } else {
     submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
     submenu.style.display = "block";
-    
   }
-
 }
+
+
