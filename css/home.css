@@ -20,16 +20,17 @@ body {
       padding-top: 0;
       border-right: none;
       border-radius: 0;
-      overflow-y: hidden;
+      overflow-y: auto; /* Alterado para auto para permitir scroll */
     }
   
     .toggle-button {
       display: block;
       cursor: pointer;
     }
-
+  
     nav.expanded {
       height: 200px;
+      overflow-y: scroll; /* Adicionado para permitir scroll quando expandido */
     }
 
 /* Adicione o estilo para o quadrado no topo */
