@@ -462,10 +462,7 @@ body {
       width: 0;
     }
   }
-  
-  .submenu.expanded {
-    left: 10%;
-  }
+
   
   .submenu button {
     width: 180px;

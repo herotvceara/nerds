@@ -285,18 +285,28 @@ function updateSubmenuPosition() {
   // Obtém o elemento do submenu
   var submenuElement = document.getElementById('cadastrosSubmenu');
 
+  // Obtém o elemento do menu principal
+  var mainMenu = document.querySelector('nav');
+
   // Verifica se ambos os elementos foram encontrados antes de continuar
-  if (cadastrosButton && submenuElement) {
-      // Obtém as dimensões e a posição do botão Cadastros em relação à janela do navegador
-      var buttonRect = cadastrosButton.getBoundingClientRect();
+  if (cadastrosButton && submenuElement && mainMenu) {
+    // Obtém as dimensões e a posição do botão Cadastros em relação à janela do navegador
+    var buttonRect = cadastrosButton.getBoundingClientRect();
 
-      // Calcula a posição do submenu em relação ao canto superior esquerdo do botão Cadastros
-      var cadastrotop = buttonRect.top + window.scrollY;
-      
+    // Calcula a posição do submenu em relação ao canto superior esquerdo do botão Cadastros
+    var cadastrotop = buttonRect.top + window.scrollY;
 
-      // Adiciona as propriedades de estilo ao submenu
-      submenuElement.style.top = cadastrotop + 'px';
-      
+    // Adiciona as propriedades de estilo ao submenu
+    submenuElement.style.top = cadastrotop + 'px';
+
+    // Verifica se o menu principal está expandido
+    if (mainMenu.classList.contains('expanded')) {
+      // Se estiver expandido, move o submenu para a direita
+      submenuElement.style.left = '12.8%';
+    } else {
+      // Se não estiver expandido, volta à posição original
+      submenuElement.style.left = '5.3%';
+    }
   }
 }
 
@@ -304,8 +314,7 @@ function updateSubmenuPosition() {
 updateSubmenuPosition();
 
 // Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
-setInterval(updateSubmenuPosition, 1000);
+setInterval(updateSubmenuPosition, 10);
 
-
-
+// Adiciona um ouvinte de eventos ao documento para capturar cliques em qualquer lugar
 
