@@ -316,5 +316,3 @@ updateSubmenuPosition();
 // Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
 setInterval(updateSubmenuPosition, 10);
 
-// Adiciona um ouvinte de eventos ao documento para capturar cliques em qualquer lugar
-
