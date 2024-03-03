@@ -261,7 +261,62 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+//SUBMENU PROCESSOS
+// Função para exibir o submenu
+function toggleSubMenuprocessos() {
+  var submenu = document.getElementById("processosSubmenu");
 
+  if (submenu.style.display === "block") {
+    submenu.style.animation = "collapseSubMenu 0.5s ease-in-out forwards";
+    submenu.addEventListener("animationend", function() {
+      submenu.style.display = "none";
+    }, { once: true });
+  } else {
+    submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
+    submenu.style.display = "block";
+    
+  }
+}
+//posicao submenu
+function updateSubmenuPositionprocessos() {
+  // Obtém o elemento do botão Cadastros
+  var processosButton = document.getElementById('bntprocessos');
+
+  // Obtém o elemento do submenu
+  var submenuElement = document.getElementById('processosSubmenu');
+
+  // Obtém o elemento do menu principal
+  var mainMenu = document.querySelector('nav');
+
+  // Verifica se ambos os elementos foram encontrados antes de continuar
+  if (processosButton && submenuElement && mainMenu) {
+    // Obtém as dimensões e a posição do botão Cadastros em relação à janela do navegador
+    var buttonRect = processosButton.getBoundingClientRect();
+
+    // Calcula a posição do submenu em relação ao canto superior esquerdo do botão Cadastros
+    var processostop = buttonRect.top + window.scrollY;
+
+    // Adiciona as propriedades de estilo ao submenu
+    submenuElement.style.top = processostop + 'px';
+
+    // Verifica se o menu principal está expandido
+    if (mainMenu.classList.contains('expanded')) {
+      // Se estiver expandido, move o submenu para a direita
+      submenuElement.style.left = '12.8%';
+    } else {
+      // Se não estiver expandido, volta à posição original
+      submenuElement.style.left = '5.3%';
+    }
+  }
+}
+
+// Chama a função inicialmente para configurar o submenu
+updateSubmenuPositionprocessos();
+
+// Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
+setInterval(updateSubmenuPositionprocessos, 10);
+
+// SUBMENU CADASTROS
 // Função para exibir o submenu
 function toggleSubMenucadastros() {
   var submenu = document.getElementById("cadastrosSubmenu");
@@ -278,7 +333,7 @@ function toggleSubMenucadastros() {
   }
 }
 //posicao submenu
-function updateSubmenuPosition() {
+function updateSubmenuPositioncadastros() {
   // Obtém o elemento do botão Cadastros
   var cadastrosButton = document.getElementById('bntcadastros');
 
@@ -311,8 +366,7 @@ function updateSubmenuPosition() {
 }
 
 // Chama a função inicialmente para configurar o submenu
-updateSubmenuPosition();
+updateSubmenuPositioncadastros();
 
 // Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
-setInterval(updateSubmenuPosition, 10);
-
+setInterval(updateSubmenuPositioncadastros, 10);
