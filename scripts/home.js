@@ -266,17 +266,17 @@ document.addEventListener('DOMContentLoaded', function () {
 function toggleSubMenucadastros() {
   var submenu = document.getElementById("cadastrosSubmenu");
 
-  if (submenu.style.display === "block") {
+  if (!submenu.style.display || submenu.style.display === "none") {
+    submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
+    submenu.style.display = "block";
+  } else {
     submenu.style.animation = "collapseSubMenu 0.5s ease-in-out forwards";
     submenu.addEventListener("animationend", function() {
       submenu.style.display = "none";
     }, { once: true });
-  } else {
-    submenu.style.animation = "expandSubMenu 0.5s ease-in-out forwards";
-    submenu.style.display = "block";
-    
   }
 }
+
 //posicao submenu
 function updateSubmenuPosition() {
   // Obtém o elemento do botão Cadastros
@@ -316,3 +316,13 @@ updateSubmenuPosition();
 // Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
 setInterval(updateSubmenuPosition, 10);
 
+function collapseSubMenu(submenu) {
+  // Adiciona a classe de animação ao submenu
+  submenu.style.animation = "collapseSubMenu 0.5s ease-in-out forwards";
+
+  // Adiciona um ouvinte de evento para detectar o final da animação
+  submenu.addEventListener("animationend", function() {
+    // Quando a animação terminar, define o estilo de exibição como "none"
+    submenu.style.display = "none";
+  }, { once: true });
+}
