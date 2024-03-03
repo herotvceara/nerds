@@ -44,8 +44,8 @@
     <button class="icon-vender" id="bntvender"><img src="../img/check-circle.svg" alt="Vender"> Vender</button>
     <button class="icon-processos" id="bntprocessos" onclick="toggleSubMenuprocessos()"><img src="../img/add-circle.svg" alt="Processos"> Processos</button>
     <button class="icon-cadastros" id="bntcadastros" onclick="toggleSubMenucadastros()"><img src="../img/add-circle.svg" alt="Cadastros"> Cadastros</button>
-   <button class="icon-historico" id="bnthistorico"><img src="../img/add-circle.svg" alt="Histórico"> Histórico</button>
-    <button class="icon-financas" id="bntfinancas"><img src="../img/check-circle.svg" alt="Finanças"> Finanças</button>
+   <button class="icon-relatorios" id="bntrelatorios" onclick="toggleSubMenurelatorios()"><img src="../img/add-circle.svg" alt="Relatorios"> Relatorios</button>
+    <button class="icon-financas" id="bntfinancas" onclick="toggleSubMenufinanças()"><img src="../img/check-circle.svg" alt="Finanças"> Finanças</button>
     <button class="icon-estatisticas" id="bntestatisticas"><img src="../img/check-circle.svg" alt="Estatísticas"> <span
         id="estetic">Estat.</span></button>
     <button class="icon-usuarios" id="bntusuarios"><img src="../img/add-circle.svg" alt="Usuários"> Usuários</button>
@@ -66,6 +66,25 @@
     <button id="Fornecedor">Fornecedor</button>
     <!-- Adicione mais itens conforme necessário -->
 </div>
+<div class="submenu" id="relatoriosSubmenu">
+  <!-- Adicione os itens do submenu aqui -->
+  <button id="Vendas">Vendas</button>
+  <button id="Custos">Custos</button>
+  <button id="Lucros">Lucros</button>
+  <button id="Projuizos">Prejuizos</button>
+  <!-- Adicione mais itens conforme necessário -->
+</div>
+<div class="submenu" id="finançasSubmenu">
+  <!-- Adicione os itens do submenu aqui -->
+  <button id="Caixa">Caixa</button>
+  <button id="Entradas">Entradas</button>
+  <button id="Saidas">Saidas</button>
+  <button id="A receber">A receber</button>
+  <button id="Contas">Contas</button>
+  <button id="Orçamento">Orçamentos</button>
+  <button id="Pagamentos">Pagamentos</button>
+  <!-- Adicione mais itens conforme necessário -->
+</div>
 
   <main>
     <h1>Resumo Diário</h1>
@@ -74,7 +93,10 @@
 
 
   <script src="../scripts/firebase.js"></script>
-  <script src="../scripts/home.js"></script>
+  <script src="../scripts/home/home.js"></script>
+  <script src="../scripts/home/menu_expanded.js"></script>
+  <script src="../scripts/home/submenu.js"></script>
+  <script src="../scripts/home/user_img.js"></script>
 
 </body>
 
