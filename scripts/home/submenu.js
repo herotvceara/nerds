@@ -2,6 +2,7 @@
 //SUBMENU PROCESSOS
 // Função para exibir o submenu
 function toggleSubMenuprocessos() {
+  hideOtherSubmenus("processosSubmenu");
     var submenu = document.getElementById("processosSubmenu");
   
     if (submenu.style.display === "block") {
@@ -57,6 +58,7 @@ function toggleSubMenuprocessos() {
   // SUBMENU CADASTROS
   // Função para exibir o submenu
   function toggleSubMenucadastros() {
+    hideOtherSubmenus("cadastrosSubmenu");
     var submenu = document.getElementById("cadastrosSubmenu");
   
     if (submenu.style.display === "block") {
@@ -112,6 +114,7 @@ function toggleSubMenuprocessos() {
   // SUBMENU RELATORIOS
   // Função para exibir o submenu
   function toggleSubMenurelatorios() {
+    hideOtherSubmenus("relatoriosSubmenu");
     var submenu = document.getElementById("relatoriosSubmenu");
   
     if (submenu.style.display === "block") {
@@ -166,8 +169,9 @@ function toggleSubMenuprocessos() {
 
    // SUBMENU FINANÇAS
   // Função para exibir o submenu
-  function toggleSubMenufinanças() {
-    var submenu = document.getElementById("finançasSubmenu");
+  function toggleSubMenufinancas() {
+    hideOtherSubmenus("financasSubmenu");
+    var submenu = document.getElementById("financasSubmenu");
   
     if (submenu.style.display === "block") {
       submenu.style.animation = "collapseSubMenu 0.5s ease-in-out forwards";
@@ -181,26 +185,26 @@ function toggleSubMenuprocessos() {
     }
   }
   //posicao submenu
-  function updateSubmenuPositionfinanças() {
+  function updateSubmenuPositionfinancas() {
     // Obtém o elemento do botão Cadastros
-    var finançasButton = document.getElementById('bntfinanças');
+    var financasButton = document.getElementById('bntfinancas');
   
     // Obtém o elemento do submenu
-    var submenuElement = document.getElementById('finançasSubmenu');
+    var submenuElement = document.getElementById('financasSubmenu');
   
     // Obtém o elemento do menu principal
     var mainMenu = document.querySelector('nav');
   
     // Verifica se ambos os elementos foram encontrados antes de continuar
-    if (finançasButton && submenuElement && mainMenu) {
+    if (financasButton && submenuElement && mainMenu) {
       // Obtém as dimensões e a posição do botão Cadastros em relação à janela do navegador
-      var buttonRect = finançasButton.getBoundingClientRect();
+      var buttonRect = financasButton.getBoundingClientRect();
   
       // Calcula a posição do submenu em relação ao canto superior esquerdo do botão Cadastros
-      var finançastop = buttonRect.top + window.scrollY;
+      var financastop = buttonRect.top + window.scrollY;
   
       // Adiciona as propriedades de estilo ao submenu
-      submenuElement.style.top = finançastop + 'px';
+      submenuElement.style.top = financastop + 'px';
   
       // Verifica se o menu principal está expandido
       if (mainMenu.classList.contains('expanded')) {
@@ -214,7 +218,25 @@ function toggleSubMenuprocessos() {
   }
   
   // Chama a função inicialmente para configurar o submenu
-  updateSubmenuPositionfinanças();
+  updateSubmenuPositionfinancas();
   
   // Define um intervalo para verificar e atualizar as posições a cada 1000 milissegundos (1 segundo)
-  setInterval(updateSubmenuPositionfinanças, 10);
+  setInterval(updateSubmenuPositionfinancas, 10);
+
+
+  function handleButtonClickWithoutSubmenu() {
+    hideOtherSubmenus();
+}
+  // Função para ocultar outros submenus
+function hideOtherSubmenus(currentSubmenuId) {
+  var submenus = document.querySelectorAll('.submenu');
+  submenus.forEach(function (submenu) {
+      if (submenu.id !== currentSubmenuId && submenu.style.display === "block") {
+          submenu.style.animation = "collapseSubMenu 0.5s ease-in-out forwards";
+          submenu.addEventListener("animationend", function () {
+              submenu.style.display = "none";
+             
+          }, { once: true });
+      }
+  });
+}

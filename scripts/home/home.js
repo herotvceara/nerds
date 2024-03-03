@@ -49,3 +49,11 @@ firebase.auth().onAuthStateChanged(function (user) {
   }
 });
 
+document.addEventListener('click', function (event) {
+  var clickedElement = event.target;
+
+  // Check if the clicked element is not a menu, submenu, or a button that triggers a submenu
+  if (!clickedElement.closest('nav') && !clickedElement.classList.contains('submenu') && !clickedElement.classList.contains('submenu-button')) {
+    hideOtherSubmenus();
+  }
+});
