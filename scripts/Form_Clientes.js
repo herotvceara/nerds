@@ -1,19 +1,36 @@
-// Função para inicializar e acessar o Firebase
+// Referência à coleção "Clientes" no Firestore
+var clientesCollection = firebase.firestore().collection('Clientes');
 
+// Obter todos os documentos da coleção "Clientes"
+clientesCollection.get().then((querySnapshot) => {
+  // Verificar se há documentos na coleção
+  if (!querySnapshot.empty) {
+    // Obter o primeiro documento
+    const primeiroCliente = querySnapshot.docs[0];
 
-    // Referência à coleção "Clientes"
-    const clientesCollection = collection(db, "Clientes");
+    // Obter os títulos dos campos do primeiro cliente
+    const titulosCampos = Object.keys(primeiroCliente.data());
 
-    try {
-      // Obtenha os documentos da coleção e liste no console
-      const querySnapshot = await getDocs(clientesCollection);
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
-      });
-    } catch (error) {
-      console.error("Erro ao obter documentos: ", error);
-    }
+    // Reorganizar os títulos para priorizar "ID", "Nome", "CPF", "Endereço"
+    const titulosOrdenados = ['ID', 'Nome', 'CPF', 'Endereço']
+      .concat(titulosCampos.filter(titulo => !['ID', 'Nome', 'CPF', 'Endereço'].includes(titulo)));
+
+    // Adicionar os títulos à tabela no HTML
+    const theadElement = document.getElementById('tabelaClientes').getElementsByTagName('thead')[0];
+    const trElement = theadElement.getElementsByTagName('tr')[0];
+    
+    // Limpar o conteúdo atual do cabeçalho
+    trElement.innerHTML = '';
+
+    // Adicionar os títulos dinamicamente ao cabeçalho
+    titulosOrdenados.forEach((titulo) => {
+      const thElement = document.createElement('th');
+      thElement.textContent = titulo;
+      trElement.appendChild(thElement);
+    });
+  } else {
+    console.log('A coleção "Clientes" está vazia.');
   }
-
-  // Chame a função para acessar o Firebase
-  acessarFirebase();
+}).catch((error) => {
+  console.error('Erro ao obter documentos:', error);
+});
