@@ -19,6 +19,7 @@
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-storage.js"></script>
   
+  
 
   <link rel="icon" href="../img/logonerds.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/padrão.css">
@@ -27,7 +28,7 @@
 <body>
 
   <header>
-    <h1>Home</h1>
+    <h1>Clientes</h1>
     <button id="user-img"></button>
     <input type="file" id="image-input" accept="image/*" style="display: none;">
     <div id="user-button">
@@ -84,10 +85,20 @@
   <!-- Adicione mais itens conforme necessário -->
 </div>
 
-  <main>
-    <h1>Clientes</h1>
-    <p>Seu conteúdo vai aqui...</p>
-  </main>
+<main>
+
+  <!-- Tabela para mostrar os títulos -->
+  <table id="tabelaClientes">
+      <thead>
+          <tr>
+              <th>Títulos</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Os títulos serão adicionados aqui dinamicamente -->
+      </tbody>
+  </table>
+</main>
 
 
   <script src="../scripts/configurações/firebase.js"></script>
@@ -95,6 +106,7 @@
   <script src="../scripts/configurações/menu_expanded.js"></script>
   <script src="../scripts/configurações/submenu.js"></script>
   <script src="../scripts/configurações/user_img.js"></script>
+  <script src="../scripts/Form_Clientes.js"></script>
 
 </body>
 
