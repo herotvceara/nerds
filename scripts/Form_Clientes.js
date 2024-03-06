@@ -1,14 +1,12 @@
 // Referência à coleção "Clientes" no Firestore
 var clientesCollection = firebase.firestore().collection('Clientes');
 
-// Obter todos os documentos da coleção "Clientes"
+// Função para obter os documentos da coleção "Clientes"
 clientesCollection.get().then((querySnapshot) => {
   // Verificar se há documentos na coleção
   if (!querySnapshot.empty) {
-    // Obter o primeiro documento
-    const primeiroCliente = querySnapshot.docs[0];
-
     // Obter os títulos dos campos do primeiro cliente
+    const primeiroCliente = querySnapshot.docs[0];
     const titulosCampos = Object.keys(primeiroCliente.data());
 
     // Reorganizar os títulos para priorizar "ID", "Nome", "CPF", "Endereço"
@@ -18,7 +16,7 @@ clientesCollection.get().then((querySnapshot) => {
     // Adicionar os títulos à tabela no HTML
     const theadElement = document.getElementById('tabelaClientes').getElementsByTagName('thead')[0];
     const trElement = theadElement.getElementsByTagName('tr')[0];
-    
+
     // Limpar o conteúdo atual do cabeçalho
     trElement.innerHTML = '';
 
@@ -28,9 +26,112 @@ clientesCollection.get().then((querySnapshot) => {
       thElement.textContent = titulo;
       trElement.appendChild(thElement);
     });
+
+    // Adicionar títulos extras para editar e excluir no final
+    const thEditar = document.createElement('th');
+    thEditar.textContent = 'Editar';
+    trElement.appendChild(thEditar);
+
+    const thExcluir = document.createElement('th');
+    thExcluir.textContent = 'Excluir';
+    trElement.appendChild(thExcluir);
+
+    // Adicionar os dados à tabela no HTML
+    const tbodyElement = document.getElementById('tabelaClientes').getElementsByTagName('tbody')[0];
+
+    // Limpar o conteúdo atual do corpo da tabela
+    tbodyElement.innerHTML = '';
+
+    // Adicionar os dados dinamicamente ao corpo da tabela
+    querySnapshot.forEach((cliente, index) => {
+      const trCliente = document.createElement('tr'); // Criar uma nova linha para cada cliente
+
+      titulosOrdenados.forEach((titulo) => {
+        const tdElement = document.createElement('td');
+        const valor = cliente.data()[titulo];
+
+        // Formatar a data de nascimento (assumindo que o campo é chamado "Data Nasc.")
+        if (titulo === 'Data Nasc.' && valor instanceof firebase.firestore.Timestamp) {
+          const dataNascimento = valor.toDate();
+          const dataFormatada = `${dataNascimento.getDate()}/${dataNascimento.getMonth() + 1}/${dataNascimento.getFullYear()}`;
+          tdElement.textContent = dataFormatada;
+        } else {
+          tdElement.textContent = valor;
+        }
+
+        trCliente.appendChild(tdElement); // Adicionar célula à linha do cliente
+      });
+
+      // Adicionar as células de editar e excluir ao final de cada linha
+      const tdEditar = document.createElement('td');
+      tdEditar.classList.add('acao');
+      const buttonEditar = document.createElement('button');
+      buttonEditar.innerHTML = `<i class='bx bx-edit'></i>`;
+      buttonEditar.onclick = () => editItem(index);
+      tdEditar.appendChild(buttonEditar);
+      trCliente.appendChild(tdEditar);
+
+      const tdExcluir = document.createElement('td');
+      tdExcluir.classList.add('acao');
+      const buttonExcluir = document.createElement('button');
+      buttonExcluir.innerHTML = `<i class='bx bx-trash'></i>`;
+      buttonExcluir.onclick = () => deleteItem(index);
+      tdExcluir.appendChild(buttonExcluir);
+      trCliente.appendChild(tdExcluir);
+
+      tbodyElement.appendChild(trCliente); // Adicionar a linha do cliente ao corpo da tabela
+    });
   } else {
     console.log('A coleção "Clientes" está vazia.');
   }
 }).catch((error) => {
   console.error('Erro ao obter documentos:', error);
 });
+
+// Botão "Novo Cliente"
+const btnNovoCliente = document.getElementById('new');
+btnNovoCliente.onclick = () => openModalCadastroCliente();
+
+// Modal de cadastro de cliente
+const modalCadastroCliente = document.querySelector('.modalcadcliente-container');
+const modalCadastroClienteForm = document.getElementById('modalCadastroClienteForm');
+
+// Função para abrir o modal de cadastro de cliente
+function openModalCadastroCliente(titulosOrdenados) {
+  modalCadastroCliente.classList.add('active');
+
+  // Limpar o conteúdo atual do formulário no modal
+  modalCadastroClienteForm.innerHTML = '';
+
+  // Criar inputs e labels dinamicamente com base nos títulos
+  titulosOrdenados.forEach((titulo) => {
+    const labelElement = document.createElement('label');
+    labelElement.textContent = titulo;
+
+    const inputElement = document.createElement('input');
+    inputElement.type = 'text';
+    inputElement.id = `m-${titulo.toLowerCase().replace(/\s/g, '-')}`;
+
+    modalCadastroClienteForm.appendChild(labelElement);
+    modalCadastroClienteForm.appendChild(inputElement);
+  });
+
+  // Adicionar botão de salvar ao formulário
+  const btnSaveElement = document.createElement('button');
+  btnSaveElement.id = 'btnSalvar';
+  btnSaveElement.textContent = 'Salvar';
+  btnSaveElement.onclick = saveCliente; // Adicione a função de salvar (se necessário)
+
+  modalCadastroClienteForm.appendChild(btnSaveElement);
+}
+
+// Função para salvar o cliente (ajuste conforme necessário)
+function saveCliente() {
+  // Lógica para salvar o cliente no Firestore ou realizar outras operações necessárias
+  // ...
+
+  // Fechar o modal após salvar
+  modalCadastroCliente.classList.remove('active');
+}
+
+// ... (restante do seu código)
