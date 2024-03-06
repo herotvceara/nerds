@@ -105,33 +105,56 @@ const modalCadastroCliente = document.querySelector('.modalcadcliente-container'
 const modalCadastroClienteForm = document.getElementById('modalCadastroClienteForm');
 
 // Função para abrir o modal de cadastro de cliente
-function openModalCadastroCliente(titulosOrdenados) {
+function openModalCadastroCliente() {
   modalCadastroCliente.classList.add('active');
 
   // Limpar o conteúdo atual do formulário no modal
   modalCadastroClienteForm.innerHTML = '';
 
-  // Criar inputs e labels dinamicamente com base nos títulos
-  titulosOrdenados.forEach((titulo) => {
-    const labelElement = document.createElement('label');
-    labelElement.textContent = titulo;
+  // Referência à coleção "Clientes" no Firestore
+  var clientesCollection = firebase.firestore().collection('Clientes');
 
-    const inputElement = document.createElement('input');
-    inputElement.type = 'text';
-    inputElement.id = `m-${titulo.toLowerCase().replace(/\s/g, '-')}`;
+  // Obter os documentos da coleção "Clientes"
+  clientesCollection.get().then((querySnapshot) => {
+    // Verificar se há documentos na coleção
+    if (!querySnapshot.empty) {
+      // Obter os títulos dos campos do primeiro cliente
+      const primeiroCliente = querySnapshot.docs[0];
+      const titulosCampos = Object.keys(primeiroCliente.data());
 
-    modalCadastroClienteForm.appendChild(labelElement);
-    modalCadastroClienteForm.appendChild(inputElement);
+      // Reorganizar os títulos para priorizar "ID", "Nome", "CPF", "Endereço"
+      const titulosOrdenados = ['ID', 'Nome', 'CPF', 'Endereço']
+        .concat(titulosCampos.filter(titulo => !['ID', 'Nome', 'CPF', 'Endereço'].includes(titulo)));
+
+      // Criar inputs e labels dinamicamente com base nos títulos
+      titulosOrdenados.forEach((titulo) => {
+        const labelElement = document.createElement('label');
+        labelElement.textContent = titulo;
+
+        const inputElement = document.createElement('input');
+        inputElement.type = 'text';
+        inputElement.id = `m-${titulo.toLowerCase().replace(/\s/g, '-')}`;
+
+        modalCadastroClienteForm.appendChild(labelElement);
+        modalCadastroClienteForm.appendChild(inputElement);
+      });
+
+      // Adicionar botão de salvar ao formulário
+      const btnSaveElement = document.createElement('button');
+      btnSaveElement.id = 'btnSalvar';
+      btnSaveElement.textContent = 'Salvar';
+      btnSaveElement.onclick = saveCliente; // Adicione a função de salvar (se necessário)
+
+      modalCadastroClienteForm.appendChild(btnSaveElement);
+    } else {
+      console.log('A coleção "Clientes" está vazia.');
+    }
+  }).catch((error) => {
+    console.error('Erro ao obter documentos:', error);
   });
-
-  // Adicionar botão de salvar ao formulário
-  const btnSaveElement = document.createElement('button');
-  btnSaveElement.id = 'btnSalvar';
-  btnSaveElement.textContent = 'Salvar';
-  btnSaveElement.onclick = saveCliente; // Adicione a função de salvar (se necessário)
-
-  modalCadastroClienteForm.appendChild(btnSaveElement);
 }
+
+// ... (restante do seu código)
 
 // Função para salvar o cliente (ajuste conforme necessário)
 function saveCliente() {
