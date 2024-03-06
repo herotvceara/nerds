@@ -88,6 +88,14 @@ clientesCollection.get().then((querySnapshot) => {
   console.error('Erro ao obter documentos:', error);
 });
 
+ // Obtém o botão pelo ID
+ const btnhome= document.getElementById('home');
+
+ // Adiciona um evento de clique ao botão
+ btnhome.onclick = function() {
+     // Redireciona para a página desejada ao clicar no botão
+     window.location.href = '../pages/home.html';
+ };
 // Botão "Novo Cliente"
 const btnNovoCliente = document.getElementById('new');
 btnNovoCliente.onclick = () => openModalCadastroCliente();
