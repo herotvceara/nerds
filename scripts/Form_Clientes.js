@@ -111,6 +111,24 @@ function openModalCadastroCliente() {
   // Limpar o conteúdo atual do formulário no modal
   modalCadastroClienteForm.innerHTML = '';
 
+  // Adicionar título no topo do modal
+  const modalHeader = document.createElement('div');
+  modalHeader.classList.add('modal-header');
+
+  const tituloElement = document.createElement('h2');
+  tituloElement.textContent = 'Informações do Cliente';
+
+  const btnFecharElement = document.createElement('span');
+  btnFecharElement.innerHTML = '&times;'; // X para fechar
+  btnFecharElement.classList.add('close-btn');
+  btnFecharElement.onclick = closeModalCadastroCliente;
+
+  modalHeader.appendChild(tituloElement);
+  modalHeader.appendChild(btnFecharElement);
+
+  modalCadastroClienteForm.appendChild(modalHeader);
+
+
   // Referência à coleção "Clientes" no Firestore
   var clientesCollection = firebase.firestore().collection('Clientes');
 
@@ -128,16 +146,34 @@ function openModalCadastroCliente() {
 
       // Criar inputs e labels dinamicamente com base nos títulos
       titulosOrdenados.forEach((titulo) => {
-        const labelElement = document.createElement('label');
-        labelElement.textContent = titulo;
-
-        const inputElement = document.createElement('input');
-        inputElement.type = 'text';
-        inputElement.id = `m-${titulo.toLowerCase().replace(/\s/g, '-')}`;
-
-        modalCadastroClienteForm.appendChild(labelElement);
-        modalCadastroClienteForm.appendChild(inputElement);
+        // Verifica se o título não é "Status Monetario" nem "Volume"
+        if (titulo !== 'Status Monetário' && titulo !== 'Volume') {
+          const containerElement = document.createElement('div'); // Container para cada label e input
+          containerElement.classList.add('input-container');
+      
+          const labelElement = document.createElement('label');
+          labelElement.textContent = titulo;
+          labelElement.classList.add('modal-label'); // Add this class for styling
+      
+          const inputContainer = document.createElement('div'); // Container para o input
+          inputContainer.classList.add('input-container-inline');
+      
+          const inputElement = document.createElement('input');
+          inputElement.type = 'text';
+          inputElement.id = `m-${titulo.toLowerCase().replace(/\s/g, '-')}`;
+          inputElement.classList.add('dynamic-input', 'modal-input'); // Add these classes for styling
+      
+          inputContainer.appendChild(inputElement);
+      
+          // Adiciona os elementos ao formulário (substitua modalCadastroClienteForm pelo seu elemento formulário)
+          containerElement.appendChild(labelElement);
+          containerElement.appendChild(inputContainer);
+          modalCadastroClienteForm.appendChild(containerElement);
+        }
+        // Se for "Status Monetario" ou "Volume", não faz nada, ignorando a criação de label e input.
       });
+      
+      
 
       // Adicionar botão de salvar ao formulário
       const btnSaveElement = document.createElement('button');
@@ -165,4 +201,8 @@ function saveCliente() {
   modalCadastroCliente.classList.remove('active');
 }
 
-// ... (restante do seu código)
+// Função para fechar o modal e limpar o conteúdo
+function closeModalCadastroCliente() {
+  modalCadastroCliente.classList.remove('active');
+  modalCadastroClienteForm.innerHTML = '';
+}
