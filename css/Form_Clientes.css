@@ -61,6 +61,7 @@ thead {
 
 tr {
   border-bottom: 1px solid rgb(238, 235, 235)!important;
+  
 }
 
 tbody tr td {
@@ -94,7 +95,20 @@ tbody tr td.acao {
     white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
     overflow: hidden; /* Oculta o conteúdo que não couber na célula */
     text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
-    max-width: 100%; /* Define uma largura máxima para os títulos */
+    width: auto; /* Ajusta dinamicamente o tamanho da célula conforme o conteúdo */
+    max-width: 40px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
+    font-size: 50%;
+  }
+
+  /* Estilo para as células da tabela */
+  .divTable td {
+   
+    white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
+    overflow: hidden; /* Oculta o conteúdo que não couber na célula */
+    text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
+    width: auto; /* Ajusta dinamicamente o tamanho da célula conforme o conteúdo */
+    max-width: 40px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
+    font-size: 60%;
   }
 
   /* Estilo para o botão do menu */
@@ -111,13 +125,21 @@ tbody tr td.acao {
   nav {
     display: none;
   }
+
+  /* Estilo para o modal do cliente */
   .modalcadcliente {
     width: 50%;
     height: 80%;
   }
 
-  
+  /* Estilo para o conteúdo principal */
+  main:not(.menu-expanded) {
+    margin-left: 22px;
+    padding: 20px;
+  }
 }
+
+
 
 .modalcadcliente-container {
   width: 100%;
