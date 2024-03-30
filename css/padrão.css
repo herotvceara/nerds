@@ -188,13 +188,14 @@ body {
   }
   
   nav.expanded button {
+    height: 60px;
     font-size: 15px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     text-align: left;
     padding: 15px 0px 15px 20px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0px 5px 0px;
     border-radius: 10px;
   }
   
@@ -473,7 +474,7 @@ body {
   
   .submenu button {
     width: 180px;
-    height: 60px;
+    height: 40px;
     cursor: pointer;
     background: transparent;
     overflow: hidden;
