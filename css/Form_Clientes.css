@@ -107,9 +107,15 @@ tbody tr td.acao {
     overflow: hidden; /* Oculta o conteúdo que não couber na célula */
     text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
     width: auto; /* Ajusta dinamicamente o tamanho da célula conforme o conteúdo */
-    max-width: 40px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
-    font-size: 60%;
+    max-width: 70px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
+    font-size: 70%;
   }
+  
+    /* Estilo para os ícones de editar e excluir */
+    .bx-edit,
+    .bx-trash {
+      font-size: 15px; /* Tamanho menor para os ícones */
+    }
 
   /* Estilo para o botão do menu */
   .toggle-button {
@@ -126,16 +132,11 @@ tbody tr td.acao {
     display: none;
   }
 
-  /* Estilo para o modal do cliente */
-  .modalcadcliente {
-    width: 50%;
-    height: 80%;
-  }
-
   /* Estilo para o conteúdo principal */
   main:not(.menu-expanded) {
-    margin-left: 22px;
-    padding: 20px;
+    margin-left: 0px;
+    margin-top: 20px;
+    padding: 5px;
   }
 }
 
