@@ -88,39 +88,35 @@ tbody tr td.acao {
   text-align: center;
 }
 
-@media (max-width: 700px) {
-  body {
-    font-size: 10px;
+@media (max-width: 767px) {
+  /* Estilo para os títulos da tabela */
+  .divTable th {
+    white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
+    overflow: hidden; /* Oculta o conteúdo que não couber na célula */
+    text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
+    max-width: 100%; /* Define uma largura máxima para os títulos */
   }
 
-  .header span {
-    font-size: 15px;
+  /* Estilo para o botão do menu */
+  .toggle-button {
+    display: block; /* Exibe o botão do menu */
+    cursor: pointer;
+    position: fixed; /* Fixa o botão do menu no topo da tela */
+    top: 10px;
+    left: 10px;
+    z-index: 999; /* Garante que o botão do menu esteja acima de outros elementos */
   }
 
-  #new {
-    padding: 5px;
-    font-size: 10px;
+  /* Esconde o menu nav */
+  nav {
+    display: none;
+  }
+  .modalcadcliente {
+    width: 50%;
+    height: 80%;
   }
 
-  thead tr th.acao {
-    width: auto!important;
-  }
-
-  td button i {
-    font-size: 20px!important;
-  }
-
-  td button i:first-child {
-    margin-right: 0;
-  }
-
-  .modalcadcliente-container {
-    width: 90%!important;
-  }
-
-  .modalcadcliente label {
-    font-size: 12px!important;
-  }
+  
 }
 
 .modalcadcliente-container {
@@ -217,12 +213,7 @@ tbody tr td.acao {
 
 
 /* Adicionado estilo para tornar o conteúdo mais responsivo */
-@media (max-width: 700px) {
-  .modalcadcliente {
-    width: 90%;
-    height: 80%;
-  }
-}
+
 
 @keyframes modal {
   from {
