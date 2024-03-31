@@ -242,3 +242,4 @@ function closeModalCadastroCliente() {
   modalCadastroCliente.classList.remove('active');
   modalCadastroClienteForm.innerHTML = '';
 }
+

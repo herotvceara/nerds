@@ -117,10 +117,10 @@ tbody tr td.acao {
   /* Estilo para as células da tabela */
   .divTable td {
     white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
-    overflow: hidden; /* Oculta o conteúdo que não couber na célula */
+   
     text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
     width: auto; /* Ajusta dinamicamente o tamanho da célula conforme o conteúdo */
-    max-width: 100px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
+    max-width: 200px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
     font-size: 120%;
     
     
@@ -261,3 +261,4 @@ td button i {
 td button i:first-child {
   margin-right: 10px;
 }
+
