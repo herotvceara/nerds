@@ -82,22 +82,38 @@ clientesCollection.get().then((querySnapshot) => {
 
 
 
-      // Adicionar as células de editar e excluir ao final de cada linha
-      const tdEditar = document.createElement('td');
-      tdEditar.classList.add('acao');
-      const buttonEditar = document.createElement('button');
-      buttonEditar.innerHTML = `<i class='bx bx-edit'></i>`;
-      buttonEditar.onclick = () => editItem(index);
-      tdEditar.appendChild(buttonEditar);
-      trCliente.appendChild(tdEditar);
+     // Adicionar as células de editar e excluir ao final de cada linha
+const tdAcoes = document.createElement('td'); // Crie uma célula para conter os botões
+tdAcoes.classList.add('acao');
 
-      const tdExcluir = document.createElement('td');
-      tdExcluir.classList.add('acao');
-      const buttonExcluir = document.createElement('button');
-      buttonExcluir.innerHTML = `<i class='bx bx-trash'></i>`;
-      buttonExcluir.onclick = () => deleteItem(index);
-      tdExcluir.appendChild(buttonExcluir);
-      trCliente.appendChild(tdExcluir);
+const buttonEditar = document.createElement('button');
+buttonEditar.innerHTML = `<i class='bx bx-edit'></i>`;
+buttonEditar.onclick = () => editItem(index);
+
+const buttonExcluir = document.createElement('button');
+buttonExcluir.innerHTML = `<i class='bx bx-trash'></i>`;
+buttonExcluir.onclick = () => deleteItem(index);
+
+// Adicione os botões à célula de ações
+tdAcoes.appendChild(buttonEditar);
+tdAcoes.appendChild(buttonExcluir);
+
+// Verifique se o tamanho da tela é igual a 767 antes de adicionar os botões lado a lado
+if (window.innerWidth === 767) {
+  // Crie um contêiner flexível para os botões
+  const divAcoes = document.createElement('div');
+  divAcoes.classList.add('container-flex');
+
+  // Adicione a célula de ações ao contêiner flexível
+  divAcoes.appendChild(tdAcoes);
+
+  // Adicione o contêiner flexível à linha do cliente
+  trCliente.appendChild(divAcoes);
+} else {
+  // Adicione a célula de ações diretamente à linha do cliente
+  trCliente.appendChild(tdAcoes);
+}
+
 
       tbodyElement.appendChild(trCliente); // Adicionar a linha do cliente ao corpo da tabela
     });
