@@ -40,11 +40,21 @@ function toggleSubMenuprocessos() {
   
       // Verifica se o menu principal está expandido
       if (mainMenu.classList.contains('expanded')) {
-        // Se estiver expandido, move o submenu para a direita
-        submenuElement.style.left = '12.8%';
+         // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+          if (window.innerWidth <= 767) {
+            submenuElement.style.left = '32.2%';
+          } else {
+            // Se estiver expandido e a tela for maior que 767px, move o submenu para a esquerda
+            submenuElement.style.left = '12.8%'; // Ajuste conforme necessário
+          }
       } else {
+         // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+         if (window.innerWidth <= 767) {
+          submenuElement.style.left = '13%';
+        } else {
         // Se não estiver expandido, volta à posição original
         submenuElement.style.left = '5.3%';
+        }
       }
     }
   }
@@ -96,12 +106,22 @@ function toggleSubMenuprocessos() {
   
       // Verifica se o menu principal está expandido
       if (mainMenu.classList.contains('expanded')) {
-        // Se estiver expandido, move o submenu para a direita
-        submenuElement.style.left = '12.8%';
-      } else {
-        // Se não estiver expandido, volta à posição original
-        submenuElement.style.left = '5.3%';
-      }
+        // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+         if (window.innerWidth <= 767) {
+           submenuElement.style.left = '32.2%';
+         } else {
+           // Se estiver expandido e a tela for maior que 767px, move o submenu para a esquerda
+           submenuElement.style.left = '12.8%'; // Ajuste conforme necessário
+         }
+     } else {
+        // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+        if (window.innerWidth <= 767) {
+         submenuElement.style.left = '13%';
+       } else {
+       // Se não estiver expandido, volta à posição original
+       submenuElement.style.left = '5.3%';
+       }
+     }
     }
   }
   
@@ -152,12 +172,22 @@ function toggleSubMenuprocessos() {
   
       // Verifica se o menu principal está expandido
       if (mainMenu.classList.contains('expanded')) {
-        // Se estiver expandido, move o submenu para a direita
-        submenuElement.style.left = '12.8%';
-      } else {
-        // Se não estiver expandido, volta à posição original
-        submenuElement.style.left = '5.3%';
-      }
+        // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+         if (window.innerWidth <= 767) {
+           submenuElement.style.left = '32.2%';
+         } else {
+           // Se estiver expandido e a tela for maior que 767px, move o submenu para a esquerda
+           submenuElement.style.left = '12.8%'; // Ajuste conforme necessário
+         }
+     } else {
+        // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+        if (window.innerWidth <= 767) {
+         submenuElement.style.left = '13%';
+       } else {
+       // Se não estiver expandido, volta à posição original
+       submenuElement.style.left = '5.3%';
+       }
+     }
     }
   }
   
@@ -206,14 +236,24 @@ function toggleSubMenuprocessos() {
       // Adiciona as propriedades de estilo ao submenu
       submenuElement.style.top = financastop + 'px';
   
-      // Verifica se o menu principal está expandido
-      if (mainMenu.classList.contains('expanded')) {
-        // Se estiver expandido, move o submenu para a direita
-        submenuElement.style.left = '12.8%';
-      } else {
-        // Se não estiver expandido, volta à posição original
-        submenuElement.style.left = '5.3%';
-      }
+  // Verifica se o menu principal está expandido
+  if (mainMenu.classList.contains('expanded')) {
+    // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+     if (window.innerWidth <= 767) {
+       submenuElement.style.left = '32.2%';
+     } else {
+       // Se estiver expandido e a tela for maior que 767px, move o submenu para a esquerda
+       submenuElement.style.left = '12.8%'; // Ajuste conforme necessário
+     }
+ } else {
+    // Se estiver expandido e a tela for menor ou igual a 767px, move o submenu para a direita
+    if (window.innerWidth <= 767) {
+     submenuElement.style.left = '13%';
+   } else {
+   // Se não estiver expandido, volta à posição original
+   submenuElement.style.left = '5.3%';
+   }
+ }
     }
   }
   

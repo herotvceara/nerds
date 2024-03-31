@@ -62,6 +62,26 @@ clientesCollection.get().then((querySnapshot) => {
         trCliente.appendChild(tdElement); // Adicionar célula à linha do cliente
       });
 
+      const style = document.createElement('style');
+      style.textContent = `
+        @media (max-width: 767px) {
+          /* Adiciona título especial à esquerda de cada linha */
+          tbody tr::before {
+            content: '${titulosOrdenados.join(" \\A ")} \\A '; /* Conteúdo do título especial com quebra de linha */
+            display: table-cell; /* Permite que seja exibido como uma célula de tabela */
+            text-align: right; /* Alinha o conteúdo à esquerda */
+            font-weight: bold; /* Define a fonte em negrito */
+            white-space: pre; /* Mantém as quebras de linha */
+            line-height: 2.75; /* Espaçamento entre as linhas */
+          
+          }
+        }
+      `;
+      document.head.appendChild(style);
+      
+
+
+
       // Adicionar as células de editar e excluir ao final de cada linha
       const tdEditar = document.createElement('td');
       tdEditar.classList.add('acao');

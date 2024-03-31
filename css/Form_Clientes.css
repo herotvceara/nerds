@@ -61,7 +61,10 @@ thead {
 
 tr {
   border-bottom: 1px solid rgb(238, 235, 235)!important;
-  
+}
+
+tbody tr:nth-child(even) {
+  background-color: #e3e5fa; /* Cor azul clarinha */
 }
 
 tbody tr td {
@@ -76,9 +79,6 @@ thead tr th {
   margin-bottom: 50px;
 }
 
-tbody tr {
-  margin-bottom: 50px;
-}
 
 thead tr th.acao {
   width: 100px!important;
@@ -90,55 +90,46 @@ tbody tr td.acao {
 }
 
 @media (max-width: 767px) {
+  
+    .containercadastrocliente {
+    text-align: center;
+  }
+  
+  .buttons-container {
+    display: inline-block;
+    margin-bottom: 20px; /* Espaçamento entre os botões e a tabela */
+  }
+  
+  .new {
+    margin: 0 2px; /* Espaçamento entre os botões */
+  }
   /* Estilo para os títulos da tabela */
   .divTable th {
-    white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
-    overflow: hidden; /* Oculta o conteúdo que não couber na célula */
-    text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
-    width: auto; /* Ajusta dinamicamente o tamanho da célula conforme o conteúdo */
-    max-width: 40px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
-    font-size: 50%;
+    display: none;
   }
 
   /* Estilo para as células da tabela */
   .divTable td {
-   
     white-space: nowrap; /* Evita que o texto quebre para a próxima linha */
     overflow: hidden; /* Oculta o conteúdo que não couber na célula */
     text-overflow: ellipsis; /* Exibe reticências (...) quando o conteúdo for cortado */
     width: auto; /* Ajusta dinamicamente o tamanho da célula conforme o conteúdo */
-    max-width: 70px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
-    font-size: 70%;
-  }
-  
-    /* Estilo para os ícones de editar e excluir */
-    .bx-edit,
-    .bx-trash {
-      font-size: 15px; /* Tamanho menor para os ícones */
-    }
-
-  /* Estilo para o botão do menu */
-  .toggle-button {
-    display: block; /* Exibe o botão do menu */
-    cursor: pointer;
-    position: fixed; /* Fixa o botão do menu no topo da tela */
-    top: 10px;
-    left: 10px;
-    z-index: 999; /* Garante que o botão do menu esteja acima de outros elementos */
+    max-width: 100px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
+    font-size: 120%;
+    
   }
 
-  /* Esconde o menu nav */
-  nav {
-    display: none;
+  /* Estilo para as células da tabela quando em tamanho de dispositivo móvel */
+  tbody td {
+    display: flex;
+    text-align: left; /* Ajuste conforme necessário */
+    border: none; /* Remova as bordas das células */
+    
   }
 
-  /* Estilo para o conteúdo principal */
-  main:not(.menu-expanded) {
-    margin-left: 0px;
-    margin-top: 20px;
-    padding: 5px;
-  }
+
 }
+
 
 
 
