@@ -48,11 +48,12 @@ button {
 }
 
 table {
-  font-size: 12px;
+  font-size: 16px;
   width: 100%;
   border-spacing: 10px;
   word-break: break-all;
   border-collapse: collapse;
+  
 }
 
 thead {
@@ -70,8 +71,9 @@ tbody tr:nth-child(even) {
 tbody tr td {
   vertical-align: text-top;
   padding: 6px;
-  max-width: 50px;
+  max-width: 100px;
 }
+
 
 thead tr th {
   padding: 5px;
@@ -79,10 +81,21 @@ thead tr th {
   margin-bottom: 50px;
 }
 
+.bx.bx-trash {
+  position: relative;
+  top: -30px;
+  margin-top: -1px;
+  margin-left: 145px; /* Ajuste o valor conforme necessário */
+}
+.bx.bx-edit{
+  margin-top: 6px;
+  margin-left: -75px; 
+}
 
 thead tr th.acao {
   width: 100px!important;
   text-align: center;
+  
 }
 
 tbody tr td.acao {
@@ -90,6 +103,14 @@ tbody tr td.acao {
 }
 
 @media (max-width: 767px) {
+
+  table {
+    font-size: 12px;
+    width: 100%;
+    border-spacing: 10px;
+    word-break: break-all;
+    border-collapse: collapse;
+  }
 
   main {
     margin-top: 50px; /* Ajuste a margem superior conforme necessário */
@@ -135,6 +156,16 @@ tbody tr td.acao {
     
   }
 
+  .bx.bx-trash {
+    top: 0px;
+    margin-left: -62px; /* Ajuste o valor conforme necessário */
+  }
+  .bx.bx-edit{
+position: relative;
+top: -270px;
+    margin-left: 162px; 
+  }
+  
 
 }
 
