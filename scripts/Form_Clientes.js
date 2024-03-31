@@ -215,69 +215,46 @@ function openModalCadastroCliente() {
 
   modalCadastroClienteForm.appendChild(modalHeader);
 
+  // Mostrar a primeira etapa
+  showStep(0);
+}
 
-  // Referência à coleção "Clientes" no Firestore
-  var clientesCollection = firebase.firestore().collection('Clientes');
-
-  // Obter os documentos da coleção "Clientes"
-  clientesCollection.get().then((querySnapshot) => {
-    // Verificar se há documentos na coleção
-    if (!querySnapshot.empty) {
-      // Obter os títulos dos campos do primeiro cliente
-      const primeiroCliente = querySnapshot.docs[0];
-      const titulosCampos = Object.keys(primeiroCliente.data());
-
-      // Reorganizar os títulos para priorizar "ID", "Nome", "CPF", "Endereço"
-      const titulosOrdenados = ['ID', 'Nome', 'CPF', 'Endereço']
-        .concat(titulosCampos.filter(titulo => !['ID', 'Nome', 'CPF', 'Endereço'].includes(titulo)));
-
-      // Criar inputs e labels dinamicamente com base nos títulos
-      titulosOrdenados.forEach((titulo) => {
-        // Verifica se o título não é "Status Monetario" nem "Volume"
-        if (titulo !== 'Status Monetário' && titulo !== 'Volume') {
-          const containerElement = document.createElement('div'); // Container para cada label e input
-          containerElement.classList.add('input-container');
-      
-          const labelElement = document.createElement('label');
-          labelElement.textContent = titulo;
-          labelElement.classList.add('modal-label'); // Add this class for styling
-      
-          const inputContainer = document.createElement('div'); // Container para o input
-          inputContainer.classList.add('input-container-inline');
-      
-          const inputElement = document.createElement('input');
-          inputElement.type = 'text';
-          inputElement.id = `m-${titulo.toLowerCase().replace(/\s/g, '-')}`;
-          inputElement.classList.add('dynamic-input', 'modal-input'); // Add these classes for styling
-      
-          inputContainer.appendChild(inputElement);
-      
-          // Adiciona os elementos ao formulário (substitua modalCadastroClienteForm pelo seu elemento formulário)
-          containerElement.appendChild(labelElement);
-          containerElement.appendChild(inputContainer);
-          modalCadastroClienteForm.appendChild(containerElement);
-        }
-        // Se for "Status Monetario" ou "Volume", não faz nada, ignorando a criação de label e input.
-      });
-      
-      
-
-      // Adicionar botão de salvar ao formulário
-      const btnSaveElement = document.createElement('button');
-      btnSaveElement.id = 'btnSalvar';
-      btnSaveElement.textContent = 'Salvar';
-      btnSaveElement.onclick = saveCliente; // Adicione a função de salvar (se necessário)
-
-      modalCadastroClienteForm.appendChild(btnSaveElement);
+// Função para mostrar a etapa atual e esconder as outras
+function showStep(stepIndex) {
+  const steps = document.querySelectorAll('.step');
+  steps.forEach(function (step, index) {
+    if (index === stepIndex) {
+      step.style.display = 'block';
     } else {
-      console.log('A coleção "Clientes" está vazia.');
+      step.style.display = 'none';
     }
-  }).catch((error) => {
-    console.error('Erro ao obter documentos:', error);
   });
 }
 
-// ... (restante do seu código)
+// Função para avançar para a próxima etapa
+function goToNextStep() {
+  const steps = document.querySelectorAll('.step');
+  const currentStep = Array.from(steps).findIndex(step => step.style.display === 'block');
+  if (currentStep < steps.length - 1) {
+    showStep(currentStep + 1);
+  }
+}
+
+// Função para voltar para a etapa anterior
+function goToPrevStep() {
+  const steps = document.querySelectorAll('.step');
+  const currentStep = Array.from(steps).findIndex(step => step.style.display === 'block');
+  if (currentStep > 0) {
+    showStep(currentStep - 1);
+  }
+}
+
+// Adicionar event listeners para os botões de avançar e voltar
+const nextButtons = document.querySelectorAll('.next-btn');
+nextButtons.forEach(button => button.addEventListener('click', goToNextStep));
+
+const prevButtons = document.querySelectorAll('.prev-btn');
+prevButtons.forEach(button => button.addEventListener('click', goToPrevStep));
 
 // Função para salvar o cliente (ajuste conforme necessário)
 function saveCliente() {
@@ -293,4 +270,3 @@ function closeModalCadastroCliente() {
   modalCadastroCliente.classList.remove('active');
   modalCadastroClienteForm.innerHTML = '';
 }
-

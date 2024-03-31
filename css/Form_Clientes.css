@@ -170,8 +170,7 @@ top: -3px;
 }
 
 
-
-
+/* Estilo para o modal de cadastro de cliente */
 .modalcadcliente-container {
   width: 100%;
   height: 100%;
@@ -179,7 +178,7 @@ top: -3px;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  display: flex;
   z-index: 999;
   align-items: center;
   justify-content: center;
@@ -196,100 +195,19 @@ top: -3px;
   border-radius: 10px;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
+.step {
+  display: none;
 }
 
-.modal-header h2 {
-  margin: 0;
-  font-size: 18px;
+/* Estilo para a etapa ativa */
+.step.active-step {
+  display: block;
 }
 
-.close-btn {
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.modalcadcliente label {
-  font-size: 14px;
-  width: 100%;
-}
-
-.modalcadcliente input {
-  width: 100%;
-  outline: none;
+/* Estilo para os botões */
+.next-btn,
+.prev-btn {
+  margin-top: 10px;
   padding: 5px 10px;
-  margin-bottom: 10px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
-
-.modalcadcliente button {
-  width: 100%;
-  margin: 10px auto;
-  outline: none;
-  border-radius: 20px;
-  padding: 10px;
-  border: none;
-  background-color: rgb(57, 57, 226);
-  color: white;
-}
-
-.active {
-  display: flex;
-}
-
-.active .modalcadcliente {
-  animation: modal .4s;
-}
-
-.modal-label {
-  font-size: 14px;
-  width: 100%;
-  margin-bottom: 5px; /* Adjust as needed */
-}
-
-.modal-input {
-  width: 100%;
-  outline: none;
-  padding: 5px 10px;
-  margin-bottom: 10px; /* Adjust as needed */
-  border-top: none;
-  border-left: none;
-  border-right: none;
-}
-
-
-/* Adicionado estilo para tornar o conteúdo mais responsivo */
-
-
-@keyframes modal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -60px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-td button {
-  border: none;
-  outline: none;
-  background: transparent;
-}
-
-td button i {
-  font-size: 25px;
-}
-
-td button i:first-child {
-  margin-right: 10px;
 }
 
