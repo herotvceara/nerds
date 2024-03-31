@@ -42,25 +42,76 @@ clientesCollection.get().then((querySnapshot) => {
     // Limpar o conteúdo atual do corpo da tabela
     tbodyElement.innerHTML = '';
 
-    // Adicionar os dados dinamicamente ao corpo da tabela
-    querySnapshot.forEach((cliente, index) => {
-      const trCliente = document.createElement('tr'); // Criar uma nova linha para cada cliente
+ // Adicionar os dados dinamicamente ao corpo da tabela
+querySnapshot.forEach((cliente, index) => {
+  const trCliente = document.createElement('tr'); // Criar uma nova linha para cada cliente
 
-      titulosOrdenados.forEach((titulo) => {
-        const tdElement = document.createElement('td');
-        const valor = cliente.data()[titulo];
+  titulosOrdenados.forEach((titulo) => {
+    const tdElement = document.createElement('td');
+    const valor = cliente.data()[titulo];
 
-        // Formatar a data de nascimento (assumindo que o campo é chamado "Data Nasc.")
-        if (titulo === 'Data Nasc.' && valor instanceof firebase.firestore.Timestamp) {
-          const dataNascimento = valor.toDate();
-          const dataFormatada = `${dataNascimento.getDate()}/${dataNascimento.getMonth() + 1}/${dataNascimento.getFullYear()}`;
-          tdElement.textContent = dataFormatada;
-        } else {
-          tdElement.textContent = valor;
-        }
+    // Formatar a data de nascimento (assumindo que o campo é chamado "Data Nasc.")
+    if (titulo === 'Data Nasc.' && valor instanceof firebase.firestore.Timestamp) {
+      const dataNascimento = valor.toDate();
+      const dataFormatada = `${dataNascimento.getDate()}/${dataNascimento.getMonth() + 1}/${dataNascimento.getFullYear()}`;
+      tdElement.textContent = dataFormatada;
+    } else if (titulo === 'Endereço') {
+      // Transformar o endereço em link do Google Maps
+      const linkGoogleMaps = document.createElement('a');
+      linkGoogleMaps.href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(valor)}`;
+      linkGoogleMaps.textContent = valor;
+      linkGoogleMaps.target = '_blank'; // Abrir em uma nova guia
 
-        trCliente.appendChild(tdElement); // Adicionar célula à linha do cliente
+      // Adicionar o link do Google Maps diretamente à célula da tabela
+      tdElement.appendChild(linkGoogleMaps);
+    } else if (titulo === 'Telefone') {
+      // Formatar o número de telefone como link do WhatsApp
+      const linkWhatsApp = document.createElement('a');
+      linkWhatsApp.href = `https://wa.me/55${valor}`;
+      linkWhatsApp.textContent = `(${String(valor).slice(0, 2)}) ${String(valor).slice(2, 7)}-${String(valor).slice(7)}`;
+      linkWhatsApp.target = '_blank'; // Abrir em uma nova guia
+
+      // Adicionar o link para o WhatsApp diretamente à célula da tabela
+      tdElement.appendChild(linkWhatsApp);
+    } else if (titulo === 'Status Monetário') {
+      // Formatando o valor monetário
+      tdElement.textContent = valor < 0 ? valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).toUpperCase() : valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).toUpperCase();
+      if (valor < 0) {
+        // Deixar em negrito, caixa alta e vermelho se o valor for menor que 0
+        tdElement.style.fontWeight = 'bold';
+        tdElement.style.textTransform = 'uppercase';
+        tdElement.style.color = 'red';
+      } else {
+        // Deixar em negrito, caixa alta e verde militar se o valor for maior que 0
+        tdElement.style.fontWeight = 'bold';
+        tdElement.style.textTransform = 'uppercase';
+        tdElement.style.color = 'green';
+      }
+    } else {
+      // Adicionar evento de clique para copiar o conteúdo da célula para a área de transferência
+      tdElement.addEventListener('click', () => {
+        // Criar um elemento de texto oculto
+        const hiddenInput = document.createElement('textarea');
+        hiddenInput.value = valor;
+        document.body.appendChild(hiddenInput);
+        hiddenInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(hiddenInput);
+        
+        // Alerta ou qualquer outra ação que você queira realizar após a cópia
+        alert(`Conteúdo "${valor}" copiado para a área de transferência.`);
       });
+
+      tdElement.textContent = valor;
+    }
+
+    trCliente.appendChild(tdElement); // Adicionar célula à linha do cliente
+  });
+
+  tbodyElement.appendChild(trCliente); // Adicionar a linha do cliente ao corpo da tabela
+
+
+      
 
       const style = document.createElement('style');
       style.textContent = `

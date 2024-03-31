@@ -48,7 +48,7 @@ button {
 }
 
 table {
-  font-size: 16px;
+  font-size: 15px;
   width: 100%;
   border-spacing: 10px;
   word-break: break-all;
@@ -158,12 +158,12 @@ tbody tr td.acao {
 
   .bx.bx-trash {
     top: 0px;
-    margin-left: -62px; /* Ajuste o valor conforme necessário */
+    margin-left: 20px; /* Ajuste o valor conforme necessário */
   }
   .bx.bx-edit{
 position: relative;
-top: -270px;
-    margin-left: 162px; 
+top: -3px;
+    margin-left: 0px; 
   }
   
 
