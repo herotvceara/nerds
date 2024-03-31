@@ -183,18 +183,22 @@ if (window.innerWidth === 767) {
      // Redireciona para a página desejada ao clicar no botão
      window.location.href = '../pages/home.html';
  };
-// Botão "Novo Cliente"
-const btnNovoCliente = document.getElementById('new');
-btnNovoCliente.onclick = () => openModalCadastroCliente();
-
 // Modal de cadastro de cliente
 const modalCadastroCliente = document.querySelector('.modalcadcliente-container');
 const modalCadastroClienteForm = document.getElementById('modalCadastroClienteForm');
 
+// Objeto para armazenar os dados do cliente
+const novoCliente = {};
+
+// Variável para acompanhar a etapa atual
+let currentStepIndex = 0;
+
+// Adicionar evento de clique para o botão "Novo Cliente"
+const btnNovoCliente = document.getElementById('new');
+btnNovoCliente.addEventListener('click', openModalCadastroCliente);
+
 // Função para abrir o modal de cadastro de cliente
 function openModalCadastroCliente() {
-  modalCadastroCliente.classList.add('active');
-
   // Limpar o conteúdo atual do formulário no modal
   modalCadastroClienteForm.innerHTML = '';
 
@@ -215,8 +219,74 @@ function openModalCadastroCliente() {
 
   modalCadastroClienteForm.appendChild(modalHeader);
 
+  // Adicionar as etapas ao formulário no modal
+  const stepsData = [
+    {
+      id: 'step1',
+      title: 'Passo 1: Adicione o nome do Cliente',
+      inputs: [{ type: 'text', placeholder: 'Nome do Cliente', id: 'nome' }],
+      buttons: [{ text: 'Avançar', type: 'button', class: 'next-btn' }]
+    },
+    {
+      id: 'step2',
+      title: 'Passo 2: Telefone e Endereço',
+      inputs: [
+        { type: 'text', placeholder: 'Telefone', id: 'telefone' },
+        { type: 'text', placeholder: 'Endereço', id: 'endereco' }
+      ],
+      buttons: [
+        { text: 'Corrigir Nome', class: 'prev-btn' },
+        { text: 'Complementar Cadastro', type: 'button', class: 'next-btn' },
+        { text: 'Concluir', type: 'button', class: 'btnSalvar' }
+      ]
+    },
+    {
+      id: 'step3',
+      title: 'Passo 3: CPF e Data de Nascimento',
+      inputs: [
+        { type: 'text', placeholder: 'CPF', id: 'cpf' },
+        { type: 'text', placeholder: 'Data de Nascimento', id: 'dataNascimento' }
+      ],
+      buttons: [
+        { text: 'Voltar', class: 'prev-btn' },
+        { text: 'Concluir', type: 'button', class: 'btnSalvar' }
+      ]
+    }
+  ];
+
+  stepsData.forEach(stepData => {
+    const stepElement = document.createElement('div');
+    stepElement.classList.add('step');
+    stepElement.id = stepData.id;
+
+    const titleElement = document.createElement('h2');
+    titleElement.textContent = stepData.title;
+    stepElement.appendChild(titleElement);
+
+    stepData.inputs.forEach(inputData => {
+      const inputElement = document.createElement('input');
+      inputElement.type = inputData.type;
+      inputElement.placeholder = inputData.placeholder;
+      inputElement.id = inputData.id;
+      stepElement.appendChild(inputElement);
+    });
+
+    stepData.buttons.forEach(buttonData => {
+      const buttonElement = document.createElement('button');
+      buttonElement.textContent = buttonData.text;
+      buttonElement.classList.add(buttonData.class);
+      buttonElement.type = 'button'; // Definindo todos os botões como type "button"
+      stepElement.appendChild(buttonElement);
+    });
+
+    modalCadastroClienteForm.appendChild(stepElement);
+  });
+
+  // Exibir o modal
+  modalCadastroCliente.classList.add('active');
+
   // Mostrar a primeira etapa
-  showStep(0);
+  showStep(currentStepIndex);
 }
 
 // Função para mostrar a etapa atual e esconder as outras
@@ -233,40 +303,53 @@ function showStep(stepIndex) {
 
 // Função para avançar para a próxima etapa
 function goToNextStep() {
-  const steps = document.querySelectorAll('.step');
-  const currentStep = Array.from(steps).findIndex(step => step.style.display === 'block');
-  if (currentStep < steps.length - 1) {
-    showStep(currentStep + 1);
+  const inputs = document.querySelectorAll('.step.active input');
+  inputs.forEach(input => {
+    novoCliente[input.id] = input.value;
+  });
+
+  if (currentStepIndex < 2) {
+    currentStepIndex++;
+    showStep(currentStepIndex);
   }
 }
 
 // Função para voltar para a etapa anterior
 function goToPrevStep() {
-  const steps = document.querySelectorAll('.step');
-  const currentStep = Array.from(steps).findIndex(step => step.style.display === 'block');
-  if (currentStep > 0) {
-    showStep(currentStep - 1);
+  if (currentStepIndex > 0) {
+    currentStepIndex--;
+    showStep(currentStepIndex);
   }
 }
 
 // Adicionar event listeners para os botões de avançar e voltar
-const nextButtons = document.querySelectorAll('.next-btn');
-nextButtons.forEach(button => button.addEventListener('click', goToNextStep));
-
-const prevButtons = document.querySelectorAll('.prev-btn');
-prevButtons.forEach(button => button.addEventListener('click', goToPrevStep));
+document.addEventListener('click', function (event) {
+  if (event.target.classList.contains('next-btn')) {
+    goToNextStep();
+  } else if (event.target.classList.contains('prev-btn')) {
+    goToPrevStep();
+  } else if (event.target.classList.contains('btnSalvar')) { // Adicionar lógica para o botão de salvar
+    saveCliente();
+  }
+});
 
 // Função para salvar o cliente (ajuste conforme necessário)
 function saveCliente() {
-  // Lógica para salvar o cliente no Firestore ou realizar outras operações necessárias
-  // ...
+  // Exibir os dados do cliente no console
+  console.log('Dados do cliente:', novoCliente);
+
+  // Limpar os dados do cliente após salvar
+  for (const prop in novoCliente) {
+    delete novoCliente[prop];
+  }
 
   // Fechar o modal após salvar
-  modalCadastroCliente.classList.remove('active');
+  closeModalCadastroCliente();
 }
 
 // Função para fechar o modal e limpar o conteúdo
 function closeModalCadastroCliente() {
+  currentStepIndex = 0;
   modalCadastroCliente.classList.remove('active');
   modalCadastroClienteForm.innerHTML = '';
 }

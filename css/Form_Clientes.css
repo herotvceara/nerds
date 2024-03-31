@@ -171,6 +171,23 @@ top: -3px;
 
 
 
+td button {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+td button i {
+  font-size: 25px;
+}
+
+td button i:first-child {
+  margin-right: 10px;
+}
+
+/*MODAL CLIENTE*/
+
+
 
 .modalcadcliente-container {
   width: 100%;
@@ -178,6 +195,7 @@ top: -3px;
   position: fixed;
   top: 0;
   left: 0;
+  color: rgb(109, 109, 241);
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
   z-index: 999;
@@ -186,15 +204,29 @@ top: -3px;
 }
 
 .modalcadcliente {
-  width: 40%;
-  height: 80%;
+  position: relative;
+  top: -5%;
+ 
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
+  
+  
 }
+.modalcadcliente button{
+  font-size: 12px;
+  padding: 10px 10px;
+  margin-left: 0%;
+  margin-bottom: 1%;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  background-color: rgb(57, 57, 226);
+}
+
 
 .modal-header {
   display: flex;
@@ -212,33 +244,16 @@ top: -3px;
 .close-btn {
   font-size: 24px;
   cursor: pointer;
-}
-
-.modalcadcliente label {
-  font-size: 14px;
-  width: 100%;
+  padding-left: 150px;
 }
 
 .modalcadcliente input {
-  width: 100%;
-  outline: none;
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  width: 200px;
+  height: 50px;
+border-radius: 10px;
+
 }
 
-.modalcadcliente button {
-  width: 100%;
-  margin: 10px auto;
-  outline: none;
-  border-radius: 20px;
-  padding: 10px;
-  border: none;
-  background-color: rgb(57, 57, 226);
-  color: white;
-}
 
 .active {
   display: flex;
@@ -246,22 +261,6 @@ top: -3px;
 
 .active .modalcadcliente {
   animation: modal .4s;
-}
-
-.modal-label {
-  font-size: 14px;
-  width: 100%;
-  margin-bottom: 5px; /* Adjust as needed */
-}
-
-.modal-input {
-  width: 100%;
-  outline: none;
-  padding: 5px 10px;
-  margin-bottom: 10px; /* Adjust as needed */
-  border-top: none;
-  border-left: none;
-  border-right: none;
 }
 
 
@@ -279,17 +278,25 @@ top: -3px;
   }
 }
 
-td button {
-  border: none;
-  outline: none;
-  background: transparent;
+/* Estilo para os passos do formulário */
+.step {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px; /* Espaçamento entre os passos */
 }
 
-td button i {
-  font-size: 25px;
+/* Estilo para os inputs */
+.step input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px; /* Espaçamento entre os inputs */
+  box-sizing: border-box;
 }
 
-td button i:first-child {
-  margin-right: 10px;
+/* Estilo para os botões */
+.step button {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 10px; /* Espaçamento entre os botões e os inputs */
+  box-sizing: border-box;
 }
-
