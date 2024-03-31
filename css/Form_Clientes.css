@@ -90,9 +90,15 @@ tbody tr td.acao {
 }
 
 @media (max-width: 767px) {
+
+  main {
+    margin-top: 50px; /* Ajuste a margem superior conforme necessário */
+
+  }
   
     .containercadastrocliente {
     text-align: center;
+    
   }
   
   .buttons-container {
@@ -117,6 +123,7 @@ tbody tr td.acao {
     max-width: 100px; /* Define um tamanho mínimo para evitar que células vazias fiquem muito pequenas */
     font-size: 120%;
     
+    
   }
 
   /* Estilo para as células da tabela quando em tamanho de dispositivo móvel */
@@ -124,6 +131,7 @@ tbody tr td.acao {
     display: flex;
     text-align: left; /* Ajuste conforme necessário */
     border: none; /* Remova as bordas das células */
+    
     
   }
 
