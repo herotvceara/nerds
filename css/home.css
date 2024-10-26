@@ -1,0 +1,173 @@
+/* Reset e configurações gerais */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #141414; /* Cor de fundo escura */
+    color: #fff; /* Texto branco */
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Estilo do cabeçalho */
+h5 {
+    text-align: center;
+    margin-bottom: 10px; /* Menor espaçamento */
+    font-size: 32px;
+}
+
+/* Estilo das categorias */
+.categoria {
+    margin-bottom: 15px; /* Espaço reduzido entre as categorias */
+}
+
+.categoria h2 {
+    margin-bottom: 5px;
+    font-size: 24px;
+    color: #fff; /* Título branco */
+}
+
+/* Estilo do container de filmes */
+.filmes-container {
+    display: flex; /* Exibir filmes em linha */
+    overflow-x: auto; /* Permitir rolagem horizontal */
+    padding: 10px 20px; /* Aumenta o espaço interno nas laterais */
+}
+
+/* Estilos da barra de rolagem */
+.filmes-container::-webkit-scrollbar {
+    height: 8px; /* Altura da barra de rolagem */
+}
+
+.filmes-container::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.5); /* Cor da barra com transparência */
+    border-radius: 10px;
+}
+
+.filmes-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(85, 85, 85, 0.7); /* Cor ao passar o mouse com transparência */
+}
+
+/* Estilo dos filmes */
+.filme {
+    min-width: 150px; /* Largura mínima para cada filme */
+    margin-right: 15px; /* Espaço entre os filmes */
+    text-align: center; /* Centraliza o texto */
+    position: relative; /* Para a posição da seleção */
+}
+
+/* Estilo das capas */
+.capa {
+    width: 150px; /* Largura padrão da capa */
+    height: 225px; /* Altura padrão da capa */
+    object-fit: cover; /* Corta a imagem para caber no espaço */
+    border-radius: 8px; /* Bordas arredondadas para as capas */
+    background-color: rgba(85, 85, 85, 0.5); /* Cor de fundo para capas vazias com transparência */
+    transition: transform 0.3s ease; /* Transição suave para o efeito de hover */
+}
+
+/* Estilo do texto das legendas */
+p {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #ccc; /* Cor do texto para as legendas */
+}
+
+/* Efeito de seleção */
+.selecionado {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Sombra leve para destacar */
+    transform: scale(1.03); /* Aumenta um pouco o tamanho */
+    transition: all 0.3s ease; /* Transição suave para efeito de foco */
+}
+
+/* Efeito de zoom ao passar o mouse */
+.filme:hover .capa {
+    transform: scale(1.1); /* Efeito de zoom ao passar o mouse */
+}
+
+/* Estilo do vídeo dentro do modal */
+#videoPlayer {
+    position: absolute; /* Posiciona o vídeo no centro do modal */
+    left: 50%; /* Centraliza horizontalmente */
+    top: 50%; /* Centraliza verticalmente */
+    transform: translate(-50%, -50%); /* Compensa a centralização */
+    max-width: 90%; /* Largura máxima do vídeo */
+    max-height: 100%;
+}
+
+/* Estilo do modal */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro */
+    pointer-events: auto; /* Garante que o modal capture eventos de clique */
+    display: flex; /* Centraliza o conteúdo */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+}
+
+/* Estilo do botão de fechar */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    pointer-events: auto; /* Permite que o botão capture eventos de clique */
+    z-index: 1100; /* Garante que o botão fique acima de outros elementos */
+}
+
+/* Estilo dos controles do player */
+.player-controls {
+    position: absolute;
+    bottom: 20px; /* Ajuste conforme necessário */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7); /* Fundo dos controles */
+    padding: 10px;
+    border-radius: 5px;
+    display: none; /* Esconde os controles por padrão */
+}
+
+/* Mostra os controles ao passar o mouse */
+.modal:hover .player-controls {
+    display: flex; /* Mostra os controles ao passar o mouse */
+    align-items: center; /* Alinha os itens verticalmente */
+}
+
+/* Estilo para os botões do player */
+.player-button {
+    color: white;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+/* Efeito de foco nos botões do player */
+.player-button:focus {
+    outline: 2px solid blue; /* Destaque ao focar */
+}
+
+/* Estilo para a classe body-lock */
+.body-lock {
+    pointer-events: none; /* Desabilita eventos de ponteiro */
+    opacity: 0.5; /* Diminui a opacidade para indicar que a página está desabilitada */
+}
+
+.body-lock * {
+    pointer-events: none; /* Desabilita eventos de ponteiro para todos os elementos */
+}

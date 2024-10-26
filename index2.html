@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes - Carrossel</title>
+    <link rel="stylesheet" href="css/home.css">
+    <style>
+        /* Estilo para indicar foco nas capas */
+        .filme:focus {
+            outline: 2px solid blue; /* Um contorno azul para indicar foco */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h5>Filmes por Categoria</h5>
+        <div id="carrossel" class="carrossel">
+            <!-- Carrossel será preenchido dinamicamente -->
+        </div>
+    </div>
+
+    
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+        import { inicializarNavegacao } from './scripts/movimento.js'; // Importa a função de movimento
+        import { setupFilmClickEvents } from './scripts/player.js'; // Importa a função de configuração do clique
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA2WL1y3hRd1YLHjXPUG7bQzJ6s8pH4Ob8",
+            authDomain: "isaacplay-a0452.firebaseapp.com",
+            projectId: "isaacplay-a0452",
+            storageBucket: "isaacplay-a0452.appspot.com",
+            messagingSenderId: "631970859391",
+            appId: "1:631970859391:web:c9b1526fa6495a2d3c324a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        async function getFilmes() {
+            try {
+                const filmesSnapshot = await getDocs(collection(db, 'Filmes'));
+                const categorias = {};
+
+                filmesSnapshot.forEach(doc => {
+                    const { Categoria, Capa, url } = doc.data(); // Adicione 'url' aqui
+                    if (Categoria) {
+                        if (!categorias[Categoria]) {
+                            categorias[Categoria] = [];
+                        }
+                        categorias[Categoria].push({ id: doc.id, Capa, url }); // Inclua 'url' aqui
+                    } else {
+                        console.warn(`O documento ${doc.id} não possui uma categoria definida.`);
+                    }
+                });
+
+                return Object.entries(categorias).map(([categoria, filmes]) => ({ categoria, filmes }));
+            } catch (error) {
+                console.error("Erro ao buscar filmes: ", error);
+                return [];
+            }
+        }
+
+        async function exibirFilmes() {
+            const filmes = await getFilmes();
+            const carrossel = document.getElementById('carrossel');
+
+            filmes.forEach(categoria => {
+                const categoriaDiv = document.createElement('div');
+                categoriaDiv.classList.add('categoria');
+
+                const categoriaTitulo = document.createElement('h2');
+                categoriaTitulo.innerText = categoria.categoria;
+                categoriaDiv.appendChild(categoriaTitulo);
+
+                const filmesContainer = document.createElement('div');
+                filmesContainer.classList.add('filmes-container');
+
+                // Adiciona os filmes existentes
+                categoria.filmes.forEach(filme => {
+                    const filmeDiv = document.createElement('div');
+                    filmeDiv.classList.add('filme');
+                    filmeDiv.setAttribute('data-video', filme.url); // Adiciona o atributo data-video
+                    filmeDiv.setAttribute('tabindex', '0'); // Permite que o filme receba foco
+                    filmeDiv.innerHTML = `
+                        <img src="${filme.Capa}" alt="${filme.id}" class="capa">
+                        <p>${filme.id}</p>
+                    `;
+                    filmesContainer.appendChild(filmeDiv);
+                });
+
+                // Adiciona capas vazias se necessário
+                const numCapasDesejadas = 7; // Número desejado de capas por categoria
+                const capasFaltantes = numCapasDesejadas - categoria.filmes.length;
+
+                if (capasFaltantes > 0) {
+                    for (let i = 0; i < capasFaltantes; i++) {
+                        const filmeDivVazio = document.createElement('div');
+                        filmeDivVazio.classList.add('filme');
+                        filmeDivVazio.innerHTML = `<div class="capa"></div>`; // Capa vazia
+                        filmesContainer.appendChild(filmeDivVazio);
+                    }
+                }
+
+                categoriaDiv.appendChild(filmesContainer);
+                carrossel.appendChild(categoriaDiv);
+            });
+
+            inicializarNavegacao(); // Inicializa a navegação após exibir os filmes
+            setupFilmClickEvents(); // Configura os eventos de clique
+        }
+
+        // Chama a função para exibir os filmes ao carregar a página
+        window.onload = exibirFilmes; 
+    </script>
+</body>
+</html>
