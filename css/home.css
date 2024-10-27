@@ -273,8 +273,7 @@ p {
         position: absolute; /* Fixa a posição da logo */
         top: 0px; /* Alinha ao topo da página */
         left: 50%; /* Move para o centro horizontalmente */
-        transform: translateX(-50%); /* Ajusta a posição para centralizar */
-        width: 25%; /* Largura da logo */
+        width: 10%; /* Largura da logo */
         max-width: 200px; /* Largura máxima da logo */
     }
 
