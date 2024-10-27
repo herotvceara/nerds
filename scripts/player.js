@@ -1,4 +1,4 @@
-// Função para configurar os eventos de clique nos filmes
+//funcionou// Função para configurar os eventos de clique nos filmes
 export function setupFilmClickEvents() {
     const filmes = document.querySelectorAll('.filme');
     const carrossel = document.getElementById('carrossel'); // Seleciona o carrossel
@@ -62,7 +62,20 @@ function openModal(videoUrl) {
 
     // Configurações do player
     videoPlayer.src = videoUrl;
+    videoPlayer.volume = 1.0; // Define o volume para o máximo
+    videoPlayer.muted = false; // Garante que o som esteja ligado
     videoPlayer.play(); // Inicia a reprodução do vídeo
+
+     // Coloca o vídeo em tela cheia assim que começar a tocar
+     videoPlayer.addEventListener('play', () => {
+        if (videoPlayer.requestFullscreen) {
+            videoPlayer.requestFullscreen();
+        } else if (videoPlayer.webkitRequestFullscreen) { // Suporte para Safari
+            videoPlayer.webkitRequestFullscreen();
+        } else if (videoPlayer.msRequestFullscreen) { // Suporte para IE/Edge
+            videoPlayer.msRequestFullscreen();
+        }
+    });
 
     // Oculta o restante do HTML (exceto o tema)
     const bodyContent = document.querySelector('#carrossel'); // ou outro seletor que englobe o conteúdo
@@ -136,4 +149,4 @@ window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && videoModal && videoModal.style.display === 'block') {
         closeModal(videoModal);
     }
-});
+}); 
