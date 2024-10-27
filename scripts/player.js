@@ -7,21 +7,21 @@ export function setupFilmClickEvents() {
         filme.addEventListener('click', () => {
             const url = filme.dataset.video;
             console.log(`Abrindo vídeo: ${url}`);
-            openModal(url, carrossel);
+            openModal(url);
         });
 
         filme.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 const url = filme.dataset.video;
                 console.log(`Abrindo vídeo: ${url}`);
-                openModal(url, carrossel);
+                openModal(url);
             }
         });
     });
 }
 
-// Função para abrir o modal e ocultar o carrossel
-function openModal(videoUrl, carrossel) {
+// Função para abrir o modal e ocultar o restante do HTML
+function openModal(videoUrl) {
     // Cria o modal se ainda não existir
     let videoModal = document.getElementById('videoModal');
     if (!videoModal) {
@@ -30,7 +30,7 @@ function openModal(videoUrl, carrossel) {
         videoModal.className = 'modal';
         videoModal.addEventListener('click', (event) => {
             if (event.target === videoModal) {
-                closeModal(videoModal, carrossel);
+                closeModal(videoModal);
             }
         });
 
@@ -42,7 +42,7 @@ function openModal(videoUrl, carrossel) {
         closeModalButton.textContent = 'X';
         closeModalButton.addEventListener('click', () => {
             console.log("Botão de fechar modal clicado");
-            closeModal(videoModal, carrossel);
+            closeModal(videoModal);
         });
 
         const videoPlayer = document.createElement('video');
@@ -64,7 +64,13 @@ function openModal(videoUrl, carrossel) {
     videoPlayer.src = videoUrl;
     videoPlayer.play(); // Inicia a reprodução do vídeo
 
-    // Exibe o modal e oculta o carrossel
+    // Oculta o restante do HTML (exceto o tema)
+    const bodyContent = document.querySelector('#carrossel'); // ou outro seletor que englobe o conteúdo
+    if (bodyContent) {
+        bodyContent.style.display = 'none';
+    }
+
+    // Exibe o modal
     videoModal.style.display = 'block';
     videoPlayer.focus(); // Foca no player de vídeo
 
@@ -82,16 +88,41 @@ function openModal(videoUrl, carrossel) {
             controls.style.display = 'none'; // Esconde os controles
         }
     });
+    // Configura navegação pelas setas direcionais dentro do modal
+    setupDirectionalNavigation(videoModal);
 }
 
-// Função para fechar o modal e exibir o carrossel novamente
-function closeModal(modal, carrossel) {
+// Função para navegar entre elementos usando teclas direcionais
+function setupDirectionalNavigation(modal) {
+    const focusableElements = modal.querySelectorAll('.close, .video-player');
+    let currentFocusIndex = 0;
+
+    modal.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+            currentFocusIndex = (currentFocusIndex + 1) % focusableElements.length;
+            focusableElements[currentFocusIndex].focus();
+            event.preventDefault();
+        } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+            currentFocusIndex = (currentFocusIndex - 1 + focusableElements.length) % focusableElements.length;
+            focusableElements[currentFocusIndex].focus();
+            event.preventDefault();
+        }
+    });
+}
+
+// Função para fechar o modal e exibir o HTML novamente
+function closeModal(modal) {
     console.log("Fechando modal");
     modal.style.display = 'none';
     const videoPlayer = document.getElementById('videoPlayer');
     videoPlayer.pause(); // Pausa o vídeo
     videoPlayer.src = ''; // Limpa o src do vídeo
-    videoPlayer.controls = false; // Remove os controles do player
+
+    // Exibe o restante do HTML
+    const bodyContent = document.querySelector('#carrossel'); // ou outro seletor que englobe o conteúdo
+    if (bodyContent) {
+        bodyContent.style.display = 'block';
+    }
 
     const firstFilm = document.querySelector('.filme'); // Foca de volta no primeiro filme
     if (firstFilm) {
@@ -102,8 +133,7 @@ function closeModal(modal, carrossel) {
 // Fechar modal ao pressionar "Escape"
 window.addEventListener('keydown', (event) => {
     const videoModal = document.getElementById('videoModal');
-    const videoPlayer = document.getElementById('videoPlayer');
     if (event.key === 'Escape' && videoModal && videoModal.style.display === 'block') {
-        closeModal(videoModal, carrossel);
+        closeModal(videoModal);
     }
 });
