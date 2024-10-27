@@ -3,6 +3,8 @@ let categoriaAtual = 0; // Índice da categoria atual
 let filmeAtual = 0; // Índice do filme atual
 let startX = 0; // Posição inicial do toque
 let endX = 0; // Posição final do toque
+let startY = 0; // Posição inicial do toque vertical
+let endY = 0; // Posição final do toque vertical
 
 export function inicializarNavegacao() {
     const carrossel = document.querySelectorAll('.filmes-container');
@@ -51,21 +53,35 @@ export function inicializarNavegacao() {
     carrossel.forEach(container => {
         container.addEventListener('touchstart', (event) => {
             startX = event.touches[0].clientX; // Captura a posição inicial do toque
+            startY = event.touches[0].clientY; // Captura a posição inicial do toque vertical
         });
 
         container.addEventListener('touchmove', (event) => {
             endX = event.touches[0].clientX; // Captura a posição final do toque
+            endY = event.touches[0].clientY; // Captura a posição final do toque vertical
         });
 
         container.addEventListener('touchend', () => {
-            const deltaX = endX - startX; // Calcula a diferença do toque
-            if (Math.abs(deltaX) > 50) { // Verifica se o movimento é significativo
+            const deltaX = endX - startX; // Calcula a diferença do toque horizontal
+            const deltaY = endY - startY; // Calcula a diferença do toque vertical
+
+            // Verifica se o movimento é maior na horizontal
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
                 if (deltaX > 0) {
                     // Movimento para a direita
                     moverParaCapaAnterior();
                 } else {
                     // Movimento para a esquerda
                     moverParaProximaCapa();
+                }
+            } else if (Math.abs(deltaY) > 50) {
+                // Verifica se o movimento é vertical
+                if (deltaY > 0) {
+                    // Movimento para baixo
+                    moverParaProximaCategoria();
+                } else {
+                    // Movimento para cima
+                    moverParaCategoriaAnterior();
                 }
             }
         });
@@ -116,6 +132,22 @@ function moverParaProximaCapa() {
 function moverParaCapaAnterior() {
     if (filmeAtual > 0) {
         filmeAtual--;
+        atualizarSelecao(carrossel);
+    }
+}
+
+function moverParaProximaCategoria() {
+    if (categoriaAtual < filmesSelecionados.length - 1) {
+        categoriaAtual++; // Muda para a próxima categoria
+        filmeAtual = 0; // Reseta o filme atual para o primeiro da nova categoria
+        atualizarSelecao(carrossel);
+    }
+}
+
+function moverParaCategoriaAnterior() {
+    if (categoriaAtual > 0) {
+        categoriaAtual--; // Muda para a categoria anterior
+        filmeAtual = 0; // Reseta o filme atual para o primeiro da nova categoria
         atualizarSelecao(carrossel);
     }
 }
