@@ -271,7 +271,7 @@ p {
     /* Estilo da logo */
     .logo {
         position: absolute; /* Fixa a posição da logo */
-        top: 0px; /* Alinha ao topo da página */
+        top: -30px; /* Alinha ao topo da página */
         left: 50%; /* Move para o centro horizontalmente */
         width: 10%; /* Largura da logo */
         max-width: 200px; /* Largura máxima da logo */
