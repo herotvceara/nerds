@@ -99,3 +99,63 @@ window.onclick = function(event) {
 document.addEventListener("DOMContentLoaded", function() {
     openIsaacModal();
 });
+
+///////////////////////////////////////////////////////////////////
+// Variáveis para rastrear toques
+let startX, startY, isMoving = false;
+
+// Função para iniciar o movimento
+const touchStart = (event) => {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+    isMoving = true;
+};
+
+// Função para detectar movimento
+const touchMove = (event) => {
+    if (!isMoving) return;
+
+    const currentX = event.touches[0].clientX;
+    const currentY = event.touches[0].clientY;
+
+    const diffX = startX - currentX;
+    const diffY = startY - currentY;
+
+    // Mover o carrossel ou trocar de categoria com base na direção do movimento
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 50) {
+            // Movimento para a esquerda
+            nextCategory();
+        } else if (diffX < -50) {
+            // Movimento para a direita
+            previousCategory();
+        }
+    }
+};
+
+// Função para finalizar o movimento
+const touchEnd = () => {
+    isMoving = false;
+};
+
+// Adiciona os ouvintes de evento ao carrossel
+const carouselElement = document.querySelector('.carousel'); // Substitua pelo seletor correto do seu carrossel
+carouselElement.addEventListener('touchstart', touchStart);
+carouselElement.addEventListener('touchmove', touchMove);
+carouselElement.addEventListener('touchend', touchEnd);
+
+// Funções para mudar de categoria
+const nextCategory = () => {
+    // Sua lógica para ir para a próxima categoria
+};
+
+const previousCategory = () => {
+    // Sua lógica para voltar para a categoria anterior
+};
+
+// Adicione eventos de toque ao carrossel para mover capas
+const coverElement = document.querySelector('.cover'); // Substitua pelo seletor correto do seu carrossel
+coverElement.addEventListener('touchstart', touchStart);
+coverElement.addEventListener('touchmove', touchMove);
+coverElement.addEventListener('touchend', touchEnd);
+
