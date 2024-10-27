@@ -1,6 +1,8 @@
 let filmesSelecionados = [];
 let categoriaAtual = 0; // Índice da categoria atual
 let filmeAtual = 0; // Índice do filme atual
+let startX = 0; // Posição inicial do toque
+let endX = 0; // Posição final do toque
 
 export function inicializarNavegacao() {
     const carrossel = document.querySelectorAll('.filmes-container');
@@ -45,6 +47,30 @@ export function inicializarNavegacao() {
         }
     });
 
+    // Adiciona os eventos de toque para o carrossel
+    carrossel.forEach(container => {
+        container.addEventListener('touchstart', (event) => {
+            startX = event.touches[0].clientX; // Captura a posição inicial do toque
+        });
+
+        container.addEventListener('touchmove', (event) => {
+            endX = event.touches[0].clientX; // Captura a posição final do toque
+        });
+
+        container.addEventListener('touchend', () => {
+            const deltaX = endX - startX; // Calcula a diferença do toque
+            if (Math.abs(deltaX) > 50) { // Verifica se o movimento é significativo
+                if (deltaX > 0) {
+                    // Movimento para a direita
+                    moverParaCapaAnterior();
+                } else {
+                    // Movimento para a esquerda
+                    moverParaProximaCapa();
+                }
+            }
+        });
+    });
+
     atualizarSelecao(carrossel); // Atualiza a seleção ao iniciar
 }
 
@@ -80,6 +106,20 @@ function atualizarSelecao(carrossel) {
     }
 }
 
+function moverParaProximaCapa() {
+    if (filmeAtual < filmesSelecionados[categoriaAtual].length - 1) {
+        filmeAtual++;
+        atualizarSelecao(carrossel);
+    }
+}
+
+function moverParaCapaAnterior() {
+    if (filmeAtual > 0) {
+        filmeAtual--;
+        atualizarSelecao(carrossel);
+    }
+}
+
 // Obtém o modal
 const isaacModal = document.getElementById("isaacModal");
 
@@ -99,63 +139,3 @@ window.onclick = function(event) {
 document.addEventListener("DOMContentLoaded", function() {
     openIsaacModal();
 });
-
-///////////////////////////////////////////////////////////////////
-// Variáveis para rastrear toques
-let startX, startY, isMoving = false;
-
-// Função para iniciar o movimento
-const touchStart = (event) => {
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
-    isMoving = true;
-};
-
-// Função para detectar movimento
-const touchMove = (event) => {
-    if (!isMoving) return;
-
-    const currentX = event.touches[0].clientX;
-    const currentY = event.touches[0].clientY;
-
-    const diffX = startX - currentX;
-    const diffY = startY - currentY;
-
-    // Mover o carrossel ou trocar de categoria com base na direção do movimento
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 50) {
-            // Movimento para a esquerda
-            nextCategory();
-        } else if (diffX < -50) {
-            // Movimento para a direita
-            previousCategory();
-        }
-    }
-};
-
-// Função para finalizar o movimento
-const touchEnd = () => {
-    isMoving = false;
-};
-
-// Adiciona os ouvintes de evento ao carrossel
-const carouselElement = document.querySelector('.carousel'); // Substitua pelo seletor correto do seu carrossel
-carouselElement.addEventListener('touchstart', touchStart);
-carouselElement.addEventListener('touchmove', touchMove);
-carouselElement.addEventListener('touchend', touchEnd);
-
-// Funções para mudar de categoria
-const nextCategory = () => {
-    // Sua lógica para ir para a próxima categoria
-};
-
-const previousCategory = () => {
-    // Sua lógica para voltar para a categoria anterior
-};
-
-// Adicione eventos de toque ao carrossel para mover capas
-const coverElement = document.querySelector('.cover'); // Substitua pelo seletor correto do seu carrossel
-coverElement.addEventListener('touchstart', touchStart);
-coverElement.addEventListener('touchmove', touchMove);
-coverElement.addEventListener('touchend', touchEnd);
-
