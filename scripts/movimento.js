@@ -1,8 +1,8 @@
 let filmesSelecionados = [];
 let categoriaAtual = 0; // Índice da categoria atual
 let filmeAtual = 0; // Índice do filme atual
-let startX = 0; // Posição inicial do toque
-let endX = 0; // Posição final do toque
+let startX = 0; // Posição inicial do toque horizontal
+let endX = 0; // Posição final do toque horizontal
 let startY = 0; // Posição inicial do toque vertical
 let endY = 0; // Posição final do toque vertical
 
@@ -22,42 +22,28 @@ export function inicializarNavegacao() {
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowDown') {
             // Mover para a próxima categoria
-            if (categoriaAtual < filmesSelecionados.length - 1) {
-                categoriaAtual++; // Muda para a próxima categoria
-                filmeAtual = 0; // Reseta o filme atual para o primeiro da nova categoria
-                atualizarSelecao(carrossel);
-            }
+            moverParaProximaCategoria();
         } else if (event.key === 'ArrowUp') {
             // Mover para a categoria anterior
-            if (categoriaAtual > 0) {
-                categoriaAtual--; // Muda para a categoria anterior
-                filmeAtual = 0; // Reseta o filme atual para o primeiro da nova categoria
-                atualizarSelecao(carrossel);
-            }
+            moverParaCategoriaAnterior();
         } else if (event.key === 'ArrowRight') {
             // Mover para a próxima capa
-            if (filmeAtual < filmesSelecionados[categoriaAtual].length - 1) {
-                filmeAtual++;
-                atualizarSelecao(carrossel);
-            }
+            moverParaProximaCapa();
         } else if (event.key === 'ArrowLeft') {
             // Mover para a capa anterior
-            if (filmeAtual > 0) {
-                filmeAtual--;
-                atualizarSelecao(carrossel);
-            }
+            moverParaCapaAnterior();
         }
     });
 
     // Adiciona os eventos de toque para o carrossel
     carrossel.forEach(container => {
         container.addEventListener('touchstart', (event) => {
-            startX = event.touches[0].clientX; // Captura a posição inicial do toque
+            startX = event.touches[0].clientX; // Captura a posição inicial do toque horizontal
             startY = event.touches[0].clientY; // Captura a posição inicial do toque vertical
         });
 
         container.addEventListener('touchmove', (event) => {
-            endX = event.touches[0].clientX; // Captura a posição final do toque
+            endX = event.touches[0].clientX; // Captura a posição final do toque horizontal
             endY = event.touches[0].clientY; // Captura a posição final do toque vertical
         });
 
@@ -65,22 +51,16 @@ export function inicializarNavegacao() {
             const deltaX = endX - startX; // Calcula a diferença do toque horizontal
             const deltaY = endY - startY; // Calcula a diferença do toque vertical
 
-            // Verifica se o movimento é maior na horizontal
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) { // Movimento horizontal
                 if (deltaX > 0) {
-                    // Movimento para a direita
                     moverParaCapaAnterior();
                 } else {
-                    // Movimento para a esquerda
                     moverParaProximaCapa();
                 }
-            } else if (Math.abs(deltaY) > 50) {
-                // Verifica se o movimento é vertical
+            } else if (Math.abs(deltaY) > 50) { // Movimento vertical
                 if (deltaY > 0) {
-                    // Movimento para baixo
                     moverParaProximaCategoria();
                 } else {
-                    // Movimento para cima
                     moverParaCategoriaAnterior();
                 }
             }
