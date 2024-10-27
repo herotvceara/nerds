@@ -62,12 +62,40 @@ function atualizarSelecao(carrossel) {
         const containerAtual = carrossel[categoriaAtual];
 
         // Move o carrossel para a capa atual
-        const offset = (filmeAtual * 165) - (window.innerWidth / 2 - 75); // Cálculo para centralizar
+        const offset = filmeAtual * 165; // Cálculo para mover para a capa atual
         containerAtual.scrollTo({ left: offset, behavior: 'smooth' });
 
         // Adiciona a seleção ao filme atual
         const filmeSelecionado = filmesSelecionados[categoriaAtual][filmeAtual];
         filmeSelecionado.classList.add('selecionado');
         filmeSelecionado.focus(); // Foca no filme selecionado
+
+        // Mantém a capa selecionada a uma posição fixa (60% do topo da tela)
+        const targetPosition = window.innerHeight * 0.6; // 60% do topo
+        const filmePosition = filmeSelecionado.getBoundingClientRect().top + window.scrollY; // Posição do filme selecionado
+
+        // Calcula a diferença e rola para a posição desejada
+        const scrollToPosition = filmePosition - targetPosition + (filmeSelecionado.offsetHeight / 2);
+        window.scrollTo({ top: scrollToPosition, behavior: 'smooth' });
     }
 }
+
+// Obtém o modal
+const isaacModal = document.getElementById("isaacModal");
+
+// Função para abrir o modal
+function openIsaacModal() {
+    isaacModal.style.display = "block";
+}
+
+// Fecha o modal se o usuário clicar fora do conteúdo do modal
+window.onclick = function(event) {
+    if (event.target === isaacModal) {
+        isaacModal.style.display = "none";
+    }
+}
+
+// Abre o modal ao carregar a página
+document.addEventListener("DOMContentLoaded", function() {
+    openIsaacModal();
+});

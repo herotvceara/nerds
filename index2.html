@@ -3,24 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filmes - Carrossel</title>
+    <title>ISAAC PLAY</title>
     <link rel="stylesheet" href="css/home.css">
     <style>
         /* Estilo para indicar foco nas capas */
         .filme:focus {
-            outline: 2px solid blue; /* Um contorno azul para indicar foco */
+            outline: 2px solid rgb(255, 255, 255); /* Um contorno branco para indicar foco */
+        }
+        /* Estilo para o banner do player */
+        #bannerPlayerContainer {
+            pointer-events: none; /* Impede interações com o iframe */
         }
     </style>
 </head>
 <body>
+    <!-- Banner de vídeo fixo -->
+    <div id="bannerPlayerContainer">
+        <iframe id="bannerPlayer" allow="autoplay" allowfullscreen
+            src="" style="pointer-events:none;"></iframe>
+    </div>
+    
+    <!-- Modal -->
+    <div id="isaacModal" class="isaac-modal">
+        <div class="isaac-modal-content">
+            <div class="isaac-header">
+                <img src="img/maça.png" alt="Logo" class="isaac-logo"> <!-- Insira o caminho para a sua imagem -->
+                <h1>ISAAC PLAY</h1>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <h5>Filmes por Categoria</h5>
+        
         <div id="carrossel" class="carrossel">
             <!-- Carrossel será preenchido dinamicamente -->
         </div>
     </div>
 
-    
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
         import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
@@ -38,6 +57,7 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const bannerPlayer = document.getElementById('bannerPlayer');
 
         async function getFilmes() {
             try {
@@ -45,12 +65,12 @@
                 const categorias = {};
 
                 filmesSnapshot.forEach(doc => {
-                    const { Categoria, Capa, url } = doc.data(); // Adicione 'url' aqui
+                    const { Categoria, Capa, url, Trailer } = doc.data();
                     if (Categoria) {
                         if (!categorias[Categoria]) {
                             categorias[Categoria] = [];
                         }
-                        categorias[Categoria].push({ id: doc.id, Capa, url }); // Inclua 'url' aqui
+                        categorias[Categoria].push({ id: doc.id, Capa, url, Trailer });
                     } else {
                         console.warn(`O documento ${doc.id} não possui uma categoria definida.`);
                     }
@@ -88,6 +108,20 @@
                         <img src="${filme.Capa}" alt="${filme.id}" class="capa">
                         <p>${filme.id}</p>
                     `;
+                    
+                    // Atualiza o iframe quando a capa é focada
+                    filmeDiv.addEventListener('focus', () => {
+                        const trailerId = filme.Trailer; // O ID do trailer deve ser o próprio ID do YouTube
+                        bannerPlayer.src = `https://www.youtube.com/embed/${trailerId}?autoplay=1&controls=0&enablejsapi=1&modestbranding=1&showinfo=0`; // Começa o vídeo com áudio e sem controles
+                    });
+
+                    // Adiciona evento para pausar o vídeo ao pressionar 'Enter'
+                    filmeDiv.addEventListener('keydown', (event) => {
+                        if (event.key === 'Enter') {
+                            bannerPlayer.src = ''; // Pausa o vídeo
+                        }
+                    });
+
                     filmesContainer.appendChild(filmeDiv);
                 });
 

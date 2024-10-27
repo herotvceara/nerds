@@ -9,12 +9,13 @@ body {
     font-family: Arial, sans-serif;
     background-color: #141414; /* Cor de fundo escura */
     color: #fff; /* Texto branco */
+    overflow: hidden; /* Evita rolagem da página principal */
 }
 
 .container {
-    width: 90%;
-    margin: auto;
-    padding: 20px;
+    width: 100%; /* A largura ocupa toda a tela */
+    margin: 0; /* Remove margem */
+    padding: 20px 0; /* Apenas padding vertical */
 }
 
 /* Estilo do cabeçalho */
@@ -172,4 +173,56 @@ p {
     pointer-events: none; /* Desabilita eventos de ponteiro para todos os elementos */
 }
 
+/* Estilo do banner */
+#bannerPlayerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh; /* Ocupa 40% da altura da tela */
+    z-index: 1000;
+    background: black;
+}
+
+#bannerPlayer {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.container {
+    margin-top: 50vh; /* Compensa o espaço do banner */
+}
+
+.isaac-modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed; /* Fixa o modal na tela */
+    z-index: 1000; /* Acima de outros elementos */
+    left: 35%;
+    top: -23%;
+    width: 100%; /* Largura total da tela */
+    height: 110%; /* Altura total da tela */
+    overflow: auto; /* Permite rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0); /* Fundo semi-transparente */
+}
+
+.isaac-modal-content {
+    background-color: transparent; /* Torna o fundo do conteúdo transparente */
+    margin: 15% auto; /* Centraliza o modal */
+    padding: 20px; /* Espaçamento interno */
+    border: none; /* Remove a borda */
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.isaac-header {
+    position: relative; /* Ajuste para permitir o posicionamento da logo */
+    padding: 10px; /* ajuste o espaçamento conforme necessário */
+    color: white; /* cor do texto */
+}
+
+.isaac-logo {
+    position: relative; /* Permite que a imagem seja posicionada no fluxo normal */
+    width: 70px; /* Largura da logo */
+    height: auto; /* Mantém a proporção da imagem */
+}
 
