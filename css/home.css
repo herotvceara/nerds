@@ -243,8 +243,8 @@ p {
         display: flex; /* Exibe o modal por padrão */
         position: fixed; /* Fixa o modal na tela */
         z-index: 1000; /* Acima de outros elementos */
-        left: -12%; /* Alinha à esquerda */
-        top: 5%; /* Alinha ao topo */
+        left: -15%; /* Alinha à esquerda */
+        top: 8%; /* Alinha ao topo */
         width: 90%; /* Largura do modal (ajuste conforme necessário) */
         max-width: 500px; /* Largura máxima do modal */
         height: auto; /* Altura automática para o conteúdo */
