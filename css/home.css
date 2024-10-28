@@ -232,7 +232,7 @@ p {
     .logo {
         position: absolute; /* Fixa a posição da logo */
         top: 2px; /* Alinha ao topo da página */
-        left: 40%; /* Move para o centro horizontalmente */
+        left: 50%; /* Move para o centro horizontalmente */
         transform: translateX(-50%); /* Ajusta a posição para centralizar */
         width: 80%; /* Largura da logo */
         max-width: 200px; /* Largura máxima da logo */
@@ -240,19 +240,22 @@ p {
 
     /* Estilo do modal */
     .isaac-modal {
-        display: none; /* Esconde o modal por padrão */
+        display: flex; /* Exibe o modal por padrão */
         position: fixed; /* Fixa o modal na tela */
         z-index: 1000; /* Acima de outros elementos */
-        left: 50%; /* Centraliza horizontalmente */
-        top: 50%; /* Centraliza verticalmente */
-        transform: translate(-50%, -50%); /* Ajusta a posição para centralizar */
-        width: 90%; /* Largura total da tela */
-        max-width: 600px; /* Largura máxima para o modal */
-        height: auto; /* Altura automática */
-        overflow: auto; /* Permite rolagem se necessário */
-        background-color: rgba(0, 0, 0, 0); /* Fundo semi-transparente */
+        left: 0; /* Alinha à esquerda */
+        top: 0; /* Alinha ao topo */
+        width: 50%; /* Largura do modal (ajuste conforme necessário) */
+        max-width: 500px; /* Largura máxima do modal */
+        height: auto; /* Altura automática para o conteúdo */
+        max-height: 80%; /* Altura máxima para não ocupar toda a tela */
+        overflow: auto; /* Permite rolagem se o conteúdo exceder a altura máxima */
+        background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
         border-radius: 10px; /* Bordas arredondadas (opcional) */
         padding: 20px; /* Espaçamento interno do modal */
+        align-items: center; /* Centraliza verticalmente */
+        justify-content: center; /* Centraliza horizontalmente */
+        flex-direction: column; /* Organiza o conteúdo em coluna */
     }
 
     /* Outros estilos que você possa querer adicionar para dispositivos móveis */
@@ -265,3 +268,4 @@ p {
         padding: 10px; /* Ajusta o espaçamento do carrossel */
     }
 }
+
