@@ -5,16 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ISAAC PLAY</title>
     <link rel="stylesheet" href="css/home.css">
-    <style>
-        /* Estilo para indicar foco nas capas */
-        .filme:focus {
-            outline: 2px solid rgb(255, 255, 255); /* Um contorno branco para indicar foco */
-        }
-        /* Estilo para o banner do player */
-        #bannerPlayerContainer {
-            pointer-events: none; /* Impede interações com o iframe */
-        }
-    </style>
+    
 </head>
 <body>
     <!-- Banner de vídeo fixo -->
@@ -24,7 +15,7 @@
     </div>
     
     <!-- Modal -->
-    <div id="isaacModal" class="isaac-modal">
+    <div id="isaacModal" class="isaac-modal" style="display: flex;"> <!-- Exibe o modal ao iniciar -->
         <div class="isaac-modal-content">
             <div class="isaac-header">
                 <img src="img/maça.png" alt="Logo" class="isaac-logo"> <!-- Insira o caminho para a sua imagem -->
@@ -34,7 +25,6 @@
     </div>
 
     <div class="container">
-        
         <div id="carrossel" class="carrossel">
             <!-- Carrossel será preenchido dinamicamente -->
         </div>

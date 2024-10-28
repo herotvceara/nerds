@@ -38,7 +38,7 @@ function openModal(videoUrl) {
         modalContent.className = 'modal-content';
 
         const closeModalButton = document.createElement('button');
-        closeModalButton.className = 'close'; // Atualiza a classe para 'close'
+        closeModalButton.className = 'close';
         closeModalButton.textContent = 'X';
         closeModalButton.addEventListener('click', () => {
             console.log("Botão de fechar modal clicado");
@@ -47,32 +47,51 @@ function openModal(videoUrl) {
 
         const videoPlayer = document.createElement('video');
         videoPlayer.id = 'videoPlayer';
-        videoPlayer.className = 'video-player'; // Atualiza a classe para 'video-player'
-        videoPlayer.controls = true; // Exibe os controles do vídeo
+        videoPlayer.className = 'video-player';
+        videoPlayer.controls = true;
         videoPlayer.textContent = 'Seu navegador não suporta o vídeo.';
 
-        // Adiciona os elementos ao modal
         modalContent.appendChild(closeModalButton);
         modalContent.appendChild(videoPlayer);
         videoModal.appendChild(modalContent);
-        document.body.appendChild(videoModal); // Adiciona o modal ao body
+        document.body.appendChild(videoModal);
     }
 
     const videoPlayer = document.getElementById('videoPlayer');
+    videoPlayer.src = ''; // Limpa o src antes de configurar novamente
 
     // Configurações do player
-    videoPlayer.src = videoUrl;
-    videoPlayer.volume = 1.0; // Define o volume para o máximo
-    videoPlayer.muted = false; // Garante que o som esteja ligado
-    videoPlayer.play(); // Inicia a reprodução do vídeo
+    if (videoUrl.endsWith('.m3u8')) {
+        // Se a URL for M3U8, use hls.js
+        if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoUrl);
+            hls.attachMedia(videoPlayer);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                videoPlayer.play();
+            });
+        } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+            // Suporte nativo para M3U8
+            videoPlayer.src = videoUrl;
+            videoPlayer.addEventListener('loadedmetadata', () => {
+                videoPlayer.play();
+            });
+        }
+    } else {
+        // Para URLs normais (ex: YouTube)
+        videoPlayer.src = videoUrl;
+        videoPlayer.volume = 1.0; // Define o volume para o máximo
+        videoPlayer.muted = false; // Garante que o som esteja ligado
+        videoPlayer.play(); // Inicia a reprodução do vídeo
+    }
 
-     // Coloca o vídeo em tela cheia assim que começar a tocar
-     videoPlayer.addEventListener('play', () => {
+    // Coloca o vídeo em tela cheia assim que começar a tocar
+    videoPlayer.addEventListener('play', () => {
         if (videoPlayer.requestFullscreen) {
             videoPlayer.requestFullscreen();
-        } else if (videoPlayer.webkitRequestFullscreen) { // Suporte para Safari
+        } else if (videoPlayer.webkitRequestFullscreen) {
             videoPlayer.webkitRequestFullscreen();
-        } else if (videoPlayer.msRequestFullscreen) { // Suporte para IE/Edge
+        } else if (videoPlayer.msRequestFullscreen) {
             videoPlayer.msRequestFullscreen();
         }
     });
