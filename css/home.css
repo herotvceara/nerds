@@ -234,7 +234,7 @@ p {
         top: 2px; /* Alinha ao topo da página */
         left: 50%; /* Move para o centro horizontalmente */
         transform: translateX(-50%); /* Ajusta a posição para centralizar */
-        width: 80%; /* Largura da logo */
+        width: 50%; /* Largura da logo */
         max-width: 200px; /* Largura máxima da logo */
     }
 
