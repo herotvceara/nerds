@@ -243,14 +243,14 @@ p {
         display: flex; /* Exibe o modal por padrão */
         position: fixed; /* Fixa o modal na tela */
         z-index: 1000; /* Acima de outros elementos */
-        left: 0; /* Alinha à esquerda */
+        left: 10%; /* Alinha à esquerda */
         top: 0; /* Alinha ao topo */
-        width: 50%; /* Largura do modal (ajuste conforme necessário) */
+        width: 90%; /* Largura do modal (ajuste conforme necessário) */
         max-width: 500px; /* Largura máxima do modal */
         height: auto; /* Altura automática para o conteúdo */
         max-height: 80%; /* Altura máxima para não ocupar toda a tela */
         overflow: auto; /* Permite rolagem se o conteúdo exceder a altura máxima */
-        background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+        background-color: rgba(0, 0, 0, 0); /* Fundo semi-transparente */
         border-radius: 10px; /* Bordas arredondadas (opcional) */
         padding: 20px; /* Espaçamento interno do modal */
         align-items: center; /* Centraliza verticalmente */
