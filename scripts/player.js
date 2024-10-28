@@ -22,6 +22,7 @@ export function setupFilmClickEvents() {
 
 // Função para abrir o modal e ocultar o restante do HTML
 function openModal(videoUrl) {
+    bannerPlayer.src = ''; // Pausa o vídeo
     // Cria o modal se ainda não existir
     let videoModal = document.getElementById('videoModal');
     if (!videoModal) {
