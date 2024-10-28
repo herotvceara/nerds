@@ -1,4 +1,4 @@
-//funcionou// Função para configurar os eventos de clique nos filmes
+// Função para configurar os eventos de clique nos filmes
 export function setupFilmClickEvents() {
     const filmes = document.querySelectorAll('.filme');
     const carrossel = document.getElementById('carrossel'); // Seleciona o carrossel
@@ -78,7 +78,7 @@ function openModal(videoUrl) {
             });
         }
     } else {
-        // Para URLs normais (ex: YouTube)
+        // Para URLs normais (ex: MP4 ou YouTube)
         videoPlayer.src = videoUrl;
         videoPlayer.volume = 1.0; // Define o volume para o máximo
         videoPlayer.muted = false; // Garante que o som esteja ligado
@@ -108,18 +108,13 @@ function openModal(videoUrl) {
 
     // Exibir controles ao passar o mouse sobre o modal
     videoModal.addEventListener('mouseenter', () => {
-        const controls = document.querySelector('.player-controls');
-        if (controls) {
-            controls.style.display = 'flex'; // Mostra os controles
-        }
+        videoPlayer.controls = true; // Mostra os controles
     });
 
     videoModal.addEventListener('mouseleave', () => {
-        const controls = document.querySelector('.player-controls');
-        if (controls) {
-            controls.style.display = 'none'; // Esconde os controles
-        }
+        videoPlayer.controls = false; // Esconde os controles
     });
+
     // Configura navegação pelas setas direcionais dentro do modal
     setupDirectionalNavigation(videoModal);
 }
@@ -168,4 +163,4 @@ window.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && videoModal && videoModal.style.display === 'block') {
         closeModal(videoModal);
     }
-}); 
+});
