@@ -130,7 +130,7 @@ function atualizarSelecao(carrossel) {
         filmeSelecionado.focus(); // Foca no filme selecionado
 
         // Mantém a capa selecionada a uma posição fixa (60% do topo da tela)
-        const targetPosition = window.innerHeight * 0.6; // 60% do topo
+        const targetPosition = window.innerHeight * 0.66; // 60% do topo
         const filmePosition = filmeSelecionado.getBoundingClientRect().top + window.scrollY; // Posição do filme selecionado
 
         const scrollToPosition = filmePosition - targetPosition + (filmeSelecionado.offsetHeight / 2);
